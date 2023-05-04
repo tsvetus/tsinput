@@ -1,0 +1,26 @@
+:root {
+  --tsi-color-border: #4b4b4b;
+  --tsi-color-text: #000000;
+  --tsi-font-size: 14px;
+  --tsi-font-family: Arial;
+
+  --tsi-wait-opacity: 0.5;
+
+  --tsi-invalid-color-text: #ff0000;
+  --tsi-invalid-border: 1px solid var(--tsi-invalid-color-text);
+  --tsi-invalid-background: #fff4d9;
+
+  --tsi-edit-label-outline: none;
+  --tsi-edit-label-border: none;
+
+  --tsi-edit-outline: none;
+  --tsi-edit-border: 1px solid var(--tsi-color-border);
+  --tsi-edit-border-radius: 0.3em;
+
+  --tsi-edit-input-outline: none;
+  --tsi-edit-input-border: none;
+
+  --tsi-edit-icon-fill: var(--tsi-color-border);
+  --tsi-edit-icon-outline: none;
+  --tsi-edit-icon-border: none;
+}

@@ -1,0 +1,6 @@
+.*/
+.*
+*-lock.json
+!.gitignore
+!.prettierrc
+node_modules/
