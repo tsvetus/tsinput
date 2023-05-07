@@ -1,0 +1,12 @@
+.tsi-edit-input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  text-overflow: hidden;
+  padding: 0.1em 0.3em 0.1em 0.3em;
+  outline: var(--tsi-edit-input-outline);
+  border: var(--tsi-edit-input-border);
+  background: transparent;
+  display: flex;
+  align-items: center;
+}

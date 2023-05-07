@@ -1,0 +1,31 @@
+.tsi-edit-list {
+  max-height: 300px;
+  font-size: var(--tsi-font-size);
+  font-family: var(--tsi-font-family);  
+  background: var(--tsi-background);
+  outline: var(--tsi-edit-list-outline);
+  border: var(--tsi-edit-list-border);
+  border-radius: var(--tsi-edit-list-border-radius); 
+}
+
+.tsi-edit-list-items {
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.tsi-edit-list-items-item {
+  padding: 0.5em;
+}
+
+.tsi-edit-list-items-item:hover {
+  background: var(--tsi-background-hover);
+}
+
+.tsi-edit-list-items-item-selected {
+  font-weight: bold;
+}
+
+.tsi-edit-list-items-item-focused {
+  background: var(--tsi-background-focused);
+}
+

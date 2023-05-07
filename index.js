@@ -1,1 +1,1 @@
-module.exports = require('./build/tsinput')
+export * from './src'

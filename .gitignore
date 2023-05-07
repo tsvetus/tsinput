@@ -3,4 +3,6 @@
 *-lock.json
 !.gitignore
 !.prettierrc
+!.eslintrc.js
 node_modules/
+tmp/

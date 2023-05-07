@@ -2,7 +2,10 @@ const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
+  optimization: {
+    minimize: true
+  },
   resolve: {
     extensions: ['.js', '.jsx'],
     modules: ['./src', './node_modules']

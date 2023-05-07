@@ -1,8 +1,19 @@
 :root {
-  --tsi-color-border: #4b4b4b;
+  --tsi-color-face: #c9dfd1;
+  --tsi-color-border: #92a2ac;
   --tsi-color-text: #000000;
+  --tsi-color-background: #ffffff;
+  --tsi-color-background-hover: #ddebe7;
+  --tsi-color-background-selected: var(--tsi-color-background);
+  --tsi-color-background-focused: #d9e1e7;
+
   --tsi-font-size: 14px;
   --tsi-font-family: Arial;
+  
+  --tsi-background: var(--tsi-color-background);
+  --tsi-background-hover: var(--tsi-color-background-hover);
+  --tsi-background-selected: var(--tsi-color-background-selected);
+  --tsi-background-focused: var(--tsi-color-background-focused);
 
   --tsi-wait-opacity: 0.5;
 
@@ -23,4 +34,9 @@
   --tsi-edit-icon-fill: var(--tsi-color-border);
   --tsi-edit-icon-outline: none;
   --tsi-edit-icon-border: none;
+
+  --tsi-edit-list-outline: none;
+  --tsi-edit-list-border: 1px solid var(--tsi-color-border);
+  --tsi-edit-list-border-radius: 0.3em;
+
 }

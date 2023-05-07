@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect, useState } from 'react'
+import React, { useMemo, useEffect, useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 
 import { concat } from '../../util'
@@ -12,8 +12,11 @@ const CLASS = 'tsi-icon'
 const Icon = props => {
   const className = useMemo(
     () => concat(CLASS, props.className, props.onClick ? 'tsi-icon-clickable' : null),
-    [props.className]
+    [props.className, props.onClick]
   )
+
+  const onTargetRef = useRef()
+  onTargetRef.current = props.onTarget
 
   const [style, setStyle] = useState(null)
 
@@ -33,7 +36,7 @@ const Icon = props => {
           .map((_v, i) => props.margin[i] ?? 0)
         newStyle.margin = margin.map(v => `${v}px`).join(' ')
       }
-      const target = props.onTarget()
+      const target = onTargetRef.current ? onTargetRef.current() : null
       if (target) {
         const rect = target.getBoundingClientRect()
         if (rect) {
@@ -43,11 +46,9 @@ const Icon = props => {
       }
       setStyle(newStyle)
     }
-  }, [icon, props.margin, props.style])
+  }, [icon, margin, props.margin, props.style])
 
-  const onClick = event => {
-    if (props.onclick) props.onClick({ nativeEvent: event })
-  }
+  const onClick = props.onClick ? event => props.onClick({ nativeEvent: event }) : null
 
   return icon && style ? (
     <svg viewBox={icon.viewBox} className={className} style={style} onClick={onClick}>
@@ -60,8 +61,10 @@ const Icon = props => {
 
 Icon.propTypes = {
   className: PropTypes.string,
+  style: PropTypes.object,
   icon: PropTypes.any,
-  magring: PropTypes.array,
+  margin: PropTypes.array,
+  onTarget: PropTypes.func,
   onClick: PropTypes.func
 }
 
