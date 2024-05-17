@@ -1,0 +1,43 @@
+/* TSInput font */
+
+@font-face {
+  font-family: "TSIFont";
+  src: url("fonts/tsinput-font.woff?001.000") format('woff');
+}
+
+/* TSInput icon base class */
+
+.tsi-i {
+  font-family: TSIFont;
+  font-style: normal;
+}
+
+/* TSInput icons */
+
+.tsi-i-square:before {
+  content: "\000000";
+}
+
+.tsi-i-unchecked:before {
+  content: "\000001";
+}
+
+.tsi-i-checked:before {
+  content: "\000002";
+}
+
+.tsi-i-angle-left:before {
+  content: "\000003";
+}
+
+.tsi-i-angle-up:before {
+  content: "\000004";
+}
+
+.tsi-i-angle-right:before {
+  content: "\000005";
+}
+
+.tsi-i-angle-down:before {
+  content: "\000006";
+}

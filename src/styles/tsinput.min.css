@@ -1,0 +1,363 @@
+/* Variables */
+
+:root {
+  /* Fonts */
+  --tsi-font-size: 18px;
+  --tsi-font-family: Arial;
+  --tsi-line-height: normal;
+  --tsi-font-weight-selected: normal;
+  --tsi-font-weight-hover: normal;
+  --tsi-font-weight-focused: normal;
+  /* Colors */
+  --tsi-color-caption: #1d3883;
+  --tsi-color-frame: #8b9fd4;
+  --tsi-color-text: #303030;
+  --tsi-color-window: #ffffff;
+  --tsi-color-background: #ffffff;
+  --tsi-color-invalid: #ff0000;
+  --tsi-color-selected: #303030;
+  --tsi-color-hover: #303030;
+  --tsi-color-focused: #303030;
+  /* Backgrounds */
+  --tsi-background-selected: #acb2c2;
+  --tsi-background-hover: #dce9e7;
+  --tsi-background-focused: #bad3cf;
+  /* Opacities */
+  --tsi-opacity-wait: 0.5;
+  /* Radiuses */
+  --tsi-border-radius: 0.3em;
+  /* Sizes */
+  --tsi-scroll-width: 6px;
+  /* Icon component */
+  --tsi-icon-size: 16px;
+  /* Input component */
+  --tsi-input-padding: 0.1em 0.3em 0.1em 0.3em;
+  --tsi-textarea-padding: 0.5em;
+  /* Edit component */
+  --tsi-edit-height: 1.3em;
+  --tsi-edit-outline: none;
+  --tsi-edit-border: 1px solid var(--tsi-color-caption);
+  --tsi-edit-border-radius: var(--tsi-border-radius);
+  /* List component */
+  --tsi-list-outline: none;
+  --tsi-list-border: 1px solid var(--tsi-color-frame);
+  --tsi-list-border-radius: var(--tsi-border-radius);
+  --tsi-list-max-height: 220px;
+  --tsi-list-item-padding: 0.2em 0.5em 0.2em 0.5em;
+  /* Label component */
+  --tsi-label-header-margin: 0 0 0.1em 0;
+}
+
+/* Global settings */
+
+body {
+  font-size: var(--tsi-font-size);
+  font-family: var(--tsi-font-family);
+  line-height: var(--tsi-line-height);
+  color: var(--tsi-color-text);
+}
+
+/* Icon component */
+
+.tsi-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  cursor: default;
+  fill: var(--tsi-color-caption);
+  width: var(--tsi-icon-size);
+  height: var(--tsi-icon-size);
+}
+
+.tsi-icon-clickable {
+  cursor: pointer;
+}
+
+/* Overlay component */
+
+.tsi-overlay {
+  position: absolute;
+  box-sizing: border-box;
+  overflow: hidden;
+  z-index: 100;
+  background: var(--tsi-color-window);
+  outline: var(--tsi-list-outline);
+  border: var(--tsi-list-border);
+  border-radius: var(--tsi-border-radius); 
+}
+
+.tsi-overlay-enter {
+  opacity: 0;
+}
+
+.tsi-overlay-enter-active {
+  opacity: 1;
+  transition: opacity 300ms, transform 300ms;
+}
+
+.tsi-overlay-exit {
+  opacity: 1;
+}
+
+.tsi-overlay-exit-active {
+  opacity: 0;
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* Input component */
+
+.tsi-input {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+}
+
+/* Textarea component */
+
+.tsi-textarea {
+  box-sizing: border-box;  
+  border: none;
+  outline: none;
+  resize: none;
+  width: 100%;
+  height: 100%; 
+  margin: 0;
+  padding: var(--tsi-textarea-padding);
+}
+
+.tsi-textarea::-webkit-scrollbar-track {
+	background-color: var(--tsi-color-frame);
+}
+
+.tsi-textarea::-webkit-scrollbar {
+	width: var(--tsi-scroll-width);
+	background-color: var(--tsi-color-frame);
+}
+
+.tsi-textarea::-webkit-scrollbar-thumb {
+	background-color: var(--tsi-color-caption);
+}
+
+
+/* Label component */
+
+.tsi-label {
+  position: relative;
+  box-sizing: border-box;
+}
+
+.tsi-label-inline {
+  display: flex;
+  align-items: flex-end;
+}
+
+.tsi-label-column {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.tsi-label-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin: var(--tsi-label-header-margin);
+}
+
+.tsi-label-text {
+  box-sizing: border-box;
+  cursor: default;
+  white-space: nowrap;
+  color: var(--tsi-color-caption);
+}
+
+.tsi-label-text-wait {
+  opacity: var(--tsi-opacity-wait);
+  cursor: default;
+}
+
+.tsi-label-text-invalid {
+  color: var(--tsi-color-invalid);
+}
+
+.tsi-label-text-left {
+  margin: 0 0.2em 0 0;
+}
+
+.tsi-label-text-right {
+  margin: 0 0 0 0.2em;
+}
+
+.tsi-label-text-top-left {
+  margin: 0;
+}
+
+.tsi-label-text-top-right {
+  margin: 0;
+}
+
+.tsi-label-icon {
+  box-sizing: border-box;
+  width: 1em;
+  height: 1em;
+  flex: 0 0 1em;
+  align-self: center;
+  fill: var(--tsi-color-caption);
+}
+
+.tsi-label-icon-wait {
+  opacity: var(--tsi-opacity-wait);
+  cursor: default;
+}
+
+.tsi-label-icon-invalid {
+  fill: var(--tsi-color-invalid);
+}
+
+.tsi-label-icon-left {
+  margin: 0 0.2em 0 0;
+}
+
+.tsi-label-icon-right {
+  margin: 0 0 0 0.2em;
+}
+
+.tsi-label-icon-top-left {
+  margin: 0;
+}
+
+.tsi-label-icon-top-right {
+  margin: 0;
+}
+
+/* Edit component */
+
+.tsi-edit {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  height: 1.3em;
+  outline: var(--tsi-edit-outline);
+  border: var(--tsi-edit-border);
+  border-radius: var(--tsi-edit-border-radius);
+}
+
+.tsi-edit-wait {
+  opacity: var(--tsi-opacity-wait);
+  cursor: default;
+}
+
+.tsi-edit-invalid {
+  border-color: var(--tsi-color-invalid);
+}
+
+.tsi-edit-input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  text-overflow: hidden;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  padding: var(--tsi-input-padding);
+}
+
+.tsi-edit-icon {
+  box-sizing: border-box;
+  width: 1em;
+  height: 1em;
+  flex: 0 0 1em;
+  align-self: center;  
+  fill: var(--tsi-color-caption);
+}
+
+.tsi-edit-icon-wait {
+  opacity: var(--tsi-opacity-wait);
+}
+
+.tsi-edit-icon-invalid {
+  fill: var(--tsi-color-invalid);
+}
+
+.tsi-edit-icon-left {
+  margin: 0 0 0 0.1em;
+}
+
+.tsi-edit-icon-right {
+  margin: 0 0.1em 0 0;
+}
+
+/* Text component */
+
+.tsi-text {
+  box-sizing: border-box;
+  outline: var(--tsi-edit-outline);
+  border: var(--tsi-edit-border);
+  border-radius: var(--tsi-edit-border-radius);
+}
+
+.tsi-text-wait {
+  opacity: var(--tsi-opacity-wait);
+  cursor: default;
+}
+
+.tsi-text-invalid {
+  border-color: var(--tsi-color-invalid);
+}
+
+/* List component */
+
+.tsi-list {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.tsi-list-items {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  max-height: var(--tsi-list-max-height);
+  overflow-y: auto;
+}
+
+.tsi-list-items::-webkit-scrollbar-track {
+	background-color: var(--tsi-color-frame);
+}
+
+.tsi-list-items::-webkit-scrollbar {
+	width: var(--tsi-scroll-width);
+	background-color: var(--tsi-color-frame);
+}
+
+.tsi-list-items::-webkit-scrollbar-thumb {
+	background-color: var(--tsi-color-caption);
+}
+
+.tsi-list-item {
+  padding: var(--tsi-list-item-padding);
+  cursor: pointer;
+}
+
+.tsi-list-item:hover {
+  font-weight: var(--tsi-font-weight-hover);
+  color: var(--tsi-color-hover);
+  background: var(--tsi-background-hover);
+}
+
+.tsi-list-item-selected {
+  font-weight: var(--tsi-font-weight-selected);
+  color: var(--tsi-color-selected);
+  background: var(--tsi-background-selected);
+}
+
+.tsi-list-item-focused {
+  font-weight: var(--tsi-font-weight-focused);
+  color: var(--tsi-color-focused);
+  background: var(--tsi-background-focused);
+}

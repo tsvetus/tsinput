@@ -4,7 +4,14 @@ module.exports = {
     es2021: true
   },
   extends: ['eslint:recommended', 'plugin:react/recommended'],
-  overrides: [],
+  overrides: [
+    {
+      files: ['**/*.spec.js', '**/*.spec.jsx'],
+      env: {
+        jest: true
+      }
+    }
+  ],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module'

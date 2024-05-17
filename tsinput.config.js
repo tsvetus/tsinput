@@ -14,7 +14,6 @@ module.exports = {
     tsinput: {
       import: './src/index.js',
       library: {
-        name: 'tsinput',
         type: 'commonjs2'
       }
     }

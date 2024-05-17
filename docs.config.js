@@ -11,13 +11,13 @@ module.exports = {
     }
   },
   entry: {
-    docs: {
+    'tsinput.docs': {
       import: './docs/index.jsx'
     }
   },
   output: {
     path: path.resolve(__dirname, 'public'),
-    filename: '[name].js'
+    filename: 'js/[name].js'
   },
   module: {
     rules: [
@@ -32,7 +32,11 @@ module.exports = {
       }
     ]
   },
-  plugins: [new MiniCssExtractPlugin()],
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].css'
+    })
+  ],
   devServer: {
     static: {
       directory: path.join(__dirname, 'public')

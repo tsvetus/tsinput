@@ -1,3 +1,5 @@
-import { concat } from './util'
+import { mergeClasses } from './classes'
+import { mergeStyles } from './styles'
+import { extractNodes } from './objects'
 
-export { concat }
+export { mergeClasses, mergeStyles, extractNodes }

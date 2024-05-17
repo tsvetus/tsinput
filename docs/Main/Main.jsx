@@ -1,109 +1,97 @@
 import React, { useState } from 'react'
 
-import { Edit, ListBox } from 'tsinput'
+import { Icon, Label, Edit, ListBox, LabelEdit, LabelText } from 'tsinput'
 
 import './Main.css'
 
 const Main = () => {
   const [state, setState] = useState({
-    value: null
+    edit1: 'Edit',
+    listBox1: 2
   })
+
+  const options = [
+    { id: 1, name: 'Item 1' },
+    { id: 2, name: 'Item 2' },
+    { id: 3, name: 'Item 3' },
+    { id: 4, name: 'Item 4' }
+  ]
+
+  const updateState = event => {
+    console.log(event)
+    setState({ ...state, [event.name]: event.value })
+  }
 
   return (
     <div>
+      <Icon icon={'checked'} />
+      <Icon icon={'unchecked'} margin={[4, 4, 4, 4]} />
+      <Label text={'Label text:'} icon={'refresh'}>
+        Inside label
+      </Label>
+      <Label text={'Label text:'} icon={'refresh'} wait={true}>
+        Inside label
+      </Label>
+      <Label text={'Label text:'} icon={'refresh'} invalid={true}>
+        Inside label
+      </Label>
+      <Label text={'Label text:'} icon={'refresh'} wait={true} invalid={true}>
+        Inside label
+      </Label>
+      <Label text={'Label text:'} icon={'refresh'} layout={'top right'}>
+        Inside label
+      </Label>
+      <Edit name={'edit1'} value={state.edit1} placeholder={'Enter text'} onChange={updateState} icon={'refresh'} />
       <Edit
-        className={'tsi-docs-edit'}
         name={'edit1'}
-        label={'Edit 1'}
-        icon={'tsi-icon-box'}
         value={state.edit1}
-        onChange={event => setState({ ...state, [event.name]: event.value })}
-      />
-      <ListBox
-        className={'tsi-docs-edit'}
-        name={'edit2'}
-        label={'Edit 2'}
-        value={state.edit2}
-        icon={'tsi-icon-box'}
-        options={[
-          null,
-          undefined,
-          'string',
-          { key: '1', name: 'item 1' },
-          { id: '2', label: 'Item 2' },
-          { value: '3', text: 'Item 3' },
-          { code: '4', name: 'Item 4' },
-          { code: '5', name: 'Item 4' },
-          { code: '6', name: 'Item 4' },
-          { code: '7', name: 'Item 4' },
-          { code: '8', name: 'Item 4' },
-          { code: '9', name: 'Item 4' },
-          { code: '10', name: 'Item 4' },
-          { code: '11', name: 'Item 4' },
-          { code: '12', name: 'Item 4' },
-          { code: '13', name: 'Item 4' },
-          { code: '14', name: 'Item 4' }
-        ]}
-        onChange={event => {
-          console.log(event.name, event.value)
-          setState({ ...state, [event.name]: event.value })
-        }}
-      />
-      <Edit
-        className={'tsi-docs-edit'}
-        name={'edit3'}
-        label={'Edit 3'}
-        value={state.edit3}
-        layout={'top left'}
-        onChange={event => setState({ ...state, [event.name]: event.value })}
-      />
-      <Edit
-        className={'tsi-docs-edit'}
-        name={'edit4'}
-        label={'Edit 4'}
-        value={state.edit4}
-        layout={'top right'}
-        onChange={event => setState({ ...state, [event.name]: event.value })}
-      />
-      <Edit
-        className={'tsi-docs-edit'}
-        name={'edit5'}
-        label={'Edit 5'}
-        invalid={true}
-        layout={'right'}
-        value={state.edit5}
-        onChange={event => setState({ ...state, [event.name]: event.value })}
-      />
-      <Edit
-        className={'tsi-docs-edit'}
-        name={'edit6'}
-        label={'Edit 6'}
+        placeholder={'Enter text'}
+        onChange={updateState}
+        icon={'refresh'}
         wait={true}
-        value={state.edit6}
-        onChange={event => setState({ ...state, [event.name]: event.value })}
       />
       <Edit
-        className={'tsi-docs-edit'}
-        name={'edit7'}
-        label={'Edit 7'}
+        name={'edit1'}
+        value={state.edit1}
+        placeholder={'Enter text'}
+        onChange={updateState}
+        icon={'refresh'}
         invalid={true}
-        iconPosition={'left'}
-        icon={'tsi-icon-box'}
-        wait={true}
-        value={state.edit7}
-        onChange={event => setState({ ...state, [event.name]: event.value })}
       />
       <Edit
-        className={'tsi-docs-edit'}
-        name={'edit8'}
-        label={'Edit 8'}
-        invalid={true}
-        iconPosition={'top'}
-        layout={'top left'}
-        icon={'tsi-icon-box'}
+        name={'edit1'}
+        value={state.edit1}
+        placeholder={'Enter text'}
+        onChange={updateState}
+        icon={'refresh'}
         wait={true}
-        value={state.edit7}
-        onChange={event => setState({ ...state, [event.name]: event.value })}
+        invalid={true}
+      />
+      <ListBox name={'listBox1'} options={options} value={state.listBox1} onChange={updateState} />
+      <LabelEdit
+        name={'inputEdit1'}
+        label={'My label:'}
+        editIcon={'refresh'}
+        value={state.inputEdit1}
+        style={{ label: { margin: '1em 0 0 0' } }}
+        onChange={updateState}
+      />
+      <LabelEdit
+        labelLayout={'top right'}
+        name={'inputEdit2'}
+        label={'My label:'}
+        editIcon={'refresh'}
+        value={state.inputEdit2}
+        style={{ label: { margin: '1em 0 0 0' } }}
+        onChange={updateState}
+      />
+      <LabelText
+        name={'labelText1'}
+        label={'My label:'}
+        icon={'refresh'}
+        value={state.labeltext1}
+        style={{ label: { margin: '1em 0 0 0', height: '200px' } }}
+        onChange={updateState}
       />
     </div>
   )
