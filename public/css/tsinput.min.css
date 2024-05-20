@@ -25,9 +25,11 @@
   /* Opacities */
   --tsi-opacity-wait: 0.5;
   /* Radiuses */
-  --tsi-border-radius: 0.3em;
+  --tsi-border-radius: 0.25em;
+  --tsi-bookmark-radius: 0.75em;
   /* Sizes */
   --tsi-scroll-width: 6px;
+  --tsi-border-width: 1px;
   /* Icon component */
   --tsi-icon-font-size: 0.75em;
   /* Input component */
@@ -36,16 +38,35 @@
   /* Edit component */
   --tsi-edit-height: 1.3em;
   --tsi-edit-outline: none;
-  --tsi-edit-border: 1px solid var(--tsi-color-caption);
+  --tsi-edit-border: var(--tsi-border-width) solid var(--tsi-color-caption);
   --tsi-edit-border-radius: var(--tsi-border-radius);
   /* List component */
   --tsi-list-outline: none;
-  --tsi-list-border: 1px solid var(--tsi-color-frame);
+  --tsi-list-border: var(--tsi-border-width) solid var(--tsi-color-frame);
   --tsi-list-border-radius: var(--tsi-border-radius);
   --tsi-list-max-height: 220px;
   --tsi-list-item-padding: 0.2em 0.5em 0.2em 0.5em;
   /* Label component */
   --tsi-label-header-margin: 0 0 0.1em 0;
+  /* SideBar component */
+  --tsi-side-bar-header-padding: 0.5em;
+  --tsi-side-bar-content-padding: 0.5em;
+  --tsi-side-bar-footer-padding: 0.5em;
+  --tsi-side-bar-title-font-size: 18px;
+  --tsi-side-bar-close-font-size: 18px;
+  --tsi-side-bar-close-margin: 0 0.5em 0.5em 0.5em;
+  --tsi-side-bar-content-font-size: 18px;
+  --tsi-side-bar-footer-font-size: 18px;
+  /* TopBar component */
+  --tsi-top-bar-icon-font-size: 32px;
+  --tsi-top-bar-height: 48px;
+  /* TabControl component */
+  --tsi-tab-control-tab-padding: 0.2em 0.5em 0.2em 0.5em;
+  --tsi-tab-control-tab-border-radius: var(--tsi-border-radius) var(--tsi-bookmark-radius) 0 0;
+  --tsi-tab-control-tab-border: var(--tsi-border-width) solid var(--tsi-color-frame);
+  --tsi-tab-control-content-padding: 0.5em;  
+  --tsi-tab-control-content-border-radius: 0 var(--tsi-border-radius) var(--tsi-border-radius) var(--tsi-border-radius);
+  --tsi-tab-control-content-border: var(--tsi-border-width) solid var(--tsi-color-frame);
 }
 
 /* Global settings */
@@ -359,4 +380,114 @@ body {
   font-weight: var(--tsi-font-weight-focused);
   color: var(--tsi-color-focused);
   background: var(--tsi-background-focused);
+}
+
+/* SideBar */
+
+.tsi-side-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 101;
+  height: 100%;
+  width: 0;
+  overflow-x: hidden;
+  background-color: var(--tsi-color-frame);
+  transition: var(--tsi-side-bar-time);
+  padding-top: var(--tsi-side-bar-width);
+}
+
+.tsi-side-bar-header {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--tsi-side-bar-header-padding);
+}
+
+.tsi-side-bar-title {
+  font-size: var(--tsi-side-bar-title-font-size);
+}
+
+.tsi-side-bar-close {
+  margin: var(--tsi-side-bar-close-margin);
+  font-size: var(--tsi-side-bar-close-font-size);
+}
+
+.tsi-side-bar-content {
+  padding-top: var(--tsi-side-bar-content-padding);
+}
+
+.tsi-side-bar-footer {
+  padding-top: var(--tsi-side-bar-content-padding);
+}
+
+.tsi-side-bar-control {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+/* TopBar */
+
+.tsi-top-bar {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: var(--tsi-font-size);
+  height: var(--tsi-top-bar-height);  
+}
+
+.tsi-top-bar-icon {
+  font-size: var(--tsi-top-bar-icon-font-size);
+}
+
+.tsi-top-bar-left {
+  margin: 0 0 0 0.5em;
+}
+
+.tsi-top-bar-center {
+  margin: 0 0.5em 0 0.5em;
+}
+
+.tsi-top-bar-right {
+  margin: 0 0.5em 0 0;  
+}
+
+/* TabControl */
+
+.tsi-tab-control-header {
+  display: flex;
+}
+
+.tsi-tab-control-tab {
+  white-space: nowrap;
+  cursor: pointer;
+  background: var(--tsi-color-window);  
+  padding: var(--tsi-tab-control-tab-padding);
+  border-radius: var(--tsi-tab-control-tab-border-radius);
+  border: var(--tsi-tab-control-tab-border);
+  color: var(--tsi-color-caption);
+  border-bottom: none;
+}
+
+.tsi-tab-control-tab:not(:first-child) {
+  margin-left: calc(var(--tsi-border-width)*-1);
+}
+
+.tsi-tab-control-tab-active {
+  z-index: 1;
+  margin-bottom: calc(var(--tsi-border-width)*-1);
+}
+
+.tsi-tab-control-content {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  background: var(--tsi-color-window);  
+  padding: var(--tsi-tab-control-content-padding);
+  border-radius: var(--tsi-tab-control-content-border-radius);
+  border: var(--tsi-tab-control-content-border);
 }
