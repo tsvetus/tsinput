@@ -5,10 +5,7 @@ import Inline from './Inline'
 import Column from './Column'
 
 const Label = props => {
-  const layout = useMemo(
-    () => (props.layout ? (Array.isArray(props.layout) ? props.layout : props.layout.split(' ')) : []),
-    [props.layout]
-  )
+  const layout = useMemo(() => props.layout || [], [props.layout])
   const isColumn = useMemo(() => layout.includes('top'), [layout])
   return isColumn ? <Column {...props} /> : <Inline {...props} />
 }

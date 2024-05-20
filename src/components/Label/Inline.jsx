@@ -34,10 +34,7 @@ const CLASS_WAIT = {
 }
 
 const Inline = props => {
-  const layout = useMemo(
-    () => (props.layout ? (Array.isArray(props.layout) ? props.layout : props.layout.split(' ')) : []),
-    [props.layout]
-  )
+  const layout = useMemo(() => props.layout || [], [props.layout])
 
   const isRightLabel = useMemo(() => layout.includes('right'), [layout])
 
