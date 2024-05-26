@@ -5,32 +5,31 @@ import { mergeClasses, mergeStyles } from '../util'
 
 const NAME = 'tsi-icon'
 
-const Icon = props => {
-  const icon = props.icon || null
-  const clickable = Boolean(props.onClick)
+const Icon = ({ className, style, icon, name, data, baseClass = NAME, onClick }) => {
+  const clickable = Boolean(onClick)
 
   const classes = useMemo(
     () =>
       mergeClasses(
-        props.baseClass || NAME,
+        baseClass || NAME,
         icon ? `${NAME}-${icon}` : null,
         clickable ? `${NAME}-clickable` : null,
-        props.className
+        className
       ),
-    [props.baseClass, props.className, icon, clickable]
+    [baseClass, className, icon, clickable]
   )
 
-  const styles = useMemo(() => mergeStyles(props.style), [props.style])
+  const styles = useMemo(() => mergeStyles(style), [style])
 
-  const params = useMemo(() => ({ name: props.name, data: props.data }), [props.data, props.name])
+  const params = useMemo(() => ({ name, data, value: icon, icon }), [icon, data, name])
 
-  const onClick = props.onClick
+  const handleClick = onClick
     ? event => {
-        props.onClick({ ...event, ...params, icon: props.icon })
+        onClick({ ...event, ...params })
       }
     : null
 
-  return icon && styles ? <i className={classes._} style={styles._} onClick={onClick} /> : null
+  return <i className={classes._} style={styles._} onClick={handleClick} />
 }
 
 Icon.propTypes = {

@@ -1,5 +1,6 @@
 import { mergeClasses } from './classes'
 import { mergeStyles } from './styles'
-import { extractNodes } from './objects'
+import { selectProps, asArray, selectItems, stringify } from './objects'
+import { findElement, initRefs } from './elements'
 
-export { mergeClasses, mergeStyles, extractNodes }
+export { mergeClasses, mergeStyles, selectProps, findElement, asArray, initRefs, selectItems, stringify }

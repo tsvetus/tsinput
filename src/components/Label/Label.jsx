@@ -4,10 +4,57 @@ import PropTypes from 'prop-types'
 import Inline from './Inline'
 import Column from './Column'
 
-const Label = props => {
-  const layout = useMemo(() => props.layout || [], [props.layout])
-  const isColumn = useMemo(() => layout.includes('top'), [layout])
-  return isColumn ? <Column {...props} /> : <Inline {...props} />
+const Label = ({
+  className,
+  style,
+  layout = '',
+  name,
+  data,
+  text,
+  icon,
+  wait,
+  invalid,
+  children,
+  onClick,
+  onTextClick,
+  onIconClick
+}) => {
+  const isColumn = useMemo(() => layout.includes('top') || layout.includes('border'), [layout])
+  return isColumn ? (
+    <Column
+      className={className}
+      style={style}
+      layout={layout}
+      name={name}
+      data={data}
+      text={text}
+      icon={icon}
+      wait={wait}
+      invalid={invalid}
+      onClick={onClick}
+      onTextClick={onTextClick}
+      onIconClick={onIconClick}
+    >
+      {children}
+    </Column>
+  ) : (
+    <Inline
+      className={className}
+      style={style}
+      layout={layout}
+      name={name}
+      data={data}
+      text={text}
+      icon={icon}
+      wait={wait}
+      invalid={invalid}
+      onClick={onClick}
+      onTextClick={onTextClick}
+      onIconClick={onIconClick}
+    >
+      {children}
+    </Inline>
+  )
 }
 
 Label.propTypes = {

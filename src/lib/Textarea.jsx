@@ -1,7 +1,7 @@
-import React, { useMemo, forwardRef } from 'react'
+import React, { useRef, useMemo, useEffect, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 
-import { mergeClasses, mergeStyles } from '../util'
+import { mergeClasses, mergeStyles, initRefs } from '../util'
 
 const NAME = 'tsi-textarea'
 
@@ -9,26 +9,38 @@ const CLASS = {
   _: NAME
 }
 
-const Textarea = forwardRef((props, ref) => {
-  const classes = useMemo(() => mergeClasses(CLASS, props.className), [props.className])
-  const styles = useMemo(() => mergeStyles(props.style), [props.style])
-  const params = useMemo(() => ({ name: props.name, data: props.data }), [props.data, props.name])
-  const onChange = props.onChange
-    ? event => {
-        props.onChange({ nativeEvent: event, ...params, value: event.target.value })
-      }
-    : null
+const correctHeight = element => {
+  if (element && element.scrollHeight > element.clientHeight) {
+    element.style.height = `${element.scrollHeight}px`
+  }
+}
+
+const Textarea = forwardRef(({ className, style, name, data, autoHeight, readOnly, value, onChange }, extRef) => {
+  const intRef = useRef()
+  const classes = useMemo(() => mergeClasses(CLASS, className), [className])
+  const styles = useMemo(() => mergeStyles(style), [style])
+  const params = useMemo(() => ({ name, data }), [name, data])
+  const handleChange = event => {
+    onChange?.({ ...event, ...params, value: event.target.value })
+    if (autoHeight) {
+      correctHeight(intRef.current)
+    }
+  }
+  useEffect(() => {
+    if (autoHeight) {
+      correctHeight(intRef.current)
+    }
+  }, [autoHeight])
   return (
     <textarea
-      ref={ref}
+      ref={initRefs(intRef, extRef)}
       className={classes._}
       style={styles._}
       type={'text'}
-      onChange={onChange}
-      readOnly={props.readOnly}
-    >
-      {props.value}
-    </textarea>
+      onChange={handleChange}
+      readOnly={readOnly}
+      value={value}
+    />
   )
 })
 
@@ -39,6 +51,7 @@ Textarea.propTypes = {
   data: PropTypes.any,
   value: PropTypes.string,
   readOnly: PropTypes.any,
+  autoHeight: PropTypes.any,
   onChange: PropTypes.func
 }
 

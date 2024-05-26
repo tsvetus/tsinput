@@ -15,26 +15,24 @@ const CLASS = {
   content: `${NAME}-content`
 }
 
-const TabControl = props => {
-  const classes = useMemo(() => mergeClasses(CLASS, props.className), [props.className])
-  const styles = useMemo(() => mergeStyles(props.style), [props.style])
+const TabControl = ({ className, style, name, data, options = [], value, onChange }) => {
+  const classes = useMemo(() => mergeClasses(CLASS, className), [className])
+  const styles = useMemo(() => mergeStyles(style), [style])
 
-  const params = useMemo(() => ({ name: props.name, data: props.data }), [props.data, props.name])
+  const params = useMemo(() => ({ name, data }), [data, name])
 
-  const options = useMemo(() => (Array.isArray(props.options) ? props.options : []), [props.options])
-
-  const activeIndex = useMemo(() => {
-    const index = options.findIndex(v => props.value === (v.key || v.id || v.value || null))
-    return index >= 0 ? index : options.length ? 0 : -1
-  }, [options, props.value])
+  const activeIndex = useMemo(
+    () => (options ? options.findIndex(v => value === (v.key || v.id || v.value || null)) : -1),
+    [options, value]
+  )
 
   const activeOption = useMemo(() => (activeIndex >= 0 ? options[activeIndex] : null), [activeIndex, options])
 
-  const onClick = index => event => {
-    if (activeIndex !== index && props.onChange) {
+  const handleClick = index => event => {
+    if (activeIndex !== index && onChange) {
       const option = options[index]
-      props.onChange({
-        nativeEvent: event,
+      onChange({
+        ...event,
         ...params,
         index,
         option,
@@ -49,13 +47,13 @@ const TabControl = props => {
       const tabClass = mergeClasses(classes.tab, classes.tab?.active)
       const tabStyle = mergeStyles(styles.tab, styles.tab?.active)
       return (
-        <div key={i} className={tabClass?._} style={tabStyle?._} onClick={onClick(i)}>
+        <div key={i} className={tabClass?._} style={tabStyle?._} onClick={handleClick(i)}>
           {caption}
         </div>
       )
     } else {
       return (
-        <div key={i} className={classes.tab?._} style={styles.tab?._} onClick={onClick(i)}>
+        <div key={i} className={classes.tab?._} style={styles.tab?._} onClick={handleClick(i)}>
           {caption}
         </div>
       )

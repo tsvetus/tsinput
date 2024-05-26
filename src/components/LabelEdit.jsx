@@ -6,39 +6,59 @@ import { mergeClasses, mergeStyles } from '../util'
 import Label from './Label'
 import Edit from './Edit'
 
-const LabelEdit = props => {
-  const classes = useMemo(() => mergeClasses(props.className), [props.className])
-  const styles = useMemo(() => mergeStyles(props.style), [props.style])
+const LabelEdit = ({
+  className,
+  style,
+  labelLayout,
+  editLayout,
+  name,
+  data,
+  label,
+  labelIcon,
+  editIcon,
+  wait,
+  invalid,
+  placeholder,
+  children,
+  value,
+  onLabelClick,
+  onEditClick,
+  onLabelIconClick,
+  onEditIconClick,
+  onChange
+}) => {
+  const classes = useMemo(() => mergeClasses(className), [className])
+  const styles = useMemo(() => mergeStyles(style), [style])
   return (
     <Label
       classnem={classes.label}
       style={styles.label}
-      layout={props.labelLayout}
-      name={props.name}
-      data={props.data}
-      text={props.label}
-      icon={props.labelIcon}
-      wait={props.wait}
-      invalid={props.invalid}
-      onTextClick={props.onLabelClick}
-      onIconClick={props.onLabelIconClick}
+      layout={labelLayout}
+      name={name}
+      data={data}
+      text={label}
+      icon={labelIcon}
+      wait={wait}
+      invalid={invalid}
+      onTextClick={onLabelClick}
+      onIconClick={onLabelIconClick}
     >
       <Edit
         classnem={classes.edit}
         style={styles.edit}
-        layout={props.editLayout}
-        name={props.name}
-        data={props.data}
-        icon={props.editIcon}
-        wait={props.wait}
-        invalid={props.invalid}
-        placeholder={props.placeholder}
-        value={props.value}
-        onEditClick={props.onEditClick}
-        onIconClick={props.onEditIconClick}
-        onChange={props.onChange}
+        layout={editLayout}
+        name={name}
+        data={data}
+        icon={editIcon}
+        wait={wait}
+        invalid={invalid}
+        placeholder={placeholder}
+        value={value}
+        onEditClick={onEditClick}
+        onIconClick={onEditIconClick}
+        onChange={onChange}
       >
-        {props.children}
+        {children}
       </Edit>
     </Label>
   )

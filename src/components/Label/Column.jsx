@@ -10,18 +10,14 @@ const NAME = 'tsi-label'
 const CLASS = {
   _: `${NAME} ${NAME}-column`,
   header: `${NAME}-header`,
-  text: `${NAME}-text`,
-  icon: `${NAME}-icon`
+  text: `${NAME}-text ${NAME}-text-top`,
+  icon: `${NAME}-icon ${NAME}-icon-top`
 }
 
-const CLASS_LEFT = {
-  text: `${NAME}-text-top-left`,
-  icon: `${NAME}-icon-top-right`
-}
-
-const CLASS_RIGHT = {
-  text: `${NAME}-text-top-right`,
-  icon: `${NAME}-icon-top-left`
+const CLASS_BORDER = {
+  header: `${NAME}-header-border`,
+  text: `${NAME}-text-border`,
+  icon: `${NAME}-icon-border`
 }
 
 const CLASS_INVALID = {
@@ -34,55 +30,74 @@ const CLASS_WAIT = {
   icon: `${NAME}-icon-wait`
 }
 
-const Column = props => {
-  const layout = useMemo(() => props.layout || [], [props.layout])
-
+const Column = ({
+  className,
+  style,
+  layout = '',
+  name,
+  data,
+  text,
+  icon,
+  wait,
+  invalid,
+  children,
+  onClick,
+  onTextClick,
+  onIconClick
+}) => {
   const isRightLabel = useMemo(() => layout.includes('right'), [layout])
+  const isBorder = useMemo(() => layout.includes('border'), [layout])
 
   const classes = useMemo(
     () =>
       mergeClasses(
         CLASS,
-        layout.includes('right') ? CLASS_RIGHT : CLASS_LEFT,
-        props.wait ? CLASS_WAIT : null,
-        props.invalid ? CLASS_INVALID : null,
-        props.className
+        isBorder ? CLASS_BORDER : null,
+        wait ? CLASS_WAIT : null,
+        invalid ? CLASS_INVALID : null,
+        className
       ),
-    [layout, props.wait, props.invalid, props.className]
+    [isBorder, wait, invalid, className]
   )
 
-  const styles = useMemo(() => mergeStyles(props.style), [props.style])
+  const styles = useMemo(() => mergeStyles(style), [style])
 
-  const params = useMemo(() => ({ name: props.name, data: props.data }), [props.data, props.name])
+  const params = useMemo(() => ({ name, data }), [data, name])
 
-  const onClick = props.onClick
+  const handleClick = onClick
     ? event => {
-        if (!props.wait) props.onClick({ nativeEvent: event, ...params })
+        if (!wait) {
+          onClick({ ...event, ...params })
+        }
       }
     : null
 
-  const onTextClick = props.onTextClick
+  const handleTextClick = onTextClick
     ? event => {
-        if (!props.wait) props.onTextClick({ nativeEvent: event, ...params })
+        if (!wait) {
+          onTextClick({ ...event, ...params })
+        }
       }
     : null
 
-  const onIconClick = props.onIconClick
+  const handleIconClick = onIconClick
     ? event => {
-        if (!props.wait) props.onIconClick({ ...event, ...params })
+        if (!wait) {
+          onIconClick({ ...event, ...params })
+        }
       }
     : null
 
-  const textComponent = props.text ? (
-    <div className={classes.text?._} style={styles.text?._} onClick={onTextClick}>
-      {props.text}
+  const textComponent = text ? (
+    <div className={classes.text?._} style={styles.text?._} onClick={handleTextClick}>
+      {text}
     </div>
   ) : (
     <div />
   )
 
-  const iconComponent = props.icon ? (
-    <Icon className={classes.icon?._} style={styles.icon?._} icon={props.icon} onClick={onIconClick} />
+  const iconComponent = icon ? (
+    <Icon className={classes.icon?._} style={styles.icon?._} icon={icon} onClick={handleIconClick} />
   ) : (
     <div />
   )
@@ -100,9 +115,9 @@ const Column = props => {
   )
 
   return (
-    <div className={classes._} style={styles._} onClick={onClick}>
+    <div className={classes._} style={styles._} onClick={handleClick}>
       {headerComponent}
-      {props.children}
+      {children}
     </div>
   )
 }

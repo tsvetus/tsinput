@@ -1,25 +1,43 @@
 import React, { useRef, useState, useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
 
-import { mergeClasses, mergeStyles } from '../util'
+import { mergeClasses, mergeStyles, asArray } from '../util'
 
 import Overlay from '../lib/Overlay'
 import List from '../lib/List'
 
 import Edit from './Edit'
 
-const ListBox = props => {
+const ListBox = ({
+  className,
+  style,
+  layout,
+  name,
+  data,
+  value,
+  wait,
+  invalid,
+  readOnly = true,
+  placeholder,
+  valueField = 'value key code id',
+  nameField = 'name label text',
+  options,
+  onClick,
+  onEditClick,
+  onIconClick,
+  onChange
+}) => {
   const editRef = useRef()
 
-  const classes = useMemo(() => mergeClasses(props.className), [props.className])
+  const classes = useMemo(() => mergeClasses(className), [className])
 
-  const styles = useMemo(() => mergeStyles(props.style), [props.style])
+  const styles = useMemo(() => mergeStyles(style), [style])
 
-  const originalOptions = useMemo(() => props.options || [], [props.options])
+  const originalOptions = useMemo(() => options || [], [options])
 
-  const options = useMemo(() => {
-    const valueField = props.valueField?.split(' ') || []
-    const nameField = props.nameField?.split(' ') || []
+  const listOptions = useMemo(() => {
+    const vf = asArray(valueField)
+    const nf = asArray(nameField)
     return originalOptions
       .map((option, index) => {
         if (null === option || undefined === option) {
@@ -27,54 +45,54 @@ const ListBox = props => {
         } else if ('string' === typeof option || 'number' === typeof option) {
           return { value: option, name: `${option}`, index }
         } else if ('object' === typeof option) {
-          const [v, n] = [valueField.find(v => option[v]), nameField.find(n => option[n])]
+          const [v, n] = [vf.find(v => option[v]), nf.find(n => option[n])]
           return v && n ? { value: option[v], name: option[n], index } : null
         } else return null
       })
       .filter(option => option)
-  }, [originalOptions, props.valueField, props.nameField])
+  }, [originalOptions, valueField, nameField])
 
   const [itemIndex, itemName] = useMemo(() => {
-    const index = options.findIndex(v => props.value === v.value)
-    return [index, index >= 0 ? options[index]?.name || '' : '']
-  }, [props.value, options])
+    const index = listOptions.findIndex(v => value === v.value)
+    return [index, index >= 0 ? listOptions[index]?.name || '' : '']
+  }, [value, listOptions])
 
   const [showOverlay, setShowOverlay] = useState(false)
 
-  const onIconClick = event => {
+  const handleIconClick = event => {
     event.nativeEvent.stopPropagation()
     event.nativeEvent.preventDefault()
-    props.onIconClick?.(event)
+    onIconClick?.(event)
     setShowOverlay(!showOverlay)
   }
 
-  const onEditClick = event => {
+  const handleEditClick = event => {
     event.nativeEvent.stopPropagation()
     event.nativeEvent.preventDefault()
-    props.onEditClick?.(event)
+    onEditClick?.(event)
     setShowOverlay(!showOverlay)
   }
 
-  const onListChange = event => {
+  const handleListChange = event => {
     event.nativeEvent.stopPropagation()
     event.nativeEvent.preventDefault()
-    props.onChange?.({
+    onChange?.({
       ...event,
-      name: props.name,
-      data: props.data,
-      value: options[event.itemIndex]?.value,
+      name,
+      data,
+      value: listOptions[event.itemIndex]?.value,
       option: originalOptions[event.itemIndex]
     })
     setShowOverlay(false)
   }
 
-  const onListClose = useCallback(event => {
+  const handleListClose = useCallback(event => {
     event.nativeEvent.stopPropagation()
     event.nativeEvent.preventDefault()
     setShowOverlay(false)
   }, [])
 
-  const onKeyDown = event => {
+  const handleKeyDown = event => {
     if (!showOverlay && 'Enter' === event.nativeEvent.key) {
       event.nativeEvent.stopPropagation()
       event.nativeEvent.preventDefault()
@@ -87,29 +105,29 @@ const ListBox = props => {
       ref={editRef}
       className={classes.edit}
       style={styles.edit}
-      layout={props.layout}
-      name={props.name}
-      data={props.data}
+      layout={layout}
+      name={name}
+      data={data}
       icon={showOverlay ? 'angle-down' : 'angle-up'}
-      wait={props.wait}
-      invalid={props.invalid}
-      readOnly={props.readOnly}
-      placeholder={props.placeholder}
-      onClick={props.onClick}
-      onChange={props.onChange}
+      wait={wait}
+      invalid={invalid}
+      readOnly={readOnly}
+      placeholder={placeholder}
+      onClick={onClick}
+      onChange={onChange}
       value={itemName}
-      onIconClick={onIconClick}
-      onEditClick={onEditClick}
-      onKeyDown={onKeyDown}
+      onIconClick={handleIconClick}
+      onEditClick={handleEditClick}
+      onKeyDown={handleKeyDown}
     >
       <Overlay className={classes.overlay} style={styles.overlay} show={showOverlay} onTarget={() => editRef.current}>
         <List
           className={classes.list}
           style={styles.list}
           itemIndex={itemIndex}
-          options={options}
-          onClose={onListClose}
-          onChange={onListChange}
+          options={listOptions}
+          onClose={handleListClose}
+          onChange={handleListChange}
         />
       </Overlay>
     </Edit>
@@ -131,16 +149,9 @@ ListBox.propTypes = {
   nameField: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   options: PropTypes.array,
   onClick: PropTypes.func,
-  // onLabelClick: PropTypes.func,
   onEditClick: PropTypes.func,
   onIconClick: PropTypes.func,
   onChange: PropTypes.func
-}
-
-ListBox.defaultProps = {
-  readOnly: true,
-  valueField: 'value key code id',
-  nameField: 'name label text'
 }
 
 export default ListBox

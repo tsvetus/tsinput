@@ -10,39 +10,52 @@ const CLASS = {
   _: NAME
 }
 
-const Overlay = props => {
+const Overlay = ({
+  className,
+  style,
+  name,
+  data,
+  offset = 0,
+  timeout = 350,
+  show,
+  persistent,
+  children,
+  onEnter,
+  onExit,
+  onTarget
+}) => {
   const ref = useRef()
-  const classes = useMemo(() => mergeClasses(CLASS, props.className), [props.className])
-  const styles = useMemo(() => mergeStyles(props.style), [props.style])
-  const params = useMemo(() => ({ name: props.name, data: props.data }), [props.data, props.name])
-  const onEnter = () => {
-    const target = props.onTarget?.()
+  const classes = useMemo(() => mergeClasses(CLASS, className), [className])
+  const styles = useMemo(() => mergeStyles(style), [style])
+  const params = useMemo(() => ({ name, data }), [name, data])
+  const handleEnter = () => {
+    const target = onTarget?.()
     if (target && ref.current) {
       const rect = target.getBoundingClientRect()
       ref.current.style.left = `${0}px`
       ref.current.style.right = `${0}px`
-      ref.current.style.top = `${rect.height + props.offset}px`
+      ref.current.style.top = `${rect.height + offset}px`
     }
   }
-  const onEntered = event => {
-    props.onEnter?.({ nativeEvent: event, ...params })
+  const handleEntered = event => {
+    onEnter?.({ nativeEvent: event, ...params })
   }
-  const onExited = event => {
-    props.onExit?.({ nativeEvent: event, ...params })
+  const handleExited = event => {
+    onExit?.({ nativeEvent: event, ...params })
   }
   return (
     <CSSTransition
       nodeRef={ref}
-      in={props.show}
-      timeout={props.timeout}
+      in={show}
+      timeout={timeout}
       classNames={NAME}
-      unmountOnExit={!props.persistent}
-      onEnter={onEnter}
-      onEntered={onEntered}
-      onExited={onExited}
+      unmountOnExit={!persistent}
+      onEnter={handleEnter}
+      onEntered={handleEntered}
+      onExited={handleExited}
     >
       <div ref={ref} className={classes._} style={styles._}>
-        {props.children}
+        {children}
       </div>
     </CSSTransition>
   )
@@ -61,11 +74,6 @@ Overlay.propTypes = {
   onEnter: PropTypes.func,
   onExit: PropTypes.func,
   onTarget: PropTypes.func
-}
-
-Overlay.defaultProps = {
-  timeout: 350,
-  offset: 0
 }
 
 export default Overlay

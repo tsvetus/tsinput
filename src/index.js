@@ -8,5 +8,27 @@ import SideBar from './components/SideBar'
 import TopBar from './components/TopBar'
 import TabControl from './components/TabControl'
 import CheckBox from './components/CheckBox'
+import Group from './components/Group'
+import Page from './components/Page'
+import MenuItem from './components/MenuItem'
+import Content from './components/Content'
 
-export { Icon, Edit, Label, LabelEdit, LabelText, ListBox, SideBar, TopBar, TabControl, CheckBox }
+import { stringify } from './util'
+
+export {
+  Icon,
+  Edit,
+  Label,
+  LabelEdit,
+  LabelText,
+  ListBox,
+  SideBar,
+  TopBar,
+  TabControl,
+  CheckBox,
+  Group,
+  Page,
+  MenuItem,
+  Content,
+  stringify
+}

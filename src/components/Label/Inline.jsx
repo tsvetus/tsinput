@@ -33,9 +33,21 @@ const CLASS_WAIT = {
   icon: `${NAME}-icon-wait`
 }
 
-const Inline = props => {
-  const layout = useMemo(() => props.layout || [], [props.layout])
-
+const Inline = ({
+  className,
+  style,
+  layout = '',
+  name,
+  data,
+  text,
+  icon,
+  wait,
+  invalid,
+  children,
+  onClick,
+  onTextClick,
+  onIconClick
+}) => {
   const isRightLabel = useMemo(() => layout.includes('right'), [layout])
 
   const classes = useMemo(
@@ -43,55 +55,55 @@ const Inline = props => {
       mergeClasses(
         CLASS,
         layout.includes('right') ? CLASS_RIGHT : CLASS_LEFT,
-        props.wait ? CLASS_WAIT : null,
-        props.invalid ? CLASS_INVALID : null,
-        props.className
+        wait ? CLASS_WAIT : null,
+        invalid ? CLASS_INVALID : null,
+        className
       ),
-    [layout, props.wait, props.invalid, props.className]
+    [layout, wait, invalid, className]
   )
 
-  const styles = useMemo(() => mergeStyles({ icon: {} }, props.style), [props.style])
+  const styles = useMemo(() => mergeStyles({ icon: {} }, style), [style])
 
-  const params = useMemo(() => ({ name: props.name, data: props.data }), [props.data, props.name])
+  const params = useMemo(() => ({ name, data }), [data, name])
 
-  const onClick = props.onClick
+  const handleClick = onClick
     ? event => {
-        props.onClick({ nativeEvent: event, ...params })
+        onClick({ ...event, ...params })
       }
     : null
 
-  const onTextClick = props.onTextClick
+  const handleTextClick = onTextClick
     ? event => {
-        props.onTextClick({ nativeEvent: event, ...params })
+        onTextClick({ ...event, ...params })
       }
     : null
 
-  const onIconClick = props.onIconClick
+  const handleIconClick = onIconClick
     ? event => {
-        props.onIconClick({ ...event, ...params })
+        onIconClick({ ...event, ...params })
       }
     : null
 
-  const textComponent = props.text ? (
-    <div className={classes.text?._} style={styles.text?._} onClick={onTextClick}>
-      {props.text}
+  const textComponent = text ? (
+    <div className={classes.text?._} style={styles.text?._} onClick={handleTextClick}>
+      {text}
     </div>
   ) : null
 
-  const iconComponent = props.icon ? (
-    <Icon className={classes.icon?._} style={styles.icon?._} icon={props.icon} onClick={onIconClick} />
+  const iconComponent = icon ? (
+    <Icon className={classes.icon?._} style={styles.icon?._} icon={icon} onClick={handleIconClick} />
   ) : null
 
   return isRightLabel ? (
-    <div className={classes._} style={styles._} onClick={onClick}>
+    <div className={classes._} style={styles._} onClick={handleClick}>
       {iconComponent}
-      {props.children}
+      {children}
       {textComponent}
     </div>
   ) : (
-    <div className={classes._} style={styles._} onClick={onClick}>
+    <div className={classes._} style={styles._} onClick={handleClick}>
       {textComponent}
-      {props.children}
+      {children}
       {iconComponent}
     </div>
   )

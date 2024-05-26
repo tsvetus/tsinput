@@ -14,7 +14,6 @@ url("tsinput-font.woff?1f9858a041c46bbe50eb68b2c7c54632") format("woff");
 	font-family: tsinput-font !important;
 	font-style: normal;
 	font-weight: normal !important;
-	vertical-align: top;
 }
 
 .tsi-icon-empty:before {

@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 
-export const useEvents = props => {
-  const { ref, listen = true, onClick, onOuterClick, onKeyDown } = props || {}
+export const useEvents = ({ ref, listen = true, onClick, onOuterClick, onKeyDown }) => {
   useEffect(() => {
     if (listen) {
       const click = event => {

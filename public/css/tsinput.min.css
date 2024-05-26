@@ -58,7 +58,7 @@
   --tsi-side-bar-content-font-size: 18px;
   --tsi-side-bar-footer-font-size: 18px;
   /* TopBar component */
-  --tsi-top-bar-icon-font-size: 32px;
+  --tsi-top-bar-icon-font-size: 22px;
   --tsi-top-bar-height: 48px;
   /* TabControl component */
   --tsi-tab-control-tab-padding: 0.2em 0.5em 0.2em 0.5em;
@@ -67,6 +67,17 @@
   --tsi-tab-control-content-padding: 0.5em;  
   --tsi-tab-control-content-border-radius: 0 var(--tsi-border-radius) var(--tsi-border-radius) var(--tsi-border-radius);
   --tsi-tab-control-content-border: var(--tsi-border-width) solid var(--tsi-color-frame);
+  /* Group component */
+  --tsi-group-margin: 1em 0 0 0;
+  --tsi-group-padding: 0.5em 0.5em 0.3em 0.5em;
+  --tsi-group-border: var(--tsi-border-width) solid var(--tsi-color-frame);
+  --tsi-group-border-radius: var(--tsi-border-radius) var(--tsi-border-radius) var(--tsi-border-radius) var(--tsi-border-radius);
+  --tsi-group-label-side: 0.5em;
+  --tsi-group-label-top: -0.7em;
+  --tsi-group-label-padding: 0 0.5em 0 0.5em;
+  /* MenuItem component */
+  --tsi-menu-item-color: var(--tsi-color-caption);
+  --tsi-menu-item-margin: 0.5em 0.5em 0 0.5em;
 }
 
 /* Global settings */
@@ -76,6 +87,7 @@ body {
   font-family: var(--tsi-font-family);
   line-height: var(--tsi-line-height);
   color: var(--tsi-color-text);
+  margin: 0;
 }
 
 /* Icon component */
@@ -191,6 +203,11 @@ body {
   margin: var(--tsi-label-header-margin);
 }
 
+.tsi-label-header-border {
+  padding: 0 1em 0 1em;
+  transform: translateY(0.7em);
+}
+
 .tsi-label-text {
   box-sizing: border-box;
   cursor: default;
@@ -215,21 +232,19 @@ body {
   margin: 0 0 0 0.2em;
 }
 
-.tsi-label-text-top-left {
+.tsi-label-text-top {
   margin: 0;
 }
 
-.tsi-label-text-top-right {
-  margin: 0;
+.tsi-label-text-border {
+  padding: 0.1em 0.5em 0.1em 0.5em;
+  background: var(--tsi-color-window);
+  border-radius: var(--tsi-border-radius);
 }
 
 .tsi-label-icon {
   box-sizing: border-box;
-  width: 1em;
-  height: 1em;
-  flex: 0 0 1em;
-  align-self: center;
-  fill: var(--tsi-color-caption);
+  color: var(--tsi-color-caption);
 }
 
 .tsi-label-icon-wait {
@@ -238,7 +253,7 @@ body {
 }
 
 .tsi-label-icon-invalid {
-  fill: var(--tsi-color-invalid);
+  color: var(--tsi-color-invalid);
 }
 
 .tsi-label-icon-left {
@@ -249,12 +264,14 @@ body {
   margin: 0 0 0 0.3em;
 }
 
-.tsi-label-icon-top-left {
+.tsi-label-icon-top {
   margin: 0;
 }
 
-.tsi-label-icon-top-right {
-  margin: 0;
+.tsi-label-icon-border {
+  padding: 0.1em 0.5em 0.1em 0.5em;
+  background: var(--tsi-color-window);
+  border-radius: var(--tsi-border-radius);
 }
 
 /* Edit component */
@@ -385,6 +402,7 @@ body {
 /* SideBar */
 
 .tsi-side-bar {
+  visibility: hidden;
   position: fixed;
   top: 0;
   left: 0;
@@ -393,7 +411,6 @@ body {
   width: 0;
   overflow-x: hidden;
   background-color: var(--tsi-color-frame);
-  transition: var(--tsi-side-bar-time);
   padding-top: var(--tsi-side-bar-width);
 }
 
@@ -422,19 +439,17 @@ body {
   padding-top: var(--tsi-side-bar-content-padding);
 }
 
-.tsi-side-bar-control {
-  transition: margin-left .5s;
-  padding: 16px;
-}
-
 /* TopBar */
 
 .tsi-top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
   font-size: var(--tsi-font-size);
   height: var(--tsi-top-bar-height);  
 }
@@ -490,4 +505,52 @@ body {
   padding: var(--tsi-tab-control-content-padding);
   border-radius: var(--tsi-tab-control-content-border-radius);
   border: var(--tsi-tab-control-content-border);
+}
+
+/* Group */
+
+.tsi-group {
+  position: relative;
+  border: var(--tsi-group-border);
+  border-radius: var(--tsi-group-border-radius);
+  background-color: var(--tsi-color-window);
+  margin: var(--tsi-group-margin);
+  padding: var(--tsi-group-padding);
+}
+
+.tsi-group-label {
+  position: absolute;
+  top: var(--tsi-group-label-top);
+  padding: var(--tsi-group-label-padding);
+  background-color: var(--tsi-color-window);
+  color: var(--tsi-color-caption);
+}
+
+.tsi-group-label-left {
+  left: var(--tsi-group-label-side);
+}
+
+.tsi-group-label-right {
+  right: var(--tsi-group-label-side);
+}
+
+/* MenuItem */
+
+.tsi-menu-item {
+  cursor: pointer;
+  color: var(--tsi-menu-item-color);
+  margin: var(--tsi-menu-item-margin);
+}
+
+/* Document */
+
+.tsi-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  visibility: hidden;
+  overflow-y: auto;
 }

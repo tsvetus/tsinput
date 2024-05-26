@@ -1,39 +1,57 @@
 import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 
-import { mergeClasses, mergeStyles } from '../util'
+import { mergeClasses, mergeStyles, selectItems } from '../util'
 
 import Label from './Label'
 import Text from './Text'
 
-const LabelText = props => {
-  const layout = useMemo(() => ((props.layout || []).includes('right') ? ['top', 'right'] : ['top']), [props.layout])
-  const classes = useMemo(() => mergeClasses(props.className), [props.className])
-  const styles = useMemo(() => mergeStyles(props.style), [props.style])
+const LabelText = ({
+  className,
+  style,
+  layout,
+  name,
+  data,
+  label,
+  icon,
+  wait,
+  invalid,
+  placeholder,
+  value,
+  autoHeight,
+  onLabelClick,
+  onIconClick,
+  onChange
+}) => {
+  const layoutLabel = useMemo(() => selectItems(layout, ['top', 'border', 'right'], ['top']), [layout])
+  const classes = useMemo(() => mergeClasses(className), [className])
+  const classesLabel = useMemo(() => mergeClasses(classes._, classes.label), [classes])
+  const styles = useMemo(() => mergeStyles(style), [style])
   return (
     <Label
-      classnem={classes.label}
+      className={classesLabel}
       style={styles.label}
-      layout={layout}
-      name={props.name}
-      data={props.data}
-      text={props.label}
-      icon={props.icon}
-      wait={props.wait}
-      invalid={props.invalid}
-      onTextClick={props.onLabelClick}
-      onIconClick={props.onLabelIconClick}
+      layout={layoutLabel}
+      name={name}
+      data={data}
+      text={label}
+      icon={icon}
+      wait={wait}
+      invalid={invalid}
+      onTextClick={onLabelClick}
+      onIconClick={onIconClick}
     >
       <Text
-        classnem={classes.text}
+        className={classes.text}
         style={styles.text}
-        name={props.name}
-        data={props.data}
-        wait={props.wait}
-        invalid={props.invalid}
-        placeholder={props.placeholder}
-        value={props.value}
-        onChange={props.onChange}
+        name={name}
+        data={data}
+        wait={wait}
+        invalid={invalid}
+        placeholder={placeholder}
+        value={value}
+        autoHeight={autoHeight}
+        onChange={onChange}
       />
     </Label>
   )
@@ -51,8 +69,9 @@ LabelText.propTypes = {
   invalid: PropTypes.any,
   placeholder: PropTypes.string,
   value: PropTypes.string,
+  autoHeight: PropTypes.any,
   onLabelClick: PropTypes.func,
-  onLabelIconClick: PropTypes.func,
+  onIconClick: PropTypes.func,
   onChange: PropTypes.func
 }
 

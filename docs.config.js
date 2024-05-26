@@ -10,6 +10,11 @@ module.exports = {
       tsinput: path.resolve(__dirname, 'src')
     }
   },
+  resolveLoader: {
+    alias: {
+      file: 'raw-loader'
+    }
+  },
   entry: {
     'tsinput.docs': {
       import: './docs/index.jsx'
@@ -28,7 +33,11 @@ module.exports = {
       {
         test: /\.js$|\.jsx$/,
         exclude: /node_modules/,
-        use: 'babel-loader'
+        use: ['babel-loader']
+      },
+      {
+        test: /\.md$/,
+        use: ['html-loader', 'markdown-loader']
       }
     ]
   },

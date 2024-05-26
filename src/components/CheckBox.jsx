@@ -3,48 +3,58 @@ import PropTypes from 'prop-types'
 
 import Label from './Label'
 
-const CheckBox = props => {
-  const iconSet = useMemo(() => (props.radio ? ['unselected', 'selected'] : ['unchecked', 'checked']), [props.radio])
-  const icon = useMemo(
-    () => (props.value == props.valueChecked ? iconSet[1] : iconSet[0]),
-    [iconSet, props.value, props.valueChecked]
-  )
-  const events = useMemo(() => props.events || [], [props.events])
+const CheckBox = ({
+  className,
+  style,
+  layout,
+  name,
+  data,
+  label,
+  radio = false,
+  wait,
+  invalid,
+  value,
+  valueChecked = true,
+  valueUnchecked = false,
+  events = 'text icon',
+  onChange
+}) => {
+  const iconSet = useMemo(() => (radio ? ['unselected', 'selected'] : ['unchecked', 'checked']), [radio])
 
-  console.log('========================', icon)
+  const icon = useMemo(() => (value == valueChecked ? iconSet[1] : iconSet[0]), [iconSet, value, valueChecked])
 
-  const onChange = event => {
-    if (props.onChange) {
-      const value = props.value == props.valueChecked ? props.valueUnchecked : props.valueChecked
-      props.onChange({ ...event, value })
+  const handleChange = event => {
+    if (onChange) {
+      const value = value == valueChecked ? valueUnchecked : valueChecked
+      onChange({ ...event, value })
     }
   }
 
-  const onTextClick = event => {
+  const handleTextClick = event => {
     if (events.includes('text') || events.includes('label')) {
-      onChange(event)
+      handleChange(event)
     }
   }
 
-  const onIconClick = event => {
+  const handleIconClick = event => {
     if (events.includes('icon')) {
-      onChange(event)
+      handleChange(event)
     }
   }
 
   return (
     <Label
-      className={props.className}
-      style={props.style}
-      layout={props.layout}
-      name={props.name}
-      data={props.data}
-      text={props.text}
+      className={className}
+      style={style}
+      layout={layout}
+      name={name}
+      data={data}
+      text={label}
       icon={icon}
-      wait={props.wait}
-      invalid={props.invalid}
-      onTextClick={onTextClick}
-      onIconClick={onIconClick}
+      wait={wait}
+      invalid={invalid}
+      onTextClick={handleTextClick}
+      onIconClick={handleIconClick}
     />
   )
 }
@@ -55,7 +65,7 @@ CheckBox.propTypes = {
   layout: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   name: PropTypes.string,
   data: PropTypes.any,
-  text: PropTypes.any,
+  label: PropTypes.any,
   radio: PropTypes.any,
   wait: PropTypes.any,
   invalid: PropTypes.any,
@@ -64,13 +74,6 @@ CheckBox.propTypes = {
   valueUnchecked: PropTypes.any,
   events: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   onChange: PropTypes.func
-}
-
-CheckBox.defaultProps = {
-  radio: false,
-  valueChecked: true,
-  valueUnchecked: false,
-  events: ['text', 'icon']
 }
 
 export default CheckBox

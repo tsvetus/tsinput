@@ -35,89 +35,109 @@ const CLASS_WAIT = {
   icon: `${NAME}-icon-wait`
 }
 
-const Edit = forwardRef((props, ref) => {
-  const layout = useMemo(
-    () => (props.layout ? (Array.isArray(props.layout) ? props.layout : props.layout.split(' ')) : []),
-    [props.layout]
-  )
+const Edit = forwardRef(
+  (
+    {
+      className,
+      style,
+      layout = '',
+      name,
+      data,
+      value,
+      icon,
+      wait,
+      invalid,
+      readOnly,
+      placeholder,
+      children,
+      onClick,
+      onEditClick,
+      onIconClick,
+      onChange,
+      onKeyDown
+    },
+    ref
+  ) => {
+    const isRightInput = useMemo(() => layout.includes('right'), [layout])
 
-  const isRightInput = useMemo(() => layout.includes('right'), [layout])
+    const classes = useMemo(
+      () =>
+        mergeClasses(
+          CLASS,
+          layout.includes('right') ? CLASS_RIGHT : CLASS_LEFT,
+          wait ? CLASS_WAIT : null,
+          invalid ? CLASS_INVALID : null,
+          className
+        ),
+      [layout, wait, invalid, className]
+    )
 
-  const classes = useMemo(
-    () =>
-      mergeClasses(
-        CLASS,
-        layout.includes('right') ? CLASS_RIGHT : CLASS_LEFT,
-        props.wait ? CLASS_WAIT : null,
-        props.invalid ? CLASS_INVALID : null,
-        props.className
-      ),
-    [layout, props.wait, props.invalid, props.className]
-  )
+    const styles = useMemo(() => mergeStyles(style), [style])
 
-  const styles = useMemo(() => mergeStyles(props.style), [props.style])
+    const params = useMemo(() => ({ name, data }), [data, name])
 
-  const params = useMemo(() => ({ name: props.name, data: props.data }), [props.data, props.name])
+    const isReadOnly = useMemo(() => readOnly || wait, [readOnly, wait])
 
-  const isReadOnly = useMemo(() => props.readOnly || props.wait, [props.readOnly, props.wait])
+    const handleChange = onChange
+      ? event => {
+          if (!isReadOnly) {
+            onChange({ ...event, ...params })
+          }
+        }
+      : null
 
-  const onChange = props.onChange
-    ? event => {
-        if (!isReadOnly) props.onChange({ ...event, ...params })
-      }
-    : null
+    const handleClick = onClick
+      ? event => {
+          onClick({ ...event, ...params })
+        }
+      : null
 
-  const onClick = props.onClick
-    ? event => {
-        props.onClick({ ...event, ...params })
-      }
-    : null
+    const handleInputClick = onEditClick
+      ? event => {
+          onEditClick({ ...event, ...params })
+        }
+      : null
 
-  const onInputClick = props.onEditClick
-    ? event => {
-        props.onEditClick({ ...event, ...params })
-      }
-    : null
+    const handleIconClick = onIconClick
+      ? event => {
+          onIconClick({ ...event, ...params })
+        }
+      : null
 
-  const onIconClick = props.onIconClick
-    ? event => {
-        props.onIconClick({ ...event, ...params })
-      }
-    : null
+    const iconComponent = icon ? (
+      <Icon className={classes.icon?._} style={styles.icon?._} icon={icon} onClick={handleIconClick} />
+    ) : null
 
-  const iconComponent = props.icon ? (
-    <Icon className={classes.icon?._} style={styles.icon?._} icon={props.icon} onClick={onIconClick} />
-  ) : null
+    const inputComponent = (
+      <Input
+        className={classes.input?._}
+        style={styles.input?._}
+        value={value}
+        placeholder={placeholder}
+        readOnly={isReadOnly}
+        name={name}
+        data={data}
+        onChange={handleChange}
+        onClick={handleInputClick}
+        onKeyDown={onKeyDown}
+      />
+    )
 
-  const inputComponent = (
-    <Input
-      className={classes.input?._}
-      style={styles.input?._}
-      value={props.value}
-      placeholder={props.placeholder}
-      readOnly={isReadOnly}
-      name={props.name}
-      data={props.data}
-      onChange={onChange}
-      onClick={onInputClick}
-      onKeyDown={props.onKeyDown}
-    />
-  )
-
-  return isRightInput ? (
-    <div ref={ref} className={classes._} style={styles._} onClick={onClick}>
-      {iconComponent}
-      {inputComponent}
-      {props.children}
-    </div>
-  ) : (
-    <div ref={ref} className={classes._} style={styles._} onClick={onClick}>
-      {inputComponent}
-      {iconComponent}
-      {props.children}
-    </div>
-  )
-})
+    return isRightInput ? (
+      <div ref={ref} className={classes._} style={styles._} onClick={handleClick}>
+        {iconComponent}
+        {inputComponent}
+        {children}
+      </div>
+    ) : (
+      <div ref={ref} className={classes._} style={styles._} onClick={handleClick}>
+        {inputComponent}
+        {iconComponent}
+        {children}
+      </div>
+    )
+  }
+)
 
 Edit.propTypes = {
   className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),

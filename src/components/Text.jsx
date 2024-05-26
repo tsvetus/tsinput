@@ -19,43 +19,51 @@ const CLASS_WAIT = {
   _: `${NAME}-wait`
 }
 
-const Text = forwardRef((props, ref) => {
-  const classes = useMemo(
-    () => mergeClasses(CLASS, props.wait ? CLASS_WAIT : null, props.invalid ? CLASS_INVALID : null, props.className),
-    [props.wait, props.invalid, props.className]
-  )
+const Text = forwardRef(
+  (
+    { className, style, name, data, value, placeholder, readOnly, wait, invalid, autoHeight, onChange, onClick },
+    ref
+  ) => {
+    const classes = useMemo(
+      () => mergeClasses(CLASS, wait ? CLASS_WAIT : null, invalid ? CLASS_INVALID : null, className),
+      [wait, invalid, className]
+    )
 
-  const styles = useMemo(() => mergeStyles(props.style), [props.style])
+    const styles = useMemo(() => mergeStyles(style), [style])
 
-  const params = useMemo(() => ({ name: props.name, data: props.data }), [props.data, props.name])
+    const params = useMemo(() => ({ name, data }), [data, name])
 
-  const isReadOnly = useMemo(() => props.readOnly || props.wait, [props.readOnly, props.wait])
+    const isReadOnly = useMemo(() => readOnly || wait, [readOnly, wait])
 
-  const onChange = props.onChange
-    ? event => {
-        if (!isReadOnly) props.onChange({ ...event, ...params })
-      }
-    : null
+    const handleChange = onChange
+      ? event => {
+          if (!isReadOnly) {
+            onChange({ ...event, ...params })
+          }
+        }
+      : null
 
-  const onClick = props.onClick
-    ? event => {
-        props.onClick({ ...event, ...params })
-      }
-    : null
+    const handleClick = onClick
+      ? event => {
+          onClick({ ...event, ...params })
+        }
+      : null
 
-  return (
-    <Textarea
-      ref={ref}
-      className={classes._}
-      style={styles._}
-      value={props.value}
-      placeholder={props.placeholder}
-      readOnly={isReadOnly}
-      onChange={onChange}
-      onClick={onClick}
-    />
-  )
-})
+    return (
+      <Textarea
+        ref={ref}
+        className={classes._}
+        style={styles._}
+        value={value}
+        placeholder={placeholder}
+        readOnly={isReadOnly}
+        autoHeight={autoHeight}
+        onChange={handleChange}
+        onClick={handleClick}
+      />
+    )
+  }
+)
 
 Text.propTypes = {
   className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
@@ -67,6 +75,7 @@ Text.propTypes = {
   invalid: PropTypes.any,
   readOnly: PropTypes.any,
   placeholder: PropTypes.string,
+  autoHeight: PropTypes.any,
   onClick: PropTypes.func,
   onChange: PropTypes.func
 }
