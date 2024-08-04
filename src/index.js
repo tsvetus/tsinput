@@ -2,13 +2,13 @@ import Icon from './components/Icon'
 import Edit from './components/Edit'
 import Label from './components/Label'
 import LabelEdit from './components/LabelEdit'
-import LabelText from './components/LabelText'
+import LabelMemo from './components/LabelMemo'
 import ListBox from './components/ListBox'
 import SideBar from './components/SideBar'
 import TopBar from './components/TopBar'
 import TabControl from './components/TabControl'
 import CheckBox from './components/CheckBox'
-import Group from './components/Group'
+import LabelGroup from './components/LabelGroup'
 import Page from './components/Page'
 import MenuItem from './components/MenuItem'
 import Content from './components/Content'
@@ -20,13 +20,13 @@ export {
   Edit,
   Label,
   LabelEdit,
-  LabelText,
+  LabelMemo,
   ListBox,
   SideBar,
   TopBar,
   TabControl,
   CheckBox,
-  Group,
+  LabelGroup,
   Page,
   MenuItem,
   Content,

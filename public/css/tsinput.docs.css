@@ -1,3 +1,81 @@
+/*!**************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./docs/lib/Doc.css ***!
+  \**************************************************************************************************************/
+.tsi-doc {
+  font-size: 18px;
+}
+
+.tsi-doc-content {
+  margin: 0 1em 1em 1em;
+}
+
+.tsi-doc-content:not(:first-child) {
+  margin: 1em;
+}
+
+code {
+  color: #910202;
+  font-weight: bold;
+}
+
+pre {
+  background: #d6d5e0;
+  padding: 1em;
+  overflow-x: auto;
+  margin: 1em;
+}
+
+pre code {
+  color: #03005f;
+  font-weight: normal;
+}
+/*!**************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./docs/examples/Icon/Icons.css ***!
+  \**************************************************************************************************************************/
+.tsi-doc-icon-widget {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1em 0.5em 1em 0.5em;
+}
+
+.tsi-doc-icon-large {
+  font-size: 32px;
+}
+
+.tsi-doc-icon-caption {
+  margin: 1em 0 0 0;
+}
+
+.tsi-doc-icon-group {
+  display: flex;
+  flex-wrap: wrap;
+}
+/*!************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./docs/examples/Icon/App.css ***!
+  \************************************************************************************************************************/
+.tsi-doc-icon {
+  margin: 0 1em 0 1em;
+}
+
+.tsi-doc-icon-medium {
+  font-size: 22px;
+  margin: 0 0 0 1em;
+}
+
+.tsi-doc-icon-label {
+  margin: 1em 0 0 0;
+}
+
+.tsi-doc-icon-events {
+  height: 220px;
+}
+/*!******************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./docs/examples/LabelGroup/App.css ***!
+  \******************************************************************************************************************************/
+.tsi-doc-label-group {
+  margin: 1em 0 0 0;
+}
 /*!****************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./docs/Main/Main.css ***!
   \****************************************************************************************************************/

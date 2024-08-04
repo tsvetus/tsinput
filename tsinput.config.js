@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
@@ -7,7 +8,7 @@ module.exports = {
     minimize: true
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
     modules: ['./src', './node_modules']
   },
   entry: {
@@ -29,9 +30,9 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
       },
       {
-        test: /\.js$|\.jsx$/,
+        test: /\.js$|\.jsx$|\.ts$|\.jsx$/,
         exclude: /node_modules/,
-        use: 'babel-loader'
+        use: ['babel-loader']
       }
     ]
   },

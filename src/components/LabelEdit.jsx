@@ -29,10 +29,12 @@ const LabelEdit = ({
 }) => {
   const classes = useMemo(() => mergeClasses(className), [className])
   const styles = useMemo(() => mergeStyles(style), [style])
+  const labelClass = useMemo(() => mergeClasses(classes.label, classes._), [classes])
+  const labelStyle = useMemo(() => mergeClasses(styles.label, styles._), [styles])
   return (
     <Label
-      classnem={classes.label}
-      style={styles.label}
+      className={labelClass}
+      style={labelStyle}
       layout={labelLayout}
       name={name}
       data={data}
@@ -44,7 +46,7 @@ const LabelEdit = ({
       onIconClick={onLabelIconClick}
     >
       <Edit
-        classnem={classes.edit}
+        className={classes.edit}
         style={styles.edit}
         layout={editLayout}
         name={name}
