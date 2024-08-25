@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 
 import { SideBar, TopBar, MenuItem, Page, Content } from 'tsinput'
 
@@ -17,8 +17,6 @@ const PAGE_OPTIONS = [
 import './Main.css'
 
 const Main = () => {
-  const contentRef = useRef()
-
   const [state, setState] = useState({
     showSideBar: true,
     page: 'labelEdit'
@@ -45,7 +43,7 @@ const Main = () => {
           LabelEdit
         </MenuItem>
       </SideBar>
-      <Content ref={contentRef}>
+      <Content>
         <Page options={PAGE_OPTIONS} value={state.page} />
       </Content>
     </>

@@ -1,45 +1,13 @@
-import React, { useMemo, useCallback, MouseEvent, ReactNode } from 'react'
+import React, { useMemo, useCallback, MouseEvent } from 'react'
 
 import { mergeClasses, mergeStyles } from '../../util'
-
-import { TsiClass, TsiMouseEventHandler } from '../../util/types'
 
 import useLayout from '../../hooks/useLayout'
 
 import Text from '../Text'
 import Icon from '../Icon'
 
-interface InlineClass {
-  _?: string
-  invalid?: string | TsiClass
-  wait?: string | TsiClass
-  text?: string | TsiClass
-  icon?: string | TsiClass
-}
-
-interface InlineStyle {
-  _?: object
-  invalid?: object
-  wait?: object
-  text?: object
-  iccon?: object
-}
-
-interface InlineProps {
-  className?: string | InlineClass
-  style?: object | InlineStyle
-  name?: string
-  data?: unknown
-  wait?: unknown
-  invalid?: unknown
-  layout?: string | string[]
-  text?: string | ReactNode
-  icon?: string
-  children?: string | ReactNode
-  onClick?: TsiMouseEventHandler<HTMLDivElement>
-  onTextClick?: TsiMouseEventHandler<HTMLDivElement>
-  onIconClick?: TsiMouseEventHandler<HTMLElement>
-}
+import { LabelProps } from './types'
 
 const BASE = 'tsi-label'
 
@@ -71,7 +39,7 @@ const Inline = ({
   onClick,
   onTextClick,
   onIconClick
-}: InlineProps) => {
+}: LabelProps) => {
   const isRightLabel = useMemo(() => layout.includes('right'), [layout])
 
   const layoutClasses = useMemo(() => mergeClasses(CLASS, className), [className])
@@ -94,7 +62,7 @@ const Inline = ({
     [isRightLabel]
   )
 
-  const { classes, styles } = useLayout(layoutClasses, layoutStyles, mergeLayout)
+  const [classes, styles] = useLayout(layoutClasses, layoutStyles, mergeLayout)
 
   const params = useMemo(() => ({ name, data }), [data, name])
 

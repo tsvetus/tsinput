@@ -1,12 +1,12 @@
 import { Ref, MutableRefObject } from 'react'
 
-const findElement = (className: string) => {
+const findElement = <T extends Element>(className: string): T => {
   const element = document.getElementsByClassName(className)
-  return element?.[0] || null
+  return element?.[0] as T
 }
 
 const initRefs =
-  <T extends HTMLElement>(...refs: (Ref<T> | undefined)[]) =>
+  <T extends HTMLElement>(...refs: (Ref<T> | MutableRefObject<T> | undefined)[]) =>
   (element: T) => {
     refs.forEach(ref => {
       if (ref) {

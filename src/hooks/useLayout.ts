@@ -6,8 +6,12 @@ import { appendString } from '../util'
 
 type TsiCheckFunc = (key: string) => unknown
 
-const collapseClass = (source: TsiClass, check: (key: string) => unknown, preffix: string = '') => {
-  const result = { _: source._ } as TsiClass
+const collapseClass = (
+  source: TsiClass | undefined,
+  check: (key: string) => unknown,
+  preffix: string = ''
+): TsiClass => {
+  const result = { _: source?._ } as TsiClass
   for (const key in source) {
     if ('_' !== key) {
       const child = source[key] as TsiClass
@@ -22,8 +26,12 @@ const collapseClass = (source: TsiClass, check: (key: string) => unknown, preffi
   return result
 }
 
-const collapseStyle = (source: TsiStyle, check: (key: string) => unknown, preffix: string = '') => {
-  const result = { _: source._ } as TsiStyle
+const collapseStyle = (
+  source: TsiStyle | undefined,
+  check: (key: string) => unknown,
+  preffix: string = ''
+): TsiStyle => {
+  const result = { _: source?._ } as TsiStyle
   for (const key in source) {
     if ('_' !== key) {
       const child = source[key] as TsiStyle
@@ -38,10 +46,14 @@ const collapseStyle = (source: TsiStyle, check: (key: string) => unknown, preffi
   return result
 }
 
-const useLayout = (baseClass: TsiClass, baseStyle: TsiStyle, check: TsiCheckFunc) => {
+const useLayout = (
+  baseClass: TsiClass | undefined,
+  baseStyle: TsiStyle | undefined,
+  check: TsiCheckFunc
+): [TsiClass, TsiStyle] => {
   const classes = useMemo(() => collapseClass(baseClass, check), [baseClass, check])
   const styles = useMemo(() => collapseStyle(baseStyle, check), [baseStyle, check])
-  return { classes, styles }
+  return [classes, styles]
 }
 
 export default useLayout

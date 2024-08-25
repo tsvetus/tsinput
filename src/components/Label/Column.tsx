@@ -1,47 +1,13 @@
-import React, { useMemo, useCallback, MouseEvent, ReactNode } from 'react'
+import React, { useMemo, useCallback, MouseEvent } from 'react'
 
 import { mergeClasses, mergeStyles } from '../../util'
-
-import { TsiClass, TsiMouseEventHandler } from '../../util/types'
 
 import useLayout from '../../hooks/useLayout'
 
 import Text from '../Text'
 import Icon from '../Icon'
 
-interface ColumnClass {
-  _?: string
-  invalid?: string | TsiClass
-  wait?: string | TsiClass
-  header?: string | TsiClass
-  text?: string | TsiClass
-  icon?: string | TsiClass
-}
-
-interface ColumnStyle {
-  _?: object
-  invalid?: object
-  wait?: object
-  header?: object
-  text?: object
-  iccon?: object
-}
-
-interface ColumnProps {
-  className?: string | ColumnClass
-  style?: object | ColumnStyle
-  name?: string
-  data?: unknown
-  wait?: unknown
-  invalid?: unknown
-  layout?: string | string[]
-  text?: string | ReactNode
-  icon?: string
-  children?: string | ReactNode
-  onClick?: TsiMouseEventHandler<HTMLDivElement>
-  onTextClick?: TsiMouseEventHandler<HTMLDivElement>
-  onIconClick?: TsiMouseEventHandler<HTMLElement>
-}
+import { LabelProps } from './types'
 
 const BASE = 'tsi-label'
 
@@ -75,7 +41,7 @@ const Column = ({
   onClick,
   onTextClick,
   onIconClick
-}: ColumnProps) => {
+}: LabelProps) => {
   const isRightLabel = useMemo(() => layout.includes('right'), [layout])
   const isBorder = useMemo(() => layout.includes('border'), [layout])
 
@@ -97,7 +63,7 @@ const Column = ({
     [isBorder]
   )
 
-  const { classes, styles } = useLayout(layoutClasses, layoutStyles, mergeLayout)
+  const [classes, styles] = useLayout(layoutClasses, layoutStyles, mergeLayout)
 
   const params = useMemo(() => ({ name, data }), [data, name])
 

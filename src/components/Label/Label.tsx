@@ -1,43 +1,9 @@
-import React, { useMemo, ReactNode } from 'react'
-
-import { TsiClass, TsiMouseEventHandler } from '../../util/types'
+import React, { useMemo } from 'react'
 
 import Inline from './Inline'
 import Column from './Column'
 
-interface LabelClass {
-  _?: string
-  invalid?: string | TsiClass
-  wait?: string | TsiClass
-  header?: string | TsiClass
-  text?: string | TsiClass
-  icon?: string | TsiClass
-}
-
-interface LabelStyle {
-  _?: object
-  invalid?: object
-  wait?: object
-  header?: object
-  text?: object
-  iccon?: object
-}
-
-interface LabelProps {
-  className?: string | LabelClass
-  style?: object | LabelStyle
-  name?: string
-  data?: unknown
-  wait?: unknown
-  invalid?: unknown
-  layout?: string | string[]
-  text?: string | ReactNode
-  icon?: string
-  children?: string | ReactNode
-  onClick?: TsiMouseEventHandler<HTMLDivElement>
-  onTextClick?: TsiMouseEventHandler<HTMLDivElement>
-  onIconClick?: TsiMouseEventHandler<HTMLElement>
-}
+import { LabelProps } from './types'
 
 const Label = ({
   className,

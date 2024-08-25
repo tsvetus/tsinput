@@ -46,7 +46,7 @@
   --tsi-list-border: var(--tsi-border-width) solid var(--tsi-color-frame);
   --tsi-list-border-radius: var(--tsi-border-radius);
   --tsi-list-max-height: 220px;
-  --tsi-list-item-padding: 0.2em 0.5em 0.2em 0.5em;
+  --tsi-list-items-item-padding: 0.2em 0.5em 0.2em 0.5em;
   /* Label component */
   --tsi-label-header-margin: 0 0 0.1em 0;
   /* SideBar component */
@@ -73,9 +73,6 @@
   --tsi-group-border: var(--tsi-border-width) solid var(--tsi-color-caption);
   --tsi-group-border-radius: var(--tsi-border-radius) var(--tsi-border-radius) var(--tsi-border-radius)
     var(--tsi-border-radius);
-  --tsi-group-label-side: 0.5em;
-  --tsi-group-label-top: -0.7em;
-  --tsi-group-label-padding: 0 0.5em 0 0.5em;
   /* MenuItem component */
   --tsi-menu-item-color: var(--tsi-color-caption);
   --tsi-menu-item-margin: 0.5em 0.5em 0 0.5em;
@@ -373,24 +370,24 @@ body {
   background-color: var(--tsi-color-caption);
 }
 
-.tsi-list-item {
-  padding: var(--tsi-list-item-padding);
+.tsi-list-items-item {
+  padding: var(--tsi-list-items-item-padding);
   cursor: pointer;
 }
 
-.tsi-list-item:hover {
+.tsi-list-items-item:hover {
   font-weight: var(--tsi-font-weight-hover);
   color: var(--tsi-color-hover);
   background: var(--tsi-background-hover);
 }
 
-.tsi-list-item-selected {
+.tsi-list-items-item-selected {
   font-weight: var(--tsi-font-weight-selected);
   color: var(--tsi-color-selected);
   background: var(--tsi-background-selected);
 }
 
-.tsi-list-item-focused {
+.tsi-list-items-item-focused {
   font-weight: var(--tsi-font-weight-focused);
   color: var(--tsi-color-focused);
   background: var(--tsi-background-focused);
@@ -512,22 +509,6 @@ body {
   border-radius: var(--tsi-group-border-radius);
   background-color: var(--tsi-color-window);
   padding: var(--tsi-group-padding);
-}
-
-.tsi-group-label {
-  position: absolute;
-  top: var(--tsi-group-label-top);
-  padding: var(--tsi-group-label-padding);
-  background-color: var(--tsi-color-window);
-  color: var(--tsi-color-caption);
-}
-
-.tsi-group-label-left {
-  left: var(--tsi-group-label-side);
-}
-
-.tsi-group-label-right {
-  right: var(--tsi-group-label-side);
 }
 
 /* MenuItem */

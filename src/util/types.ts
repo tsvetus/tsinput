@@ -1,12 +1,13 @@
-import { MouseEvent, KeyboardEvent, ChangeEvent, CSSProperties, ReactNode } from 'react'
+import { ReactNode, MouseEvent, KeyboardEvent, ChangeEvent, CSSProperties } from 'react'
 
 export type TsiObject = {
   [key: string]: object | TsiObject[] | string | number | boolean | undefined
 }
 
 export interface TsiEvent {
-  name?: string
+  name?: string | ReactNode
   data?: unknown
+  value?: unknown
 }
 export type TsiEventHandler = (event: TsiEvent) => void
 
@@ -21,7 +22,7 @@ export interface TsiInputEvent<T> extends ChangeEvent<T> {
 }
 export type TsiInputEventHandler<T> = (event: TsiInputEvent<T>) => void
 
-export type TsiTargetHandler = () => HTMLElement
+export type TsiTargetHandler = () => HTMLElement | null | undefined
 
 export type TsiStyle = {
   _?: CSSProperties
@@ -36,13 +37,3 @@ export type TsiClass = {
   [key: string]: TsiClass | undefined
 }
 export type TsiClassSource = string | object | undefined | null
-
-export type TsiListItem = {
-  [key: string]: string | number | ReactNode
-}
-
-export interface TsiListEvent extends TsiEvent {
-  itemIndex?: number
-  option?: TsiListItem
-}
-export type TsiListEventHandler = (event: TsiListEvent) => void
