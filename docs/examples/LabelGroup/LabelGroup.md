@@ -2,6 +2,10 @@
 
 Displays items in one group surrounded by a frame with the ability to add a label and icon.
 
+### Example
+
+<div id="example"></div>
+
 ## Usage
 
 ### CSS
@@ -11,10 +15,6 @@ Displays items in one group surrounded by a frame with the ability to add a labe
 ### Code
 
 <div id="code"></div>
-
-### Example
-
-<div id="example"></div>
 
 ## API
 

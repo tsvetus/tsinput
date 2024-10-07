@@ -556,3 +556,12 @@ body {
 .tsi-label-memo-border {
   padding: var(--tsi-memo-border-padding);
 }
+
+/* Menu */
+
+.tsi-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}

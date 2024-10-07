@@ -1,6 +1,5 @@
 import React, { useRef, useMemo, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
-import { renderToString } from 'react-dom/server'
 import PropTypes from 'prop-types'
 
 import { mergeClasses } from 'tsinput/util'

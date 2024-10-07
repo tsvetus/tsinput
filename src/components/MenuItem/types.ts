@@ -13,10 +13,10 @@ export interface MenuItemStyle {
 export interface MenuItemProps {
   className?: string | MenuItemClass
   style?: object | MenuItemStyle
-  name: string | ReactNode
-  data: unknown
-  value: unknown
-  children: string | ReactNode
-  onClick: TsiMouseEventHandler<HTMLDivElement>
-  onKeyDown: TsiKeyboardEventHandler<HTMLDivElement>
+  name?: string | ReactNode
+  data?: unknown
+  value?: unknown
+  children?: string | ReactNode
+  onClick?: TsiMouseEventHandler<HTMLDivElement>
+  onKeyDown?: TsiKeyboardEventHandler<HTMLDivElement>
 }

@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback, MouseEvent } from 'react'
+import React, { useMemo, useCallback, forwardRef, MouseEvent } from 'react'
 
 import { mergeClasses, mergeStyles } from '../../util'
 
@@ -25,102 +25,109 @@ const CLASS = {
   }
 }
 
-const Inline = ({
-  className,
-  style,
-  layout = '',
-  name,
-  data,
-  text,
-  icon,
-  wait,
-  invalid,
-  children,
-  onClick,
-  onTextClick,
-  onIconClick
-}: LabelProps) => {
-  const isRightLabel = useMemo(() => layout.includes('right'), [layout])
-
-  const layoutClasses = useMemo(() => mergeClasses(CLASS, className), [className])
-
-  const layoutStyles = useMemo(() => mergeStyles(style), [style])
-
-  const mergeLayout = useCallback(
-    (key: string) => {
-      switch (key) {
-        case 'text-right':
-        case 'icon-left':
-          return isRightLabel
-        case 'text-left':
-        case 'icon-right':
-          return !isRightLabel
-        default:
-          return false
-      }
+const Inline = forwardRef<HTMLDivElement, LabelProps>(
+  (
+    {
+      className,
+      style,
+      layout = '',
+      name,
+      data,
+      text,
+      icon,
+      wait,
+      invalid,
+      children,
+      onClick,
+      onTextClick,
+      onIconClick
     },
-    [isRightLabel]
-  )
+    ref?
+  ) => {
+    const isRightLabel = useMemo(() => layout.includes('right'), [layout])
 
-  const [classes, styles] = useLayout(layoutClasses, layoutStyles, mergeLayout)
+    const layoutClasses = useMemo(() => mergeClasses(CLASS, className), [className])
 
-  const params = useMemo(() => ({ name, data }), [data, name])
+    const layoutStyles = useMemo(() => mergeStyles(style), [style])
 
-  const handleClick = onClick
-    ? (event: MouseEvent<HTMLDivElement>) => {
-        if (!wait) {
-          onClick({ ...event, ...params })
+    const mergeLayout = useCallback(
+      (key: string) => {
+        switch (key) {
+          case 'text-right':
+          case 'icon-left':
+            return isRightLabel
+          case 'text-left':
+          case 'icon-right':
+            return !isRightLabel
+          default:
+            return false
         }
-      }
-    : undefined
+      },
+      [isRightLabel]
+    )
 
-  const handleTextClick = onTextClick
-    ? (event: MouseEvent<HTMLDivElement>) => {
-        onTextClick({ ...event, ...params })
-      }
-    : undefined
+    const [classes, styles] = useLayout(layoutClasses, layoutStyles, mergeLayout)
 
-  const handleIconClick = onIconClick
-    ? (event: MouseEvent<HTMLElement>) => {
-        onIconClick({ ...event, ...params })
-      }
-    : undefined
+    const params = useMemo(() => ({ name, data }), [data, name])
 
-  const textComponent = text ? (
-    <Text
-      className={classes.text}
-      style={styles.text}
-      value={text}
-      wait={wait}
-      invalid={invalid}
-      onClick={handleTextClick}
-    />
-  ) : null
+    const handleClick = onClick
+      ? (event: MouseEvent<HTMLDivElement>) => {
+          if (!wait) {
+            onClick({ ...event, ...params })
+          }
+        }
+      : undefined
 
-  const iconComponent = icon ? (
-    <Icon
-      className={classes.icon}
-      style={styles.icon}
-      icon={icon}
-      wait={wait}
-      invalid={invalid}
-      onClick={handleIconClick}
-    />
-  ) : null
+    const handleTextClick = onTextClick
+      ? (event: MouseEvent<HTMLDivElement>) => {
+          onTextClick({ ...event, ...params })
+        }
+      : undefined
 
-  return isRightLabel ? (
-    <div className={classes._} style={styles._} onClick={handleClick}>
-      {iconComponent}
-      {children}
-      {textComponent}
-    </div>
-  ) : (
-    <div className={classes._} style={styles._} onClick={handleClick}>
-      {textComponent}
-      {children}
-      {iconComponent}
-    </div>
-  )
-}
+    const handleIconClick = onIconClick
+      ? (event: MouseEvent<HTMLElement>) => {
+          onIconClick({ ...event, ...params })
+        }
+      : undefined
+
+    const textComponent = text ? (
+      <Text
+        className={classes.text}
+        style={styles.text}
+        value={text}
+        wait={wait}
+        invalid={invalid}
+        onClick={handleTextClick}
+      />
+    ) : null
+
+    const iconComponent = icon ? (
+      <Icon
+        className={classes.icon}
+        style={styles.icon}
+        icon={icon}
+        wait={wait}
+        invalid={invalid}
+        onClick={handleIconClick}
+      />
+    ) : null
+
+    return isRightLabel ? (
+      <div ref={ref} className={classes._} style={styles._} onClick={handleClick}>
+        {iconComponent}
+        {children}
+        {textComponent}
+      </div>
+    ) : (
+      <div ref={ref} className={classes._} style={styles._} onClick={handleClick}>
+        {textComponent}
+        {children}
+        {iconComponent}
+      </div>
+    )
+  }
+)
+
+Inline.displayName = 'Inline'
 
 export default Inline

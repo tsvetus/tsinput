@@ -56,7 +56,7 @@ const Memo = forwardRef(
 
     const params = useMemo(() => ({ name, data }), [data, name])
 
-    const isReadOnly = useMemo(() => Boolean(readOnly || wait), [readOnly, wait])
+    const isReadOnly = useMemo(() => Boolean(readOnly || wait || !onChange), [onChange, readOnly, wait])
 
     const handleChange = onChange
       ? (event: ChangeEvent<HTMLTextAreaElement>) => {

@@ -9,11 +9,11 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
-    modules: ['./src', './node_modules']
+    modules: ['./src', './docs', './node_modules']
   },
   entry: {
     tsinput: {
-      import: './src/index.js',
+      import: './src/index.ts',
       library: {
         type: 'commonjs2'
       }
@@ -36,5 +36,9 @@ module.exports = {
       }
     ]
   },
-  plugins: [new MiniCssExtractPlugin()]
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: '[name].css'
+    })
+  ]
 }

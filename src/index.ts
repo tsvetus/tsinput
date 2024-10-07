@@ -12,6 +12,7 @@ import LabelGroup from './components/LabelGroup'
 import Page from './components/Page'
 import MenuItem from './components/MenuItem'
 import Content from './components/Content'
+import Menu from './components/Menu'
 
 import { stringify } from './util'
 
@@ -30,5 +31,6 @@ export {
   Page,
   MenuItem,
   Content,
+  Menu,
   stringify
 }

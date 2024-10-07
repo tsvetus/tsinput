@@ -7,6 +7,10 @@ Before using:
 1. Copy content from public/fonts folder to your fonts folder.
 2. Include tisinput-font.css stylesheet to your `index.html` file.
 
+## Example
+
+<div id="example"></div>
+
 ## Usage
 
 ### CSS
@@ -16,10 +20,6 @@ Before using:
 ### Code
 
 <div id="code"></div>
-
-## Example
-
-<div id="example"></div>
 
 ## API
 
