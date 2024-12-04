@@ -32,3 +32,4 @@ export const useEvents = ({ ref, listen = true, onClick, onOuterClick, onKeyDown
     }, [listen, ref, onOuterClick, onKeyDown, onClick]);
 };
 export default useEvents;
+//# sourceMappingURL=useEvents.js.map

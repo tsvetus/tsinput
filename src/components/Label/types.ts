@@ -5,16 +5,23 @@ import { TsiMouseEventHandler } from '../../util/types'
 import { TextClass, TextStyle } from '../Text'
 import { IconClass, IconStyle } from '../Icon'
 
-export interface LabelClass {
+/** Label component CSS classes description */
+export type LabelClass = {
+  /** Default CSS class. */
   _?: string
+  /** Invalid state CSS class. */
   invalid?: string
+  /** Wait state CSS class. */
   wait?: string
+  /** Label header CSS class. Used for layout='top' or layout='border'. */
   header?: string
+  /** Label text component CSS class. */
   text?: string | TextClass
+  /** Label icon component CSS class. */
   icon?: string | IconClass
 }
 
-export interface LabelStyle {
+export type LabelStyle = {
   _?: object
   invalid?: object
   wait?: object
@@ -23,7 +30,7 @@ export interface LabelStyle {
   iccon?: object | IconStyle
 }
 
-export interface LabelProps {
+export type LabelProps = {
   className?: string | LabelClass
   style?: object | LabelStyle
   name?: string
@@ -34,7 +41,19 @@ export interface LabelProps {
   text?: string | ReactNode
   icon?: string
   children?: string | ReactNode
+  /**
+   * On component click event handler.
+   * @event
+   */
   onClick?: TsiMouseEventHandler<HTMLDivElement>
+  /**
+   * On component text click event handler.
+   * @event
+   */
   onTextClick?: TsiMouseEventHandler<HTMLDivElement>
+  /**
+   * On component icon click event handler.
+   * @event
+   */
   onIconClick?: TsiMouseEventHandler<HTMLElement>
 }

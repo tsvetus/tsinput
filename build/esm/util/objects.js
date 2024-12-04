@@ -25,3 +25,4 @@ const stringify = (obj, props) => {
     return JSON.stringify(selectProps(obj, props));
 };
 export { selectProps, asArray, selectItems, stringify };
+//# sourceMappingURL=objects.js.map

@@ -44,3 +44,4 @@ const TabControl = ({ className, style, name, data, options = [], value, onChang
     return (_jsxs("div", { className: classes._, style: styles._, children: [_jsx("div", { className: classes.header?._, style: styles.header?._, children: tabsComponent }), contentComponent] }));
 };
 export default TabControl;
+//# sourceMappingURL=TabControl.js.map

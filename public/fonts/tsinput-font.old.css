@@ -1,0 +1,54 @@
+@font-face {
+	font-family: "tsinput-font";
+	font-display: block;
+	src: url("tsinput-font.eot?1f9858a041c46bbe50eb68b2c7c54632?#iefix") format("embedded-opentype"),
+url("tsinput-font.woff2?1f9858a041c46bbe50eb68b2c7c54632") format("woff2"),
+url("tsinput-font.woff?1f9858a041c46bbe50eb68b2c7c54632") format("woff");
+}
+
+.tsi-icon {
+	line-height: 1;
+}
+
+.tsi-icon:before {
+	font-family: tsinput-font !important;
+	font-style: normal;
+	font-weight: normal !important;
+}
+
+.tsi-icon-empty:before {
+	content: "\f101";
+}
+.tsi-icon-unchecked:before {
+	content: "\f102";
+}
+.tsi-icon-checked:before {
+	content: "\f103";
+}
+.tsi-icon-angle-left:before {
+	content: "\f104";
+}
+.tsi-icon-angle-up:before {
+	content: "\f105";
+}
+.tsi-icon-angle-right:before {
+	content: "\f106";
+}
+.tsi-icon-angle-down:before {
+	content: "\f107";
+}
+.tsi-icon-refresh:before {
+	content: "\f108";
+}
+.tsi-icon-unselected:before {
+	content: "\f109";
+}
+.tsi-icon-selected:before {
+	content: "\f10a";
+}
+.tsi-icon-close:before {
+	content: "\f10b";
+}
+.tsi-icon-burger:before {
+	content: "\f10c";
+}

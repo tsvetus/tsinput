@@ -11,3 +11,4 @@ const LabelEdit = ({ className, style, labelLayout, editLayout, name, data, labe
     return (_jsx(Label, { className: labelClass, style: labelStyle, layout: labelLayout, name: name, data: data, text: label, icon: labelIcon, wait: wait, invalid: invalid, onClick: onLabelClick, onIconClick: onLabelIconClick, children: _jsx(Edit, { className: classes.edit, style: styles.edit, layout: editLayout, name: name, data: data, icon: editIcon, wait: wait, invalid: invalid, placeholder: placeholder, value: value, onClick: onEditClick, onIconClick: onEditIconClick, onInputClick: onInputClick, onInputKeyDown: onInputKeyDown, onChange: onChange, children: children }) }));
 };
 export default LabelEdit;
+//# sourceMappingURL=LabelEdit.js.map

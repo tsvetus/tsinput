@@ -5,3 +5,4 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const LabelMemo_1 = __importDefault(require("./LabelMemo"));
 exports.default = LabelMemo_1.default;
+//# sourceMappingURL=index.js.map

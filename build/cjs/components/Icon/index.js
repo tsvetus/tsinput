@@ -5,3 +5,4 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const Icon_1 = __importDefault(require("./Icon"));
 exports.default = Icon_1.default;
+//# sourceMappingURL=index.js.map

@@ -1,10 +1,13 @@
-import React, { useMemo, forwardRef, Ref } from 'react'
+import React, { useMemo, forwardRef } from 'react'
 
 import Inline from './Inline'
 import Column from './Column'
 
 import { LabelProps } from './types'
 
+/**
+ * Label component. Provides a simple way to add labels to React components.
+ */
 const Label = forwardRef<HTMLDivElement, LabelProps>(
   (
     {

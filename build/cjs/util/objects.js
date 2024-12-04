@@ -31,3 +31,4 @@ const stringify = (obj, props) => {
     return JSON.stringify(selectProps(obj, props));
 };
 exports.stringify = stringify;
+//# sourceMappingURL=objects.js.map

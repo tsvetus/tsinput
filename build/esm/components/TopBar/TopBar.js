@@ -23,3 +23,4 @@ const TopBar = forwardRef(({ className, style, name, data, icon = 'burger', onIc
 });
 TopBar.displayName = 'TopBar';
 export default TopBar;
+//# sourceMappingURL=TopBar.js.map

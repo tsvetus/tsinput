@@ -5,3 +5,4 @@ const Page = ({ options = [], value }) => {
     return activeOption?.render ? activeOption.render() : null;
 };
 export default Page;
+//# sourceMappingURL=Page.js.map

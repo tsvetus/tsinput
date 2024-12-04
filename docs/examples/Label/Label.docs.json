@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Label",
+    "description": "Label component. Provides a simple way to add labels to React components.",
+    "props": [
+      {
+        "name": "className",
+        "description": "",
+        "type": "string | LabelClass",
+        "required": false
+      },
+      {
+        "name": "style",
+        "description": "",
+        "type": "object | LabelStyle",
+        "required": false
+      },
+      {
+        "name": "name",
+        "description": "",
+        "required": false
+      },
+      {
+        "name": "data",
+        "description": "",
+        "required": false
+      },
+      {
+        "name": "wait",
+        "description": "",
+        "required": false
+      },
+      {
+        "name": "invalid",
+        "description": "",
+        "required": false
+      },
+      {
+        "name": "layout",
+        "description": "",
+        "type": "string | string[]",
+        "required": false,
+        "defaultValue": "''"
+      },
+      {
+        "name": "text",
+        "description": "",
+        "type": "string | ReactNode",
+        "required": false
+      },
+      {
+        "name": "icon",
+        "description": "",
+        "required": false
+      },
+      {
+        "name": "children",
+        "description": "",
+        "type": "string | ReactNode",
+        "required": false
+      },
+      {
+        "name": "onClick",
+        "description": "On component click event handler.\r\n@event",
+        "type": "(event: TsiMouseEvent<T>) => void",
+        "required": false
+      },
+      {
+        "name": "onTextClick",
+        "description": "On component text click event handler.\r\n@event",
+        "type": "(event: TsiMouseEvent<T>) => void",
+        "required": false
+      },
+      {
+        "name": "onIconClick",
+        "description": "On component icon click event handler.\r\n@event",
+        "type": "(event: TsiMouseEvent<T>) => void",
+        "required": false
+      }
+    ]
+  }
+]

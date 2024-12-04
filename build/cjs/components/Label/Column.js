@@ -67,3 +67,4 @@ const Column = (0, react_1.forwardRef)(({ className, style, layout = '', name, d
 });
 Column.displayName = 'Column';
 exports.default = Column;
+//# sourceMappingURL=Column.js.map

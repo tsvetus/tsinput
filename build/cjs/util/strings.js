@@ -11,3 +11,4 @@ const appendString = (target, string) => {
     }
 };
 exports.appendString = appendString;
+//# sourceMappingURL=strings.js.map

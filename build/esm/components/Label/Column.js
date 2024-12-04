@@ -61,3 +61,4 @@ const Column = forwardRef(({ className, style, layout = '', name, data, text, ic
 });
 Column.displayName = 'Column';
 export default Column;
+//# sourceMappingURL=Column.js.map

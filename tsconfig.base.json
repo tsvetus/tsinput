@@ -17,7 +17,10 @@
     "baseUrl": ".",
     "rootDir": "./src",
     "declaration": true,
-    "declarationDir": "./build/types"
+    "declarationDir": "./build/types",
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
   "include": ["src"],
   "exclude": ["build", "docs", "public", "resources", "node_modules", "test"]

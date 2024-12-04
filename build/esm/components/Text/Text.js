@@ -40,3 +40,4 @@ const Text = ({ className, style, name, data, wait, invalid, value, onClick, onK
     return (_jsx("div", { className: classes._, style: styles._, onClick: handleClick, onKeyDown: handleKeyDown, children: value }));
 };
 export default Text;
+//# sourceMappingURL=Text.js.map

@@ -1,6 +1,7 @@
 import Icon from './components/Icon'
 import Edit from './components/Edit'
 import Label from './components/Label'
+import LabelIcon from './components/LabelIcon'
 import LabelEdit from './components/LabelEdit'
 import LabelMemo from './components/LabelMemo'
 import ListBox from './components/ListBox'
@@ -20,6 +21,7 @@ export {
   Icon,
   Edit,
   Label,
+  LabelIcon,
   LabelEdit,
   LabelMemo,
   ListBox,

@@ -29,3 +29,4 @@ const Overlay = ({ className, style, name, data, offset = 0, timeout = 350, show
     return (_jsx(CSSTransition, { nodeRef: ref, in: show, timeout: timeout, classNames: BASE, unmountOnExit: !persistent, onEnter: handleEnter, onEntered: handleEntered, onExited: handleExited, children: _jsx("div", { ref: ref, className: classes._, style: styles._, children: children }) }));
 };
 export default Overlay;
+//# sourceMappingURL=Overlay.js.map

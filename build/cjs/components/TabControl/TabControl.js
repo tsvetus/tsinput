@@ -43,3 +43,4 @@ const TabControl = ({ className, style, name, data, options = [], value, onChang
     return ((0, jsx_runtime_1.jsxs)("div", { className: classes._, style: styles._, children: [(0, jsx_runtime_1.jsx)("div", { className: (_c = classes.header) === null || _c === void 0 ? void 0 : _c._, style: (_d = styles.header) === null || _d === void 0 ? void 0 : _d._, children: tabsComponent }), contentComponent] }));
 };
 exports.default = TabControl;
+//# sourceMappingURL=TabControl.js.map

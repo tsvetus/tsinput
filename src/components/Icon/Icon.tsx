@@ -15,10 +15,15 @@ const CLASS = {
   wait: `${BASE}-wait`
 }
 
+/**
+ * Icon component.
+ * Provides a simple way to add icons to React application. Requires pre-installation of icon fonts.
+ * Instructions for installing and generating fonts are contained in the documentation.
+ */
 const Icon = ({
   className,
   style,
-  icon,
+  icon = 'empty',
   name,
   data,
   baseClass = BASE,

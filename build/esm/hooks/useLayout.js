@@ -38,3 +38,4 @@ const useLayout = (baseClass, baseStyle, check) => {
     return [classes, styles];
 };
 export default useLayout;
+//# sourceMappingURL=useLayout.js.map

@@ -7,3 +7,4 @@ const Page = ({ options = [], value }) => {
     return (activeOption === null || activeOption === void 0 ? void 0 : activeOption.render) ? activeOption.render() : null;
 };
 exports.default = Page;
+//# sourceMappingURL=Page.js.map

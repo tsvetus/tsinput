@@ -12,3 +12,4 @@ const LabelMemo = ({ className, style, layout = 'border', name, data, label, ico
     return (_jsx(Label, { className: classesLabel, style: stylesLabel, layout: layoutLabel, name: name, data: data, text: label, icon: icon, wait: wait, invalid: invalid, onTextClick: onLabelClick, onIconClick: onIconClick, children: _jsx(Memo, { className: classes.memo, style: styles.memo, name: name, data: data, wait: wait, invalid: invalid, placeholder: placeholder, readOnly: readOnly, value: value, onChange: onChange, onClick: onMemoClick, onKeyDown: onMemoKeyDown }) }));
 };
 export default LabelMemo;
+//# sourceMappingURL=LabelMemo.js.map

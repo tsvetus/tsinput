@@ -8,3 +8,4 @@ const appendString = (target, string) => {
     }
 };
 export { appendString };
+//# sourceMappingURL=strings.js.map

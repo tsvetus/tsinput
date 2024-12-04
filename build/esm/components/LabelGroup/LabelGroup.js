@@ -12,3 +12,4 @@ const LabelGroup = ({ className, style, layout = 'border', name, data, label, ic
     return (_jsx(Label, { className: classesLabel, style: stylesLabel, layout: layoutLabel, name: name, data: data, text: label, icon: icon, onTextClick: onLabelClick, onIconClick: onIconClick, children: _jsx(Group, { className: classes.group, style: styles.group, children: children }) }));
 };
 export default LabelGroup;
+//# sourceMappingURL=LabelGroup.js.map

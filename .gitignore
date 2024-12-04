@@ -1,6 +1,7 @@
 .*/
 .*
 *-lock.json
+tsinput.code-workspace
 !.gitignore
 !.prettierrc
 !.eslintrc.cjs

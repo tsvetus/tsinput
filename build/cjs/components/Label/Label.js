@@ -7,9 +7,17 @@ const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = require("react");
 const Inline_1 = __importDefault(require("./Inline"));
 const Column_1 = __importDefault(require("./Column"));
+/**
+ * Label component
+ * @typeParam HTMLDivElement - Label Ref type
+ * @typeParam LabelProps - Label component properties @see LabelProps
+ * @param {LabelProps} props - Label component properties
+ * @param {string} [props.className] - Label component CSS class description
+ */
 const Label = (0, react_1.forwardRef)(({ className, style, layout = '', name, data, text, icon, wait, invalid, children, onClick, onTextClick, onIconClick }, ref) => {
     const isColumn = (0, react_1.useMemo)(() => layout.includes('top') || layout.includes('border'), [layout]);
     return isColumn ? ((0, jsx_runtime_1.jsx)(Column_1.default, { ref: ref, className: className, style: style, layout: layout, name: name, data: data, text: text, icon: icon, wait: wait, invalid: invalid, onClick: onClick, onTextClick: onTextClick, onIconClick: onIconClick, children: children })) : ((0, jsx_runtime_1.jsx)(Inline_1.default, { ref: ref, className: className, style: style, layout: layout, name: name, data: data, text: text, icon: icon, wait: wait, invalid: invalid, onClick: onClick, onTextClick: onTextClick, onIconClick: onIconClick, children: children }));
 });
 Label.displayName = 'Label';
 exports.default = Label;
+//# sourceMappingURL=Label.js.map

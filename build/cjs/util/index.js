@@ -15,3 +15,4 @@ Object.defineProperty(exports, "findElement", { enumerable: true, get: function 
 Object.defineProperty(exports, "initRefs", { enumerable: true, get: function () { return elements_1.initRefs; } });
 const strings_1 = require("./strings");
 Object.defineProperty(exports, "appendString", { enumerable: true, get: function () { return strings_1.appendString; } });
+//# sourceMappingURL=index.js.map

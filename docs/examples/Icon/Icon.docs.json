@@ -1,0 +1,64 @@
+[
+  {
+    "name": "Icon",
+    "description": "Icon component.\r\nProvides a simple way to add icons to React application. Requires pre-installation of icon fonts.\r\nInstructions for installing and generating fonts are contained in the documentation.",
+    "props": [
+      {
+        "name": "className",
+        "description": "Icon component CSS class description",
+        "type": "string | IconClass",
+        "required": false
+      },
+      {
+        "name": "style",
+        "description": "Icon component CSS style description",
+        "type": "object | IconStyle",
+        "required": false
+      },
+      {
+        "name": "icon",
+        "description": "Icon name",
+        "required": false,
+        "defaultValue": "'empty'"
+      },
+      {
+        "name": "name",
+        "description": "Component name",
+        "required": false
+      },
+      {
+        "name": "data",
+        "description": "Component data",
+        "required": false
+      },
+      {
+        "name": "baseClass",
+        "description": "Base icon class",
+        "required": false,
+        "defaultValue": "'tsi-icon'"
+      },
+      {
+        "name": "wait",
+        "description": "Component wait state",
+        "required": false
+      },
+      {
+        "name": "invalid",
+        "description": "Component invalid state",
+        "required": false
+      },
+      {
+        "name": "onClick",
+        "description": "Compoinent click event\r\n@event",
+        "type": "(event: TsiMouseEvent<T>) => void",
+        "required": false
+      },
+      {
+        "name": "onKeyDown",
+        "description": "Compoinent key down event\r\n@event",
+        "type": "(event: TsiKeyboardEvent<T>) => void",
+        "required": false
+      }
+    ]
+  }
+]

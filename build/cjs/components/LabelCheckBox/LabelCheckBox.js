@@ -38,3 +38,4 @@ const LabelCheckBox = ({ className, style, layout, name, data, label, radio = fa
     return ((0, jsx_runtime_1.jsx)(Label_1.default, { ref: ref, className: classes, style: style, layout: layout, name: name, data: data, text: label, icon: icon, wait: wait, invalid: invalid, onTextClick: handleTextClick, onIconClick: handleIconClick }));
 };
 exports.default = LabelCheckBox;
+//# sourceMappingURL=LabelCheckBox.js.map

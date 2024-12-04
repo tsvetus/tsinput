@@ -9,7 +9,12 @@ const CLASS = {
     invalid: `${BASE}-invalid`,
     wait: `${BASE}-wait`
 };
-const Icon = ({ className, style, icon, name, data, baseClass = BASE, wait, invalid, onClick, onKeyDown }) => {
+/**
+ * Icon component.
+ * Provides a simple way to add icons to React application. Requires pre-installation of icon fonts.
+ * Instructions for installing and generating fonts are contained in the documentation.
+ */
+const Icon = ({ className, style, icon = 'empty', name, data, baseClass = BASE, wait, invalid, onClick, onKeyDown }) => {
     const active = Boolean(onClick);
     const layoutClasses = useMemo(() => mergeClasses(CLASS, baseClass || BASE, icon ? `${BASE}-${icon}` : null, className), [baseClass, className, icon]);
     const layoutStyles = useMemo(() => mergeStyles(style), [style]);
@@ -44,3 +49,4 @@ const Icon = ({ className, style, icon, name, data, baseClass = BASE, wait, inva
     return _jsx("i", { className: classes._, style: styles._, onClick: handleClick, onKeyDown: handleKeyDown });
 };
 export default Icon;
+//# sourceMappingURL=Icon.js.map
