@@ -1,11 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-import Docs from '../../components/Docs'
+import { Label } from 'tsinput'
 
-import data from './Label.docs.json'
+import Events from '../../components/Events'
 
-const LabelExample = () => {
-  return <Docs data={data} />
+import './Label.example.css'
+
+const IconExample = () => {
+  const [events, setEvents] = useState([])
+  return (
+    <>
+      <div>Label common example:</div>
+      <Label className="tsi-docs-label" text="Label caption:">
+        Label content
+      </Label>
+      <Label className="tsi-docs-label" style={{ color: 'red' }} text="Label caption:">
+        Label content
+      </Label>
+
+      <Events events={events} onClear={() => setEvents([])} />
+    </>
+  )
 }
 
-export default LabelExample
+export default IconExample

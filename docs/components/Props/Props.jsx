@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import './Props.css'
+
 const Props = ({ data }) => {
   const header = (
     <tr>
@@ -23,10 +25,12 @@ const Props = ({ data }) => {
     )
   })
   return (
-    <table>
-      <thead>{header}</thead>
-      <tbody>{rows}</tbody>
-    </table>
+    <div className="tsi-docs-props">
+      <table>
+        <thead>{header}</thead>
+        <tbody>{rows}</tbody>
+      </table>
+    </div>
   )
 }
 

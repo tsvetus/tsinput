@@ -1,0 +1,23 @@
+.tsi-docs-icon-widget {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1em 0.5em 1em 0.5em;
+}
+
+.tsi-docs-icon-large {
+  font-size: 32px;
+}
+
+.tsi-docs-icon-common {
+  font-size: 24px;
+}
+
+.tsi-docs-icon-caption {
+  margin: 1em 0 0 0;
+}
+
+.tsi-docs-icon-group {
+  display: flex;
+  flex-wrap: wrap;
+}

@@ -19,7 +19,7 @@ const CLASS = {
  * Provides a simple way to add icons to React application. Requires pre-installation of icon fonts.
  * Instructions for installing and generating fonts are contained in the documentation.
  */
-const Icon = ({ className, style, icon = 'empty', name, data, baseClass = BASE, wait, invalid, onClick, onKeyDown }) => {
+const Icon = ({ className, style, icon = 'tsinput', name, data, baseClass = BASE, wait, invalid, onClick, onKeyDown }) => {
     const active = Boolean(onClick);
     const layoutClasses = (0, react_1.useMemo)(() => (0, util_1.mergeClasses)(CLASS, baseClass || BASE, icon ? `${BASE}-${icon}` : null, className), [baseClass, className, icon]);
     const layoutStyles = (0, react_1.useMemo)(() => (0, util_1.mergeStyles)(style), [style]);

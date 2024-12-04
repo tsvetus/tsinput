@@ -22,7 +22,8 @@
     "build:examples": "webpack --config webpack.prod.js",
     "build:cjs": "tsc -p tsconfig.cjs.json",
     "build:esm": "tsc -p tsconfig.esm.json",
-    "build": "npm run build:cjs && npm run build:esm && npm run build:fonts && npm run build:docs && npm run build:examples"
+    "build:lib": "npm run build:cjs && npm run build:esm && npm run build:fonts",
+    "build": "npm run build:lib && npm run build:docs && npm run build:examples"
   },
   "repository": {
     "type": "git",

@@ -1,15 +1,26 @@
 import { jsx as _jsx } from "react/jsx-runtime";
 import { useMemo } from 'react';
-import { mergeClasses, mergeStyles, selectItems } from '../../util';
-import Group from '../../lib/Group';
+import { mergeClasses, mergeStyles } from '../../util';
+import Group from '../Group';
 import Label from '../Label';
-const LabelGroup = ({ className, style, layout = 'border', name, data, label, icon, children, onLabelClick, onIconClick }) => {
-    const layoutLabel = useMemo(() => selectItems(layout, ['top', 'border', 'right'], ['top']), [layout]);
+const LABEL_DEFAULT = { layout: 'border' };
+const LabelGroup = ({ className, style, name, data, wait, invalid, label = LABEL_DEFAULT, group, children }) => {
+    // Restructure classes and styles
     const classes = useMemo(() => mergeClasses(className), [className]);
-    const classesLabel = useMemo(() => mergeClasses(classes._, classes.label), [classes]);
     const styles = useMemo(() => mergeStyles(style), [style]);
-    const stylesLabel = useMemo(() => mergeStyles(styles._, styles.label), [styles]);
-    return (_jsx(Label, { className: classesLabel, style: stylesLabel, layout: layoutLabel, name: name, data: data, text: label, icon: icon, onTextClick: onLabelClick, onIconClick: onIconClick, children: _jsx(Group, { className: classes.group, style: styles.group, children: children }) }));
+    // Construct props for Label component
+    // Use root classes and styles for Label component
+    const labelProps = useMemo(() => {
+        const labelClass = mergeClasses(classes?._, classes?.label);
+        const labelStyle = mergeClasses(styles?._, styles?.label);
+        return { ...LABEL_DEFAULT, className: labelClass, style: labelStyle, name, data, wait, invalid, ...label };
+    }, [classes, styles, name, data, wait, invalid, label]);
+    // Construct props for Group component
+    const groupProps = useMemo(() => {
+        return { className: classes?.group, style: styles?.group, name, data, wait, invalid, ...group };
+    }, [classes, styles, name, data, wait, invalid, group]);
+    // Render LabelGroup component
+    return (_jsx(Label, { ...labelProps, children: _jsx(Group, { ...groupProps, children: children }) }));
 };
 export default LabelGroup;
 //# sourceMappingURL=LabelGroup.js.map

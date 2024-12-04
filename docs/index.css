@@ -1,0 +1,24 @@
+.tsi-docs {
+  margin: 0 0 0 1em;
+}
+
+.tsi-docs pre {
+  font-size: 16px;
+  color: rgb(136, 0, 0);
+  background: #f4f4f4;
+  padding: 1em;
+  border-radius: 0.5em;
+}
+
+.tsi-docs-block {
+  margin: 1em;
+}
+
+.tsi-docs-example-description {
+  font-size: 24px;
+  margin: 0.5em 0 0 0;
+}
+
+.tsi-docs-example-item {
+  margin: 0.5em 0 0 1em;
+}

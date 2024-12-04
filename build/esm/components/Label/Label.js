@@ -3,11 +3,7 @@ import { useMemo, forwardRef } from 'react';
 import Inline from './Inline';
 import Column from './Column';
 /**
- * Label component
- * @typeParam HTMLDivElement - Label Ref type
- * @typeParam LabelProps - Label component properties @see LabelProps
- * @param {LabelProps} props - Label component properties
- * @param {string} [props.className] - Label component CSS class description
+ * Label component. Provides a simple way to add labels to React components.
  */
 const Label = forwardRef(({ className, style, layout = '', name, data, text, icon, wait, invalid, children, onClick, onTextClick, onIconClick }, ref) => {
     const isColumn = useMemo(() => layout.includes('top') || layout.includes('border'), [layout]);

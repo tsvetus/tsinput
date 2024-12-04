@@ -1,3 +1,3 @@
-import LabelExample from './Label.example.jsx'
+import Label from './Label.docs.jsx'
 
-export default LabelExample
+export default Label

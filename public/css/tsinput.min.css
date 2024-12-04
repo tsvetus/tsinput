@@ -98,8 +98,9 @@ body {
   line-height: 1;
   color: var(--tsi-color-caption);
   font-size: var(--tsi-icon-font-size);
-  display: flex;
-  align-items: center;
+  display: inline-block;
+  /* display: flex;*/
+  /* align-items: center; */
 }
 
 .tsi-icon-active {

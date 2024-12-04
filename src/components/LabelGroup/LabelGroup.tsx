@@ -1,44 +1,46 @@
 import React, { useMemo } from 'react'
 
-import { mergeClasses, mergeStyles, selectItems } from '../../util'
+import { mergeClasses, mergeStyles } from '../../util'
 
-import Group from '../../lib/Group'
+import Group from '../Group'
 import Label from '../Label'
 
 import { LabelGroupProps } from './types'
 
+const LABEL_DEFAULT = { layout: 'border' }
+
 const LabelGroup = ({
   className,
   style,
-  layout = 'border',
   name,
   data,
-  label,
-  icon,
-  children,
-  onLabelClick,
-  onIconClick
+  wait,
+  invalid,
+  label = LABEL_DEFAULT,
+  group,
+  children
 }: LabelGroupProps) => {
-  const layoutLabel = useMemo(() => selectItems(layout, ['top', 'border', 'right'], ['top']), [layout])
+  // Restructure classes and styles
   const classes = useMemo(() => mergeClasses(className), [className])
-  const classesLabel = useMemo(() => mergeClasses(classes._, classes.label), [classes])
   const styles = useMemo(() => mergeStyles(style), [style])
-  const stylesLabel = useMemo(() => mergeStyles(styles._, styles.label), [styles])
+
+  // Construct props for Label component
+  // Use root classes and styles for Label component
+  const labelProps = useMemo(() => {
+    const labelClass = mergeClasses(classes?._, classes?.label)
+    const labelStyle = mergeClasses(styles?._, styles?.label)
+    return { ...LABEL_DEFAULT, className: labelClass, style: labelStyle, name, data, wait, invalid, ...label }
+  }, [classes, styles, name, data, wait, invalid, label])
+
+  // Construct props for Group component
+  const groupProps = useMemo(() => {
+    return { className: classes?.group, style: styles?.group, name, data, wait, invalid, ...group }
+  }, [classes, styles, name, data, wait, invalid, group])
+
+  // Render LabelGroup component
   return (
-    <Label
-      className={classesLabel}
-      style={stylesLabel}
-      layout={layoutLabel}
-      name={name}
-      data={data}
-      text={label}
-      icon={icon}
-      onTextClick={onLabelClick}
-      onIconClick={onIconClick}
-    >
-      <Group className={classes.group} style={styles.group}>
-        {children}
-      </Group>
+    <Label {...labelProps}>
+      <Group {...groupProps}>{children}</Group>
     </Label>
   )
 }

@@ -1,9 +1,9 @@
 @font-face {
   font-family: "tsinput-font";
   font-display: block;
-  src: url("tsinput-font.eot?b2c21c1509c7f9237a1b8607922d656f?#iefix") format("embedded-opentype"),
-url("tsinput-font.woff2?b2c21c1509c7f9237a1b8607922d656f") format("woff2"),
-url("tsinput-font.woff?b2c21c1509c7f9237a1b8607922d656f") format("woff");
+  src: url("tsinput-font.eot?205344efd732ea7e6bc5fd4885823047?#iefix") format("embedded-opentype"),
+url("tsinput-font.woff2?205344efd732ea7e6bc5fd4885823047") format("woff2"),
+url("tsinput-font.woff?205344efd732ea7e6bc5fd4885823047") format("woff");
 }
 
 .tsi-icon {
@@ -51,4 +51,7 @@ url("tsinput-font.woff?b2c21c1509c7f9237a1b8607922d656f") format("woff");
 }
 .tsi-icon-burger:before {
   content: "\f10c";
+}
+.tsi-icon-tsinput:before {
+  content: "\f10d";
 }

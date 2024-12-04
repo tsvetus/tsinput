@@ -23,7 +23,7 @@ const CLASS = {
 const Icon = ({
   className,
   style,
-  icon = 'empty',
+  icon = 'tsinput',
   name,
   data,
   baseClass = BASE,

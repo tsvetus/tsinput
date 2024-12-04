@@ -1,9 +1,7 @@
 import { ReactNode } from 'react'
 
-import { TsiMouseEventHandler } from '../../util/types'
-
-import { LabelClass, LabelStyle } from '../Label'
-import { GroupClass, GroupStyle } from '../../lib/Group'
+import { LabelClass, LabelStyle, LabelProps } from '../Label'
+import { GroupClass, GroupStyle, GroupProps } from '../Group'
 
 export interface LabelGroupClass {
   _?: string
@@ -18,14 +16,22 @@ export interface LabelGroupStyle {
 }
 
 export interface LabelGroupProps {
+  /** Component CSS class description */
   className?: string | LabelGroupClass
+  /** Component CSS style description */
   style?: object | LabelGroupStyle
+  /** Component name */
   name?: string
+  /** Component data */
   data?: unknown
-  layout?: string | string[]
-  label?: string | ReactNode
-  icon?: string
+  /** Component wait state */
+  wait?: boolean
+  /** Component invalid state */
+  invalid?: boolean
+  /** Component label props */
+  label: LabelProps
+  /** Component icon props */
+  group: GroupProps
+  /** Group content */
   children?: string | ReactNode
-  onLabelClick?: TsiMouseEventHandler<HTMLDivElement>
-  onIconClick?: TsiMouseEventHandler<HTMLElement>
 }

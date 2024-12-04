@@ -8,11 +8,7 @@ const react_1 = require("react");
 const Inline_1 = __importDefault(require("./Inline"));
 const Column_1 = __importDefault(require("./Column"));
 /**
- * Label component
- * @typeParam HTMLDivElement - Label Ref type
- * @typeParam LabelProps - Label component properties @see LabelProps
- * @param {LabelProps} props - Label component properties
- * @param {string} [props.className] - Label component CSS class description
+ * Label component. Provides a simple way to add labels to React components.
  */
 const Label = (0, react_1.forwardRef)(({ className, style, layout = '', name, data, text, icon, wait, invalid, children, onClick, onTextClick, onIconClick }, ref) => {
     const isColumn = (0, react_1.useMemo)(() => layout.includes('top') || layout.includes('border'), [layout]);

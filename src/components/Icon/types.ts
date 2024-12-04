@@ -4,7 +4,7 @@ import { TsiMouseEventHandler, TsiKeyboardEventHandler } from '../../util/types'
 export type IconClass = {
   /** Default CSS class  */
   _?: string
-  /** Active state when onClick or onKeyDown events are used CSS class  */
+  /** Active state CSS class  */
   active?: string
   /** Invalid state CSS class  */
   invalid?: string
@@ -16,7 +16,7 @@ export type IconClass = {
 export type IconStyle = {
   /** Default CSS style  */
   _?: object
-  /** Active state when onClick or onKeyDown events are used CSS style  */
+  /** Active state style  */
   active?: object
   /** Invalid state CSS style  */
   invalid?: object

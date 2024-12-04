@@ -16,7 +16,7 @@ const Label = forwardRef<HTMLDivElement, LabelProps>(
       layout = '',
       name,
       data,
-      text,
+      text = 'Label:',
       icon,
       wait,
       invalid,
