@@ -15,7 +15,7 @@ import './Main.css'
 const Main = () => {
   const [state, setState] = useState({
     showSideBar: true,
-    page: 'Icon'
+    page: 'Label'
   })
 
   const updateState = event => {

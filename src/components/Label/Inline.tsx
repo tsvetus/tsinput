@@ -94,6 +94,8 @@ const Inline = forwardRef<HTMLDivElement, LabelProps>(
       <Text
         className={classes.text}
         style={styles.text}
+        name={name}
+        data={data}
         value={text}
         wait={wait}
         invalid={invalid}
@@ -105,6 +107,8 @@ const Inline = forwardRef<HTMLDivElement, LabelProps>(
       <Icon
         className={classes.icon}
         style={styles.icon}
+        name={name}
+        data={data}
         icon={icon}
         wait={wait}
         invalid={invalid}

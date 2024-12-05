@@ -9,7 +9,7 @@ import { TextProps } from './types'
 const BASE = 'tsi-text'
 
 const CLASS = {
-  _: '',
+  _: BASE,
   invalid: `${BASE}-invalid`,
   wait: `${BASE}-wait`
 }

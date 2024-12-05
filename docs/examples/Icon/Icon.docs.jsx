@@ -1,10 +1,10 @@
 import React from 'react'
 
+import Docs from '../../components/Docs'
+
 import IconExample from './Icon.example.jsx'
 import IconExampleCode from '!file!./Icon.example.jsx'
 import IconExampleStyles from '!file!./Icon.example.css'
-
-import Docs from '../../components/Docs'
 
 import IconList from './Icon.list.jsx'
 

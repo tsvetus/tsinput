@@ -104,16 +104,16 @@ body {
 }
 
 .tsi-icon-active {
-  cursor: pointer;
+  cursor: pointer !important;
 }
 
 .tsi-icon-wait {
-  opacity: var(--tsi-opacity-wait);
-  cursor: default;
+  opacity: var(--tsi-opacity-wait) !important;
+  cursor: default !important;
 }
 
 .tsi-icon-invalid {
-  color: var(--tsi-color-invalid);
+  color: var(--tsi-color-invalid) !important;
 }
 
 /* Overlay component */
@@ -197,19 +197,17 @@ body {
 /* Text component */
 
 .tsi-text {
-  box-sizing: border-box;
   cursor: default;
-  white-space: nowrap;
   color: var(--tsi-color-caption);
 }
 
 .tsi-text-wait {
-  opacity: var(--tsi-opacity-wait);
-  cursor: default;
+  opacity: var(--tsi-opacity-wait) !important;
+  cursor: default !important;
 }
 
 .tsi-text-invalid {
-  color: var(--tsi-color-invalid);
+  color: var(--tsi-color-invalid) !important;
 }
 
 /* Label component */
@@ -248,6 +246,7 @@ body {
   display: flex;
   align-items: center;
   box-sizing: border-box;
+  white-space: nowrap;
   color: var(--tsi-color-caption);
 }
 
