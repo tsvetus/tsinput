@@ -4,6 +4,6 @@
 tsinput.code-workspace
 !.gitignore
 !.prettierrc
-!.eslintrc.cjs
+!.github/
 node_modules/
 tmp/

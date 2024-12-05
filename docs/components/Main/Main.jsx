@@ -2,10 +2,13 @@ import React, { useState } from 'react'
 
 import { SideBar, TopBar, Page, Content, Menu } from 'tsinput'
 
+import Readme from '../Readme'
+
 import Icon from '../../examples/Icon'
 import Label from '../../examples/Label'
 
 const PAGE_OPTIONS = [
+  { key: 'Readme', render: () => <Readme /> },
   { key: 'Icon', render: () => <Icon /> },
   { key: 'Label', render: () => <Label /> }
 ]
@@ -15,7 +18,7 @@ import './Main.css'
 const Main = () => {
   const [state, setState] = useState({
     showSideBar: true,
-    page: 'Label'
+    page: 'Readme'
   })
 
   const updateState = event => {
