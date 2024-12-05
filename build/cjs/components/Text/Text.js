@@ -9,7 +9,7 @@ const util_1 = require("../../util");
 const useLayout_1 = __importDefault(require("../../hooks/useLayout"));
 const BASE = 'tsi-text';
 const CLASS = {
-    _: '',
+    _: BASE,
     invalid: `${BASE}-invalid`,
     wait: `${BASE}-wait`
 };

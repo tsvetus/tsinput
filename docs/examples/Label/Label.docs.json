@@ -46,7 +46,8 @@
         "name": "text",
         "description": "",
         "type": "string | ReactNode",
-        "required": false
+        "required": false,
+        "defaultValue": "'Label:'"
       },
       {
         "name": "icon",
@@ -61,19 +62,19 @@
       },
       {
         "name": "onClick",
-        "description": "On component click event handler.\r\n@event",
+        "description": "On component click event handler",
         "type": "(event: TsiMouseEvent<T>) => void",
         "required": false
       },
       {
         "name": "onTextClick",
-        "description": "On component text click event handler.\r\n@event",
+        "description": "On component text click event handler",
         "type": "(event: TsiMouseEvent<T>) => void",
         "required": false
       },
       {
         "name": "onIconClick",
-        "description": "On component icon click event handler.\r\n@event",
+        "description": "On component icon click event handler",
         "type": "(event: TsiMouseEvent<T>) => void",
         "required": false
       }

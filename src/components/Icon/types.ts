@@ -42,14 +42,8 @@ export type IconProps = {
   wait?: boolean
   /** Component invalid state */
   invalid?: boolean
-  /**
-   * Compoinent click event
-   * @event
-   */
+  /** Compoinent click event */
   onClick?: TsiMouseEventHandler<HTMLElement>
-  /**
-   * Compoinent key down event
-   * @event
-   */
+  /** Compoinent key down event */
   onKeyDown?: TsiKeyboardEventHandler<HTMLElement>
 }

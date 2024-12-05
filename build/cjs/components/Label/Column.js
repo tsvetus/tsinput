@@ -60,8 +60,8 @@ const Column = (0, react_1.forwardRef)(({ className, style, layout = '', name, d
             onIconClick(Object.assign(Object.assign({}, event), params));
         }
         : undefined;
-    const textComponent = text ? ((0, jsx_runtime_1.jsx)(Text_1.default, { className: classes.text, style: styles.text, value: text, wait: wait, invalid: invalid, onClick: handleTextClick })) : ((0, jsx_runtime_1.jsx)("div", {}));
-    const iconComponent = icon ? ((0, jsx_runtime_1.jsx)(Icon_1.default, { className: classes.icon, style: styles.icon, icon: icon, wait: wait, invalid: invalid, onClick: handleIconClick })) : ((0, jsx_runtime_1.jsx)("div", {}));
+    const textComponent = text ? ((0, jsx_runtime_1.jsx)(Text_1.default, { className: classes.text, style: styles.text, name: name, data: data, value: text, wait: wait, invalid: invalid, onClick: handleTextClick })) : ((0, jsx_runtime_1.jsx)("div", {}));
+    const iconComponent = icon ? ((0, jsx_runtime_1.jsx)(Icon_1.default, { className: classes.icon, style: styles.icon, name: name, data: data, icon: icon, wait: wait, invalid: invalid, onClick: handleIconClick })) : ((0, jsx_runtime_1.jsx)("div", {}));
     const headerComponent = isRightLabel ? ((0, jsx_runtime_1.jsxs)("div", { className: (_a = classes.header) === null || _a === void 0 ? void 0 : _a._, style: (_b = styles.header) === null || _b === void 0 ? void 0 : _b._, children: [iconComponent, textComponent] })) : ((0, jsx_runtime_1.jsxs)("div", { className: (_c = classes.header) === null || _c === void 0 ? void 0 : _c._, style: (_d = styles.header) === null || _d === void 0 ? void 0 : _d._, children: [textComponent, iconComponent] }));
     return ((0, jsx_runtime_1.jsxs)("div", { ref: ref, className: classes._, style: styles._, onClick: handleClick, children: [headerComponent, children] }));
 });

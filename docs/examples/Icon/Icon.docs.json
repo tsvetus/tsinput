@@ -19,7 +19,7 @@
         "name": "icon",
         "description": "Icon name",
         "required": false,
-        "defaultValue": "'empty'"
+        "defaultValue": "'tsinput'"
       },
       {
         "name": "name",
@@ -49,13 +49,13 @@
       },
       {
         "name": "onClick",
-        "description": "Compoinent click event\r\n@event",
+        "description": "Compoinent click event",
         "type": "(event: TsiMouseEvent<T>) => void",
         "required": false
       },
       {
         "name": "onKeyDown",
-        "description": "Compoinent key down event\r\n@event",
+        "description": "Compoinent key down event",
         "type": "(event: TsiKeyboardEvent<T>) => void",
         "required": false
       }

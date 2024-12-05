@@ -47,12 +47,5 @@ export default {
     new MiniCssExtractPlugin({
       filename: 'css/[name].css'
     })
-  ],
-  devServer: {
-    static: {
-      directory: path.join(root, 'public')
-    },
-    compress: true,
-    port: 9000
-  }
+  ]
 }

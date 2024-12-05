@@ -1,3 +1,69 @@
+.tsi-docs-props {
+  margin: 1em 0 0 0;
+}
+
+.tsi-docs-props table {
+  border-collapse: collapse;
+}
+
+.tsi-docs-props th {
+  padding: 0.5em;
+}
+
+.tsi-docs-props td {
+  padding: 0.5em;
+  border: 1px solid var(--tsi-color-caption);
+}
+
+.tsi-docs-icon {
+  font-size: 24px;
+  margin: 0.5em;
+}
+
+.tsi-docs-icon-widget {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1em 0.5em 1em 0.5em;
+}
+
+.tsi-docs-icon-large {
+  font-size: 32px;
+}
+
+.tsi-docs-icon-common {
+  font-size: 24px;
+}
+
+.tsi-docs-icon-caption {
+  margin: 1em 0 0 0;
+}
+
+.tsi-docs-icon-group {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tsi-docs-label {
+  font-size: 16px;
+  margin: 0.5em;
+  max-width: 320px;
+}
+
+.tsi-docs-label-content {
+  padding: 0.5em;
+  border: 1px solid rgb(2, 0, 134);
+  border-radius: 5px;
+}
+
+.tsi-docs-label-green {
+  color: green;
+}
+
+.tsi-docs-label-blue {
+  color: blue;
+}
+
 .tsi-docs-edit {
   max-width: 220px;
   margin: 16px;
@@ -5,5 +71,30 @@
 
 .tsi-docs-icon {
   width: 32px;
+}
+
+.tsi-docs {
+  margin: 0 0 0 1em;
+}
+
+.tsi-docs pre {
+  font-size: 16px;
+  color: rgb(136, 0, 0);
+  background: #f4f4f4;
+  padding: 1em;
+  border-radius: 0.5em;
+}
+
+.tsi-docs-block {
+  margin: 1em;
+}
+
+.tsi-docs-example-description {
+  font-size: 24px;
+  margin: 0.5em 0 0 0;
+}
+
+.tsi-docs-example-item {
+  margin: 0.5em 0 0 1em;
 }
 

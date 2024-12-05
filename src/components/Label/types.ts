@@ -7,17 +7,17 @@ import { IconClass, IconStyle } from '../Icon'
 
 /** Label component CSS classes description */
 export type LabelClass = {
-  /** Default CSS class. */
+  /** Default CSS class */
   _?: string
-  /** Invalid state CSS class. */
+  /** Invalid state CSS class */
   invalid?: string
-  /** Wait state CSS class. */
+  /** Wait state CSS class */
   wait?: string
-  /** Label header CSS class. Used for layout='top' or layout='border'. */
+  /** Label header CSS class used for layout='top' or layout='border' */
   header?: string
-  /** Label text component CSS class. */
+  /** Label text component CSS class */
   text?: string | TextClass
-  /** Label icon component CSS class. */
+  /** Label icon component CSS class */
   icon?: string | IconClass
 }
 
@@ -41,19 +41,10 @@ export type LabelProps = {
   text?: string | ReactNode
   icon?: string
   children?: string | ReactNode
-  /**
-   * On component click event handler.
-   * @event
-   */
+  /** On component click event handler */
   onClick?: TsiMouseEventHandler<HTMLDivElement>
-  /**
-   * On component text click event handler.
-   * @event
-   */
+  /** On component text click event handler */
   onTextClick?: TsiMouseEventHandler<HTMLDivElement>
-  /**
-   * On component icon click event handler.
-   * @event
-   */
+  /** On component icon click event handler */
   onIconClick?: TsiMouseEventHandler<HTMLElement>
 }

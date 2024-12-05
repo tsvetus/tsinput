@@ -53,8 +53,8 @@ const Inline = forwardRef(({ className, style, layout = '', name, data, text, ic
             onIconClick({ ...event, ...params });
         }
         : undefined;
-    const textComponent = text ? (_jsx(Text, { className: classes.text, style: styles.text, value: text, wait: wait, invalid: invalid, onClick: handleTextClick })) : null;
-    const iconComponent = icon ? (_jsx(Icon, { className: classes.icon, style: styles.icon, icon: icon, wait: wait, invalid: invalid, onClick: handleIconClick })) : null;
+    const textComponent = text ? (_jsx(Text, { className: classes.text, style: styles.text, name: name, data: data, value: text, wait: wait, invalid: invalid, onClick: handleTextClick })) : null;
+    const iconComponent = icon ? (_jsx(Icon, { className: classes.icon, style: styles.icon, name: name, data: data, icon: icon, wait: wait, invalid: invalid, onClick: handleIconClick })) : null;
     return isRightLabel ? (_jsxs("div", { ref: ref, className: classes._, style: styles._, onClick: handleClick, children: [iconComponent, children, textComponent] })) : (_jsxs("div", { ref: ref, className: classes._, style: styles._, onClick: handleClick, children: [textComponent, children, iconComponent] }));
 });
 Inline.displayName = 'Inline';

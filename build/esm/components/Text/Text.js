@@ -4,7 +4,7 @@ import { mergeClasses, mergeStyles } from '../../util';
 import useLayout from '../../hooks/useLayout';
 const BASE = 'tsi-text';
 const CLASS = {
-    _: '',
+    _: BASE,
     invalid: `${BASE}-invalid`,
     wait: `${BASE}-wait`
 };

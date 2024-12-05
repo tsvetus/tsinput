@@ -58,8 +58,8 @@ const Inline = (0, react_1.forwardRef)(({ className, style, layout = '', name, d
             onIconClick(Object.assign(Object.assign({}, event), params));
         }
         : undefined;
-    const textComponent = text ? ((0, jsx_runtime_1.jsx)(Text_1.default, { className: classes.text, style: styles.text, value: text, wait: wait, invalid: invalid, onClick: handleTextClick })) : null;
-    const iconComponent = icon ? ((0, jsx_runtime_1.jsx)(Icon_1.default, { className: classes.icon, style: styles.icon, icon: icon, wait: wait, invalid: invalid, onClick: handleIconClick })) : null;
+    const textComponent = text ? ((0, jsx_runtime_1.jsx)(Text_1.default, { className: classes.text, style: styles.text, name: name, data: data, value: text, wait: wait, invalid: invalid, onClick: handleTextClick })) : null;
+    const iconComponent = icon ? ((0, jsx_runtime_1.jsx)(Icon_1.default, { className: classes.icon, style: styles.icon, name: name, data: data, icon: icon, wait: wait, invalid: invalid, onClick: handleIconClick })) : null;
     return isRightLabel ? ((0, jsx_runtime_1.jsxs)("div", { ref: ref, className: classes._, style: styles._, onClick: handleClick, children: [iconComponent, children, textComponent] })) : ((0, jsx_runtime_1.jsxs)("div", { ref: ref, className: classes._, style: styles._, onClick: handleClick, children: [textComponent, children, iconComponent] }));
 });
 Inline.displayName = 'Inline';

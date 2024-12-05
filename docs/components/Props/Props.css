@@ -1,3 +1,16 @@
 .tsi-docs-props {
   margin: 1em 0 0 0;
 }
+
+.tsi-docs-props table {
+  border-collapse: collapse;
+}
+
+.tsi-docs-props th {
+  padding: 0.5em;
+}
+
+.tsi-docs-props td {
+  padding: 0.5em;
+  border: 1px solid var(--tsi-color-caption);
+}
