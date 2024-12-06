@@ -8,7 +8,7 @@ const IconExample = () => {
   return (
     <>
       <h4>Label stylization example:</h4>
-      <Label className="tsi-docs-label" text="Label caption:">
+      <Label className="tsi-docs-label tsi-docs-label-green" text="Label caption:">
         <div className="tsi-docs-label-content">Class name will be applied to the root element</div>
       </Label>
       <Label

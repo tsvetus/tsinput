@@ -1,6 +1,6 @@
 {
-  "name": "tsinput",
-  "version": "1.0.0",
+  "name": "tsinputlib",
+  "version": "1.0.1",
   "description": "React UI components",
   "main": "./build/cjs/index.js",
   "type": "module",
@@ -34,7 +34,10 @@
     "Component",
     "UI"
   ],
-  "author": "Vyacheslav Tsvetus",
+  "author": {
+    "name": "Vyacheslav Tsvetus",
+    "email": "tsvetus@gmail.com"
+  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/tsvetus/tsinput/issues"

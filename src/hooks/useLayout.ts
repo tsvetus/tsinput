@@ -41,7 +41,7 @@ const collapseStyle = (
       if (child) {
         const length = Object.keys(child).length
         const node = preffix ? `${preffix}-${key}` : key
-        if (1 < length /*|| (1 === length && child._)*/) {
+        if (1 < length || (1 === length && child._)) {
           result[key] = collapseStyle(child, check, node)
         } else if (check(node)) {
           result._ = { ...result._, ...child._ }

@@ -77,9 +77,13 @@
   margin: 0 0 0 1em;
 }
 
+.tsi-docs code {
+  color: #003d08;
+}
+
 .tsi-docs pre {
   font-size: 16px;
-  color: rgb(136, 0, 0);
+  color: #003d08;
   background: #f4f4f4;
   padding: 1em;
   border-radius: 0.5em;
