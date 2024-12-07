@@ -1,11 +1,9 @@
-import React, { useMemo, useCallback, forwardRef, Ref, MouseEvent, KeyboardEvent, ChangeEvent } from 'react'
+import React, { useMemo, forwardRef, Ref, MouseEvent, KeyboardEvent, ChangeEvent } from 'react'
 
-import { mergeClasses, mergeStyles } from '../../util'
+import { createLayout } from '../../util'
 
 import Input from '../../lib/Input'
 import Icon from '../Icon'
-
-import useLayout from '../../hooks/useLayout'
 
 import { EditProps } from './types'
 
@@ -14,7 +12,7 @@ const BASE = 'tsi-edit'
 const CLASS = {
   _: BASE,
   wait: `${BASE}-wait`,
-  invalid: `${BASE}-wait`,
+  invalid: `${BASE}-invalid`,
   input: {
     _: `${BASE}-input`,
     left: `${BASE}-input-left`,
@@ -52,36 +50,22 @@ const Edit = forwardRef(
     ref?: Ref<HTMLInputElement>
   ) => {
     const isRightInput = useMemo(() => layout.includes('right'), [layout])
+    const isReadOnly = useMemo(() => Boolean(readOnly || wait), [readOnly, wait])
 
-    const layoutClasses = useMemo(() => mergeClasses(CLASS, className), [className])
-
-    const layoutStyles = useMemo(() => mergeStyles(style), [style])
-
-    const mergeLayout = useCallback(
-      (key: string) => {
-        switch (key) {
-          case 'wait':
-            return wait
-          case 'invalid':
-            return invalid
-          case 'input-right':
-          case 'icon-left':
-            return isRightInput
-          case 'input-left':
-          case 'icon-right':
-            return !isRightInput
-          default:
-            return false
-        }
-      },
-      [wait, invalid, isRightInput]
+    const [classes, styles] = useMemo(
+      () =>
+        createLayout([CLASS, className], [style], {
+          wait: wait,
+          invalid: invalid,
+          'input-right': isRightInput,
+          'icon-left': isRightInput,
+          'input-left': !isRightInput,
+          'icon-right': !isRightInput
+        }),
+      [className, style]
     )
 
-    const [classes, styles] = useLayout(layoutClasses, layoutStyles, mergeLayout)
-
     const params = useMemo(() => ({ name, data }), [data, name])
-
-    const isReadOnly = useMemo(() => Boolean(readOnly || wait), [readOnly, wait])
 
     const handleChange = onChange
       ? (event: ChangeEvent<HTMLInputElement>) => {

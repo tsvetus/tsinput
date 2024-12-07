@@ -3,6 +3,7 @@
 :root {
   /* Fonts */
   --tsi-font-size: 18px;
+  --tsi-icon-size: 1em;
   --tsi-font-family: Arial;
   --tsi-line-height: normal;
   --tsi-font-weight: normal;
@@ -23,32 +24,79 @@
   --tsi-background-selected: #acb2c2;
   --tsi-background-hover: #dce9e7;
   --tsi-background-focused: #bad3cf;
-  /* Opacities */
+  /* Other vars */
   --tsi-opacity-wait: 0.5;
-  /* Radiuses */
   --tsi-border-radius: 0.25em;
-  --tsi-bookmark-radius: 0.75em;
-  /* Sizes */
-  --tsi-scroll-width: 6px;
   --tsi-border-width: 1px;
-  /* Icon component */
-  --tsi-icon-font-size: 0.75em;
-  /* Input component */
-  --tsi-input-padding: 0.1em 0.3em 0.1em 0.3em;
-  --tsi-textarea-padding: 0.5em;
-  /* Edit component */
-  --tsi-edit-height: 1.3em;
-  --tsi-edit-outline: none;
-  --tsi-edit-border: var(--tsi-border-width) solid var(--tsi-color-caption);
-  --tsi-edit-border-radius: var(--tsi-border-radius);
+  --tsi-bookmark-radius: 0.75em;
+  --tsi-transition: opacity 300ms, transform 300ms;
+  /* Scroll */
+  --tsi-scroll-width: 6px;
+  --tsi-scroll-color: var(--tsi-color-frame);
+  --tsi-scroll-track-color: var(--tsi-color-frame);
+  --tsi-scroll-thumb-color: var(--tsi-color-caption);
   /* List component */
   --tsi-list-outline: none;
   --tsi-list-border: var(--tsi-border-width) solid var(--tsi-color-frame);
   --tsi-list-border-radius: var(--tsi-border-radius);
   --tsi-list-max-height: 220px;
   --tsi-list-items-item-padding: 0.2em 0.5em 0.2em 0.5em;
+  --tsi-list-items-item-font-weight-hover: var(--tsi-font-weight-hover);
+  --tsi-list-items-item-color-hover: var(--tsi-color-hover);
+  --tsi-list-items-item-background-hover: var(--tsi-background-hover);
+  --tsi-list-items-item-font-weight-selected: var(--tsi-font-weight-selected);
+  --tsi-list-items-item-color-selected: var(--tsi-color-selected);
+  --tsi-list-items-item-background-selected: var(--tsi-background-selected);
+  --tsi-list-items-item-font-weight-focused: var(--tsi-font-weight-focused);
+  --tsi-list-items-item-color-focused: var(--tsi-color-focused);
+  --tsi-list-items-item-background-focused: var(--tsi-background-focused);
+  /* Overlay */
+  --tsi-overlay-outline: none;
+  --tsi-overlay-border: var(--tsi-border-width) solid var(--tsi-color-frame);
+  --tsi-overlay-background: var(--tsi-color-window);
+  --tsi-overlay-border-radius: var(--tsi-border-radius);
+  --tsi-overlay-transition: var(--tsi-transition);
+  /* Input component */
+  --tsi-input-padding: 0.1em 0.3em 0.1em 0.3em;
+  --tsi-input-font-size: var(--tsi-font-size);
+  --tsi-input-font-weight: var(--tsi-font-weight);
+  --tsi-input-font-family: var(--tsi-font-family);
+  --tsi-input-line-height: var(--tsi-line-height);
+  --tsi-input-color: var(--tsi-color-text);
+  /** Textarea component */
+  --tsi-textarea-padding: 0.5em;
+  --tsi-textarea-font-size: var(--tsi-font-size);
+  --tsi-textarea-font-weight: var(--tsi-font-weight);
+  --tsi-textarea-font-family: var(--tsi-font-family);
+  --tsi-textarea-line-height: var(--tsi-line-height);
+  --tsi-textarea-color: var(--tsi-color-text);
+  /* Icon component */
+  --tsi-icon-font-size: var(--tsi-icon-size);
+  --tsi-icon-color: var(--tsi-color-caption);
   /* Label component */
   --tsi-label-header-margin: 0 0 0.1em 0;
+  --tsi-label-text-font-family: var(--tsi-font-family);
+  --tsi-label-text-font-size: var(--tsi-font-size);
+  --tsi-label-text-font-weight: var(--tsi-font-weight);
+  --tsi-label-text-color: var(--tsi-color-caption);
+  --tsi-label-text-border-background: var(--tsi-color-window);
+  --tsi-label-text-border-radius: var(--tsi-border-radius);
+  --tsi-label-icon-font-size: var(--tsi-icon-size);
+  --tsi-label-icon-color: var(--tsi-color-caption);
+  --tsi-label-icon-border-background: var(--tsi-color-window);
+  --tsi-label-icon-border-radius: var(--tsi-border-radius);
+  /* Edit component */
+  --tsi-edit-height: 1.3em;
+  --tsi-edit-outline: none;
+  --tsi-edit-icon-margin: 0 0 0 0.3em;
+  --tsi-edit-border: var(--tsi-border-width) solid var(--tsi-color-caption);
+  --tsi-edit-border-radius: var(--tsi-border-radius);
+  --tsi-edit-icon-font-size: var(--tsi-icon-size);
+  --tsi-edit-icon-color: var(--tsi-color-caption);
+  /* CheckBox component */
+  --tsi-check-box-font-family: var(--tsi-font-family);
+  --tsi-check-box-font-size: var(--tsi-font-size);
+  --tsi-check-box-icon-font-size: var(--tsi-icon-size);
   /* SideBar component */
   --tsi-side-bar-header-padding: 0.5em;
   --tsi-side-bar-content-padding: 0.5em;
@@ -91,16 +139,160 @@ body {
   margin: 0;
 }
 
+/* List component */
+
+.tsi-list {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.tsi-list-items {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  max-height: var(--tsi-list-max-height);
+  overflow-y: auto;
+}
+
+.tsi-list-items::-webkit-scrollbar {
+  width: var(--tsi-scroll-width);
+  background-color: var(--tsi-scroll-color);
+}
+
+.tsi-list-items::-webkit-scrollbar-track {
+  background-color: var(--tsi-scroll-track-color);
+}
+
+.tsi-list-items::-webkit-scrollbar-thumb {
+  background-color: var(--tsi-scroll-thumb-color);
+}
+
+.tsi-list-items-item {
+  padding: var(--tsi-list-items-item-padding);
+  cursor: pointer;
+}
+
+.tsi-list-items-item:hover {
+  font-weight: var(--tsi-list-items-item-font-weight-hover);
+  color: var(--tsi-list-items-item-color-hover);
+  background: var(--tsi-list-items-item-background-hover);
+}
+
+.tsi-list-items-item-selected {
+  font-weight: var(--tsi-list-items-item-font-weight-selected);
+  color: var(--tsi-list-items-item-color-selected);
+  background: var(--tsi-list-items-item-background-selected);
+}
+
+.tsi-list-items-item-focused {
+  font-weight: var(--tsi-list-items-item-font-weight-focused);
+  color: var(--tsi-list-items-item-color-focused);
+  background: var(--tsi-list-items-item-background-focused);
+}
+
+/* Overlay component */
+
+.tsi-overlay {
+  position: absolute;
+  box-sizing: border-box;
+  overflow: hidden;
+  z-index: 100;
+  outline: var(--tsi-overlay-outline);
+  border: var(--tsi-overlay-border);
+  background: var(--tsi-overlay-background);
+  border-radius: var(--tsi-overlay-border-radius);
+}
+
+.tsi-overlay-enter {
+  opacity: 0;
+}
+
+.tsi-overlay-enter-active {
+  opacity: 1;
+  transition: var(--tsi-overlay-transition);
+}
+
+.tsi-overlay-exit {
+  opacity: 1;
+}
+
+.tsi-overlay-exit-active {
+  opacity: 0;
+  transition: var(--tsi-overlay-transition);
+}
+
+/* Input component */
+
+.tsi-input {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+  padding: var(--tsi-input-padding);
+  font-size: var(--tsi-input-font-size);
+  font-weight: var(--tsi-input-font-weight);
+  font-family: var(--tsi-input-font-family);
+  line-height: var(--tsi-input-line-height);
+  color: var(--tsi-input-color-text);
+}
+
+/* Textarea component */
+
+.tsi-textarea {
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  resize: none;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: var(--tsi-textarea-padding);
+  font-size: var(--tsi-textarea-font-size);
+  font-family: var(--tsi-textarea-font-family);
+  line-height: var(--tsi-textarea-line-height);
+  color: var(--tsi-textarea-color-text);
+}
+
+.tsi-textarea::-webkit-scrollbar {
+  width: var(--tsi-scroll-width);
+  background-color: var(--tsi-scroll-color);
+}
+
+.tsi-textarea::-webkit-scrollbar-track {
+  background-color: var(--tsi-scroll-track-color);
+}
+
+.tsi-textarea::-webkit-scrollbar-thumb {
+  background-color: var(--tsi-scroll-thumb-color);
+}
+
+/* Text component */
+
+.tsi-text {
+  cursor: default;
+}
+
+.tsi-text-wait {
+  opacity: var(--tsi-opacity-wait) !important;
+  cursor: default !important;
+}
+
+.tsi-text-invalid {
+  color: var(--tsi-color-invalid) !important;
+}
+
 /* Icon component */
 
 .tsi-icon {
   cursor: default;
   line-height: 1;
-  color: var(--tsi-color-caption);
+  color: var(--tsi-icon-color);
   font-size: var(--tsi-icon-font-size);
-  display: inline-block;
-  /* display: flex;*/
-  /* align-items: center; */
+  display: inline-flex;
+  align-items: center;
 }
 
 .tsi-icon-active {
@@ -116,106 +308,11 @@ body {
   color: var(--tsi-color-invalid) !important;
 }
 
-/* Overlay component */
-
-.tsi-overlay {
-  position: absolute;
-  box-sizing: border-box;
-  overflow: hidden;
-  z-index: 100;
-  background: var(--tsi-color-window);
-  outline: var(--tsi-list-outline);
-  border: var(--tsi-list-border);
-  border-radius: var(--tsi-border-radius);
-}
-
-.tsi-overlay-enter {
-  opacity: 0;
-}
-
-.tsi-overlay-enter-active {
-  opacity: 1;
-  transition:
-    opacity 300ms,
-    transform 300ms;
-}
-
-.tsi-overlay-exit {
-  opacity: 1;
-}
-
-.tsi-overlay-exit-active {
-  opacity: 0;
-  transition:
-    opacity 300ms,
-    transform 300ms;
-}
-
-/* Input component */
-
-.tsi-input {
-  margin: 0;
-  padding: 0;
-  outline: none;
-  border: none;
-  font-size: var(--tsi-font-size);
-  font-family: var(--tsi-font-family);
-  line-height: var(--tsi-line-height);
-  color: var(--tsi-color-text);
-}
-
-/* Textarea component */
-
-.tsi-textarea {
-  box-sizing: border-box;
-  border: none;
-  outline: none;
-  resize: none;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: var(--tsi-textarea-padding);
-  font-size: var(--tsi-font-size);
-  font-family: var(--tsi-font-family);
-  line-height: var(--tsi-line-height);
-  color: var(--tsi-color-text);
-}
-
-.tsi-textarea::-webkit-scrollbar-track {
-  background-color: var(--tsi-color-frame);
-}
-
-.tsi-textarea::-webkit-scrollbar {
-  width: var(--tsi-scroll-width);
-  background-color: var(--tsi-color-frame);
-}
-
-.tsi-textarea::-webkit-scrollbar-thumb {
-  background-color: var(--tsi-color-caption);
-}
-
-/* Text component */
-
-.tsi-text {
-  cursor: default;
-  color: var(--tsi-color-caption);
-}
-
-.tsi-text-wait {
-  opacity: var(--tsi-opacity-wait) !important;
-  cursor: default !important;
-}
-
-.tsi-text-invalid {
-  color: var(--tsi-color-invalid) !important;
-}
-
 /* Label component */
 
 .tsi-label {
   position: relative;
   box-sizing: border-box;
-  font-weight: var(--tsi-font-weight-hover);
 }
 
 .tsi-label-inline {
@@ -248,6 +345,9 @@ body {
   box-sizing: border-box;
   white-space: nowrap;
   color: var(--tsi-color-caption);
+  font-family: var(--tsi-label-text-font-family);
+  font-size: var(--tsi-label-text-font-size);
+  font-weight: var(--tsi-label-text-font-weight);
 }
 
 .tsi-label-text-left {
@@ -264,15 +364,16 @@ body {
 
 .tsi-label-text-border {
   padding: 0.1em 0.5em 0.1em 0.5em;
-  background: var(--tsi-color-window);
-  border-radius: var(--tsi-border-radius);
+  background: var(--tsi-label-text-border-background);
+  border-radius: var(--tsi-label-text-border-radius);
 }
 
 .tsi-label-icon {
   display: flex;
   align-items: center;
   box-sizing: border-box;
-  color: var(--tsi-color-caption);
+  font-size: var(--tsi-label-icon-font-size);
+  color: var(--tsi-label-icon-color);
 }
 
 .tsi-label-icon-left {
@@ -289,8 +390,8 @@ body {
 
 .tsi-label-icon-border {
   padding: 0.1em 0.5em 0.1em 0.5em;
-  background: var(--tsi-color-window);
-  border-radius: var(--tsi-border-radius);
+  background: var(--tsi-label-icon-border-background);
+  border-radius: var(--tsi-label-icon-border-radius);
   transform: translateY(0.2em);
 }
 
@@ -323,11 +424,11 @@ body {
   background: transparent;
   display: flex;
   align-items: center;
-  padding: var(--tsi-input-padding);
 }
 
 .tsi-edit-icon {
-  color: var(--tsi-color-caption);
+  color: var(--tsi-edit-icon-color);
+  font-size: var(--tsi-edit-icon-font-size);
   margin: var(--tsi-edit-icon-margin);
 }
 
@@ -339,58 +440,13 @@ body {
   margin: 0 0.3em 0 0;
 }
 
-/* List component */
-
-.tsi-list {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
+/* CheckBox */
+.tsi-check-box {
+  position: static;
 }
 
-.tsi-list-items {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  max-height: var(--tsi-list-max-height);
-  overflow-y: auto;
-}
-
-.tsi-list-items::-webkit-scrollbar-track {
-  background-color: var(--tsi-color-frame);
-}
-
-.tsi-list-items::-webkit-scrollbar {
-  width: var(--tsi-scroll-width);
-  background-color: var(--tsi-color-frame);
-}
-
-.tsi-list-items::-webkit-scrollbar-thumb {
-  background-color: var(--tsi-color-caption);
-}
-
-.tsi-list-items-item {
-  padding: var(--tsi-list-items-item-padding);
-  cursor: pointer;
-}
-
-.tsi-list-items-item:hover {
-  font-weight: var(--tsi-font-weight-hover);
-  color: var(--tsi-color-hover);
-  background: var(--tsi-background-hover);
-}
-
-.tsi-list-items-item-selected {
-  font-weight: var(--tsi-font-weight-selected);
-  color: var(--tsi-color-selected);
-  background: var(--tsi-background-selected);
-}
-
-.tsi-list-items-item-focused {
-  font-weight: var(--tsi-font-weight-focused);
-  color: var(--tsi-color-focused);
-  background: var(--tsi-background-focused);
+.tsi-check-box-icon {
+  font-size: var(--tsi-check-box-icon-font-size);
 }
 
 /* SideBar */
@@ -504,11 +560,27 @@ body {
 /* Group */
 
 .tsi-group {
+  box-sizing: border-box;
   position: relative;
   border: var(--tsi-group-border);
   border-radius: var(--tsi-group-border-radius);
   background-color: var(--tsi-color-window);
   padding: var(--tsi-group-padding);
+  min-height: 2em;
+  overflow: auto;
+}
+
+.tsi-group::-webkit-scrollbar {
+  width: var(--tsi-scroll-width);
+  background-color: var(--tsi-scroll-color);
+}
+
+.tsi-group::-webkit-scrollbar-track {
+  background-color: var(--tsi-scroll-track-color);
+}
+
+.tsi-group::-webkit-scrollbar-thumb {
+  background-color: var(--tsi-scroll-thumb-color);
 }
 
 /* MenuItem */

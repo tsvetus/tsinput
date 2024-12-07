@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 
 import { LabelGroup } from 'tsinput'
 
+import './Events.css'
+
 const Events = ({ events = [], onClear }) => {
   const handleClear = () => {
     if (onClear) {
@@ -12,7 +14,14 @@ const Events = ({ events = [], onClear }) => {
   const content = events.map((event, index) => {
     return <div key={index}>{JSON.stringify(event)}</div>
   })
-  return <LabelGroup label={{ text: 'Events', icon: 'refresh', onIconClick: handleClear }}>{content}</LabelGroup>
+  return (
+    <LabelGroup
+      className={{ group: 'tsi-docs-events-group' }}
+      label={{ text: 'Events', icon: 'refresh', onIconClick: handleClear }}
+    >
+      {content}
+    </LabelGroup>
+  )
 }
 
 Events.propTypes = {

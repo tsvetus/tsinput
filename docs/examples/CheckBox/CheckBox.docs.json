@@ -1,0 +1,89 @@
+[
+  {
+    "name": "CheckBox",
+    "description": "",
+    "props": [
+      {
+        "name": "className",
+        "description": "",
+        "type": "string | CheckBoxClass",
+        "required": false
+      },
+      {
+        "name": "style",
+        "description": "",
+        "type": "object | CheckBoxStyle",
+        "required": false
+      },
+      {
+        "name": "layout",
+        "description": "",
+        "type": "string | string[]",
+        "required": false
+      },
+      {
+        "name": "name",
+        "description": "",
+        "required": false
+      },
+      {
+        "name": "data",
+        "description": "",
+        "required": false
+      },
+      {
+        "name": "wait",
+        "description": "",
+        "required": false
+      },
+      {
+        "name": "invalid",
+        "description": "",
+        "required": false
+      },
+      {
+        "name": "label",
+        "description": "",
+        "type": "string | ReactNode",
+        "required": false,
+        "defaultValue": "'CheckBox:'"
+      },
+      {
+        "name": "radio",
+        "description": "",
+        "required": false,
+        "defaultValue": "false"
+      },
+      {
+        "name": "value",
+        "description": "",
+        "required": false
+      },
+      {
+        "name": "valueChecked",
+        "description": "",
+        "required": false,
+        "defaultValue": "true"
+      },
+      {
+        "name": "valueUnchecked",
+        "description": "",
+        "required": false,
+        "defaultValue": "false"
+      },
+      {
+        "name": "events",
+        "description": "",
+        "type": "string | string[]",
+        "required": false,
+        "defaultValue": "'text icon'"
+      },
+      {
+        "name": "onChange",
+        "description": "",
+        "type": "(event: TsiMouseEvent<T>) => void",
+        "required": false
+      }
+    ]
+  }
+]

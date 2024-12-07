@@ -1,8 +1,6 @@
-import React, { useMemo, useCallback, forwardRef, MouseEvent } from 'react'
+import React, { useMemo, forwardRef, MouseEvent } from 'react'
 
-import { mergeClasses, mergeStyles } from '../../util'
-
-import useLayout from '../../hooks/useLayout'
+import { createLayout } from '../../util'
 
 import Text from '../Text'
 import Icon from '../Icon'
@@ -35,6 +33,7 @@ const Column = forwardRef<HTMLDivElement, LabelProps>(
       layout = '',
       name,
       data,
+      label,
       text,
       icon,
       wait,
@@ -46,28 +45,22 @@ const Column = forwardRef<HTMLDivElement, LabelProps>(
     },
     ref?
   ) => {
-    const isRightLabel = useMemo(() => layout.includes('right'), [layout])
-    const isBorder = useMemo(() => layout.includes('border'), [layout])
+    const [isRightLabel, isBorder] = useMemo(() => [layout.includes('right'), layout.includes('border')], [layout])
 
-    const layoutClasses = useMemo(() => mergeClasses(CLASS, className), [className])
-
-    const layoutStyles = useMemo(() => mergeStyles(style), [style])
-
-    const mergeLayout = useCallback(
-      (key: string) => {
-        switch (key) {
-          case 'header-border':
-          case 'text-border':
-          case 'icon-border':
-            return isBorder
-          default:
-            return false
-        }
-      },
-      [isBorder]
+    const [classes, styles] = useMemo(
+      () =>
+        createLayout([CLASS, className], [style], {
+          'header-border': isBorder,
+          'text-border': isBorder,
+          'icon-border': isBorder
+        }),
+      [className, style]
     )
 
-    const [classes, styles] = useLayout(layoutClasses, layoutStyles, mergeLayout)
+    const [textClasses, textStyles] = useMemo(
+      () => createLayout([classes.text, classes.label], [styles.text, styles.label]),
+      [classes, styles]
+    )
 
     const params = useMemo(() => ({ name, data }), [data, name])
 
@@ -91,13 +84,15 @@ const Column = forwardRef<HTMLDivElement, LabelProps>(
         }
       : undefined
 
-    const textComponent = text ? (
+    const labelText = text || label
+
+    const textComponent = labelText ? (
       <Text
-        className={classes.text}
-        style={styles.text}
+        className={textClasses}
+        style={textStyles}
         name={name}
         data={data}
-        value={text}
+        value={labelText}
         wait={wait}
         invalid={invalid}
         onClick={handleTextClick}

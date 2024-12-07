@@ -1,0 +1,110 @@
+[
+  {
+    "name": "Edit",
+    "description": "",
+    "props": [
+      {
+        "name": "className",
+        "description": "",
+        "type": "string | EditClass",
+        "required": false
+      },
+      {
+        "name": "style",
+        "description": "",
+        "type": "object | EditStyle",
+        "required": false
+      },
+      {
+        "name": "layout",
+        "description": "",
+        "type": "string | string[]",
+        "required": false,
+        "defaultValue": "''"
+      },
+      {
+        "name": "name",
+        "description": "",
+        "required": false
+      },
+      {
+        "name": "data",
+        "description": "",
+        "required": false
+      },
+      {
+        "name": "wait",
+        "description": "",
+        "required": false
+      },
+      {
+        "name": "invalid",
+        "description": "",
+        "required": false
+      },
+      {
+        "name": "icon",
+        "description": "",
+        "required": false
+      },
+      {
+        "name": "value",
+        "description": "",
+        "type": "string | number",
+        "required": false
+      },
+      {
+        "name": "readOnly",
+        "description": "",
+        "required": false
+      },
+      {
+        "name": "placeholder",
+        "description": "",
+        "required": false
+      },
+      {
+        "name": "children",
+        "description": "",
+        "type": "string | ReactNode",
+        "required": false
+      },
+      {
+        "name": "onClick",
+        "description": "",
+        "type": "(event: TsiMouseEvent<T>) => void",
+        "required": false
+      },
+      {
+        "name": "onKeyDown",
+        "description": "",
+        "type": "(event: TsiKeyboardEvent<T>) => void",
+        "required": false
+      },
+      {
+        "name": "onIconClick",
+        "description": "",
+        "type": "(event: TsiMouseEvent<T>) => void",
+        "required": false
+      },
+      {
+        "name": "onInputClick",
+        "description": "",
+        "type": "(event: TsiMouseEvent<T>) => void",
+        "required": false
+      },
+      {
+        "name": "onInputKeyDown",
+        "description": "",
+        "type": "(event: TsiKeyboardEvent<T>) => void",
+        "required": false
+      },
+      {
+        "name": "onChange",
+        "description": "",
+        "type": "(event: TsiInputEvent<T>) => void",
+        "required": false
+      }
+    ]
+  }
+]

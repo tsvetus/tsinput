@@ -1,14 +1,13 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
-import { useMemo, useCallback, forwardRef } from 'react';
-import { mergeClasses, mergeStyles } from '../../util';
+import { useMemo, forwardRef } from 'react';
+import { createLayout } from '../../util';
 import Input from '../../lib/Input';
 import Icon from '../Icon';
-import useLayout from '../../hooks/useLayout';
 const BASE = 'tsi-edit';
 const CLASS = {
     _: BASE,
     wait: `${BASE}-wait`,
-    invalid: `${BASE}-wait`,
+    invalid: `${BASE}-invalid`,
     input: {
         _: `${BASE}-input`,
         left: `${BASE}-input-left`,
@@ -22,27 +21,16 @@ const CLASS = {
 };
 const Edit = forwardRef(({ className, style, layout = '', name, data, value, icon, wait, invalid, readOnly, placeholder, children, onClick, onKeyDown, onIconClick, onInputClick, onInputKeyDown, onChange }, ref) => {
     const isRightInput = useMemo(() => layout.includes('right'), [layout]);
-    const layoutClasses = useMemo(() => mergeClasses(CLASS, className), [className]);
-    const layoutStyles = useMemo(() => mergeStyles(style), [style]);
-    const mergeLayout = useCallback((key) => {
-        switch (key) {
-            case 'wait':
-                return wait;
-            case 'invalid':
-                return invalid;
-            case 'input-right':
-            case 'icon-left':
-                return isRightInput;
-            case 'input-left':
-            case 'icon-right':
-                return !isRightInput;
-            default:
-                return false;
-        }
-    }, [wait, invalid, isRightInput]);
-    const [classes, styles] = useLayout(layoutClasses, layoutStyles, mergeLayout);
-    const params = useMemo(() => ({ name, data }), [data, name]);
     const isReadOnly = useMemo(() => Boolean(readOnly || wait), [readOnly, wait]);
+    const [classes, styles] = useMemo(() => createLayout([CLASS, className], [style], {
+        wait: wait,
+        invalid: invalid,
+        'input-right': isRightInput,
+        'icon-left': isRightInput,
+        'input-left': !isRightInput,
+        'icon-right': !isRightInput
+    }), [className, style]);
+    const params = useMemo(() => ({ name, data }), [data, name]);
     const handleChange = onChange
         ? (event) => {
             if (!isReadOnly) {

@@ -16,7 +16,8 @@ const Label = forwardRef<HTMLDivElement, LabelProps>(
       layout = '',
       name,
       data,
-      text = 'Label:',
+      label = 'Label:',
+      text = label,
       icon,
       wait,
       invalid,
@@ -36,6 +37,7 @@ const Label = forwardRef<HTMLDivElement, LabelProps>(
         layout={layout}
         name={name}
         data={data}
+        label={label}
         text={text}
         icon={icon}
         wait={wait}
@@ -54,6 +56,7 @@ const Label = forwardRef<HTMLDivElement, LabelProps>(
         layout={layout}
         name={name}
         data={data}
+        label={label}
         text={text}
         icon={icon}
         wait={wait}

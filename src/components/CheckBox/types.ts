@@ -4,13 +4,13 @@ import { TsiMouseEventHandler } from '../../util/types'
 
 import { LabelClass, LabelStyle } from '../Label'
 
-export interface LabelCheckBoxClass extends LabelClass {}
+export type CheckBoxClass = LabelClass
 
-export interface LabelCheckBoxStyle extends LabelStyle {}
+export type CheckBoxStyle = LabelStyle
 
-export interface LabelCheckBoxProps {
-  className?: string | LabelCheckBoxClass
-  style?: object | LabelCheckBoxStyle
+export type CheckBoxProps = {
+  className?: string | CheckBoxClass
+  style?: object | CheckBoxStyle
   layout?: string | string[]
   name?: string
   data?: unknown

@@ -15,6 +15,10 @@
   border: 1px solid var(--tsi-color-caption);
 }
 
+.tsi-docs-events-group {
+  max-height: 320px;
+}
+
 .tsi-docs-icon {
   font-size: 24px;
   margin: 0.5em;
@@ -62,6 +66,39 @@
 
 .tsi-docs-label-blue {
   color: blue;
+}
+
+.tsi-docs-edit {
+  font-size: 16px;
+  margin: 0.5em;
+  max-width: 320px;
+}
+
+.tsi-docs-edit-border {
+  border: 2px solid green;
+}
+
+.tsi-docs-edit-input {
+  font-weight: bold;
+  color: green;
+}
+
+.tsi-docs-edit-icon {
+  color: red;
+}
+
+.tsi-docs-check-box {
+  font-size: 16px;
+  margin: 0.5em;
+  max-width: 320px;
+}
+
+.tsi-docs-check-box-label {
+  color: green;
+}
+
+.tsi-docs-check-box-icon {
+  color: red;
 }
 
 .tsi-docs-edit {

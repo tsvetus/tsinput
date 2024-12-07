@@ -1,8 +1,6 @@
-import React, { useMemo, useCallback, forwardRef, MouseEvent } from 'react'
+import React, { useMemo, forwardRef, MouseEvent } from 'react'
 
-import { mergeClasses, mergeStyles } from '../../util'
-
-import useLayout from '../../hooks/useLayout'
+import { createLayout } from '../../util'
 
 import Text from '../Text'
 import Icon from '../Icon'
@@ -33,6 +31,7 @@ const Inline = forwardRef<HTMLDivElement, LabelProps>(
       layout = '',
       name,
       data,
+      label,
       text,
       icon,
       wait,
@@ -46,27 +45,21 @@ const Inline = forwardRef<HTMLDivElement, LabelProps>(
   ) => {
     const isRightLabel = useMemo(() => layout.includes('right'), [layout])
 
-    const layoutClasses = useMemo(() => mergeClasses(CLASS, className), [className])
-
-    const layoutStyles = useMemo(() => mergeStyles(style), [style])
-
-    const mergeLayout = useCallback(
-      (key: string) => {
-        switch (key) {
-          case 'text-right':
-          case 'icon-left':
-            return isRightLabel
-          case 'text-left':
-          case 'icon-right':
-            return !isRightLabel
-          default:
-            return false
-        }
-      },
-      [isRightLabel]
+    const [classes, styles] = useMemo(
+      () =>
+        createLayout([CLASS, className], [style], {
+          'text-right': isRightLabel,
+          'icon-left': isRightLabel,
+          'text-left': !isRightLabel,
+          'icon-right': !isRightLabel
+        }),
+      [className, style]
     )
 
-    const [classes, styles] = useLayout(layoutClasses, layoutStyles, mergeLayout)
+    const [textClasses, textStyles] = useMemo(
+      () => createLayout([classes.text, classes.label], [styles.text, styles.label]),
+      [classes, styles]
+    )
 
     const params = useMemo(() => ({ name, data }), [data, name])
 
@@ -90,13 +83,15 @@ const Inline = forwardRef<HTMLDivElement, LabelProps>(
         }
       : undefined
 
-    const textComponent = text ? (
+    const labelText = text || label
+
+    const textComponent = labelText ? (
       <Text
-        className={classes.text}
-        style={styles.text}
+        className={textClasses}
+        style={textStyles}
         name={name}
         data={data}
-        value={text}
+        value={labelText}
         wait={wait}
         invalid={invalid}
         onClick={handleTextClick}

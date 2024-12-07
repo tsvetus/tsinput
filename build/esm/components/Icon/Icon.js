@@ -1,7 +1,6 @@
 import { jsx as _jsx } from "react/jsx-runtime";
-import { useMemo, useCallback } from 'react';
-import { mergeClasses, mergeStyles } from '../../util';
-import useLayout from '../../hooks/useLayout';
+import { useMemo } from 'react';
+import { createLayout } from '../../util';
 const BASE = 'tsi-icon';
 const CLASS = {
     _: '',
@@ -16,21 +15,11 @@ const CLASS = {
  */
 const Icon = ({ className, style, icon = 'tsinput', name, data, baseClass = BASE, wait, invalid, onClick, onKeyDown }) => {
     const active = Boolean(onClick);
-    const layoutClasses = useMemo(() => mergeClasses(CLASS, baseClass || BASE, icon ? `${BASE}-${icon}` : null, className), [baseClass, className, icon]);
-    const layoutStyles = useMemo(() => mergeStyles(style), [style]);
-    const mergeLayout = useCallback((key) => {
-        switch (key) {
-            case 'active':
-                return active;
-            case 'wait':
-                return wait;
-            case 'invalid':
-                return invalid;
-            default:
-                return false;
-        }
-    }, [active, wait, invalid]);
-    const [classes, styles] = useLayout(layoutClasses, layoutStyles, mergeLayout);
+    const [classes, styles] = useMemo(() => createLayout([CLASS, baseClass || BASE, icon ? `${BASE}-${icon}` : null, className], [style], {
+        active: active,
+        wait: wait,
+        invalid: invalid
+    }), [className, style, active, wait, invalid, icon]);
     const params = useMemo(() => ({ name, data, value: icon, icon }), [icon, data, name]);
     const handleClick = onClick
         ? (event) => {

@@ -1,8 +1,6 @@
-import React, { useMemo, useCallback, MouseEvent, KeyboardEvent } from 'react'
+import React, { useMemo, MouseEvent, KeyboardEvent } from 'react'
 
-import { mergeClasses, mergeStyles } from '../../util'
-
-import useLayout from '../../hooks/useLayout'
+import { createLayout } from '../../util'
 
 import { TextProps } from './types'
 
@@ -15,25 +13,14 @@ const CLASS = {
 }
 
 const Text = ({ className, style, name, data, wait, invalid, value, onClick, onKeyDown }: TextProps) => {
-  const layoutClasses = useMemo(() => mergeClasses(CLASS, className), [className])
-
-  const layoutStyles = useMemo(() => mergeStyles(style), [style])
-
-  const mergeLayout = useCallback(
-    (key: string) => {
-      switch (key) {
-        case 'wait':
-          return wait
-        case 'invalid':
-          return invalid
-        default:
-          return false
-      }
-    },
-    [wait, invalid]
+  const [classes, styles] = useMemo(
+    () =>
+      createLayout([CLASS, className], [style], {
+        wait: wait,
+        invalid: invalid
+      }),
+    [className, style]
   )
-
-  const [classes, styles] = useLayout(layoutClasses, layoutStyles, mergeLayout)
 
   const params = useMemo(() => ({ name, data }), [data, name])
 

@@ -43,11 +43,18 @@
         "defaultValue": "''"
       },
       {
-        "name": "text",
+        "name": "label",
         "description": "",
         "type": "string | ReactNode",
         "required": false,
         "defaultValue": "'Label:'"
+      },
+      {
+        "name": "text",
+        "description": "",
+        "type": "string | ReactNode",
+        "required": false,
+        "defaultValue": "label = 'Label:'"
       },
       {
         "name": "icon",

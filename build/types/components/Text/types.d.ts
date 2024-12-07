@@ -15,8 +15,8 @@ export interface TextProps {
     style?: object | TextStyle;
     name?: string;
     data?: unknown;
-    wait?: unknown;
-    invalid?: unknown;
+    wait?: boolean;
+    invalid?: boolean;
     value?: string | ReactNode;
     onClick?: TsiMouseEventHandler<HTMLDivElement>;
     onKeyDown?: TsiKeyboardEventHandler<HTMLDivElement>;

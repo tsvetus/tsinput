@@ -1,7 +1,6 @@
 import { jsx as _jsx } from "react/jsx-runtime";
-import { useMemo, useCallback } from 'react';
-import { mergeClasses, mergeStyles } from '../../util';
-import useLayout from '../../hooks/useLayout';
+import { useMemo } from 'react';
+import { createLayout } from '../../util';
 const BASE = 'tsi-text';
 const CLASS = {
     _: BASE,
@@ -9,19 +8,10 @@ const CLASS = {
     wait: `${BASE}-wait`
 };
 const Text = ({ className, style, name, data, wait, invalid, value, onClick, onKeyDown }) => {
-    const layoutClasses = useMemo(() => mergeClasses(CLASS, className), [className]);
-    const layoutStyles = useMemo(() => mergeStyles(style), [style]);
-    const mergeLayout = useCallback((key) => {
-        switch (key) {
-            case 'wait':
-                return wait;
-            case 'invalid':
-                return invalid;
-            default:
-                return false;
-        }
-    }, [wait, invalid]);
-    const [classes, styles] = useLayout(layoutClasses, layoutStyles, mergeLayout);
+    const [classes, styles] = useMemo(() => createLayout([CLASS, className], [style], {
+        wait: wait,
+        invalid: invalid
+    }), [className, style]);
     const params = useMemo(() => ({ name, data }), [data, name]);
     const handleClick = onClick
         ? (event) => {

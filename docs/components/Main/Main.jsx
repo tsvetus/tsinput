@@ -6,11 +6,15 @@ import Readme from '../Readme'
 
 import Icon from '../../examples/Icon'
 import Label from '../../examples/Label'
+import Edit from '../../examples/Edit'
+import CheckBox from '../../examples/CheckBox'
 
 const PAGE_OPTIONS = [
   { key: 'Readme', render: () => <Readme /> },
   { key: 'Icon', render: () => <Icon /> },
-  { key: 'Label', render: () => <Label /> }
+  { key: 'Label', render: () => <Label /> },
+  { key: 'Edit', render: () => <Edit /> },
+  { key: 'CheckBox', render: () => <CheckBox /> }
 ]
 
 import './Main.css'

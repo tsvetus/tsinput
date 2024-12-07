@@ -31,7 +31,7 @@ npm install tsinputlib
 
 ## Usage
 
-[Examples](https://tsvetus.github.io/tsinput/)
+[Examples page](https://tsvetus.github.io/tsinput/)
 
 ### Styles
 

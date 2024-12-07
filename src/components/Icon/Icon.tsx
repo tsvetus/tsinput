@@ -1,8 +1,6 @@
-import React, { useMemo, useCallback, MouseEvent, KeyboardEvent } from 'react'
+import React, { useMemo, MouseEvent, KeyboardEvent } from 'react'
 
-import { mergeClasses, mergeStyles } from '../../util'
-
-import useLayout from '../../hooks/useLayout'
+import { createLayout } from '../../util'
 
 import { IconProps } from './types'
 
@@ -34,30 +32,15 @@ const Icon = ({
 }: IconProps) => {
   const active = Boolean(onClick)
 
-  const layoutClasses = useMemo(
-    () => mergeClasses(CLASS, baseClass || BASE, icon ? `${BASE}-${icon}` : null, className),
-    [baseClass, className, icon]
+  const [classes, styles] = useMemo(
+    () =>
+      createLayout([CLASS, baseClass || BASE, icon ? `${BASE}-${icon}` : null, className], [style], {
+        active: active,
+        wait: wait,
+        invalid: invalid
+      }),
+    [className, style, active, wait, invalid, icon]
   )
-
-  const layoutStyles = useMemo(() => mergeStyles(style), [style])
-
-  const mergeLayout = useCallback(
-    (key: string) => {
-      switch (key) {
-        case 'active':
-          return active
-        case 'wait':
-          return wait
-        case 'invalid':
-          return invalid
-        default:
-          return false
-      }
-    },
-    [active, wait, invalid]
-  )
-
-  const [classes, styles] = useLayout(layoutClasses, layoutStyles, mergeLayout)
 
   const params = useMemo(() => ({ name, data, value: icon, icon }), [icon, data, name])
 

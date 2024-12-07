@@ -1,20 +1,25 @@
-import React, { useMemo, useRef, MouseEvent, useEffect } from 'react'
+import React, { useMemo, useRef, MouseEvent } from 'react'
 
 import Label from '../Label'
 
-import { LabelCheckBoxProps } from './types'
+import { CheckBoxProps } from './types'
 
-import { mergeClasses } from '../../util'
+import { mergeClasses, mergeStyles } from '../../util'
 
-const CLASS = 'tsi-check-box'
+const BASE = 'tsi-check-box'
 
-const LabelCheckBox = ({
+const CLASS = {
+  _: BASE,
+  icon: `${BASE}-icon`
+}
+
+const CheckBox = ({
   className,
   style,
   layout,
   name,
   data,
-  label,
+  label = 'CheckBox:',
   radio = false,
   wait,
   invalid,
@@ -23,10 +28,11 @@ const LabelCheckBox = ({
   valueUnchecked = false,
   events = 'text icon',
   onChange
-}: LabelCheckBoxProps) => {
+}: CheckBoxProps) => {
   const ref = useRef<HTMLDivElement>(null)
 
   const classes = useMemo(() => mergeClasses(CLASS, className), [className])
+  const styles = useMemo(() => mergeStyles(style), [style])
 
   const iconSet = useMemo(() => (radio ? ['unselected', 'selected'] : ['unchecked', 'checked']), [radio])
 
@@ -50,24 +56,15 @@ const LabelCheckBox = ({
     }
   }
 
-  useEffect(() => {
-    if (ref.current?.parentNode) {
-      const siblings = Array.from(ref.current.parentNode.children).filter(
-        c => c.nodeType === 1 && c !== ref.current && c.classList?.contains(CLASS)
-      )
-      console.log(siblings)
-    }
-  }, [])
-
   return (
     <Label
       ref={ref}
       className={classes}
-      style={style}
+      style={styles}
       layout={layout}
       name={name}
       data={data}
-      text={label}
+      label={label}
       icon={icon}
       wait={wait}
       invalid={invalid}
@@ -77,4 +74,4 @@ const LabelCheckBox = ({
   )
 }
 
-export default LabelCheckBox
+export default CheckBox

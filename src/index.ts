@@ -8,7 +8,8 @@ import ListBox from './components/ListBox'
 import SideBar from './components/SideBar'
 import TopBar from './components/TopBar'
 import TabControl from './components/TabControl/TabControl'
-import LabelCheckBox from './components/LabelCheckBox'
+import CheckBox from './components/CheckBox'
+import Group from './components/Group'
 import LabelGroup from './components/LabelGroup'
 import Page from './components/Page'
 import MenuItem from './components/MenuItem'
@@ -28,7 +29,8 @@ export {
   SideBar,
   TopBar,
   TabControl,
-  LabelCheckBox,
+  CheckBox,
+  Group,
   LabelGroup,
   Page,
   MenuItem,

@@ -1,0 +1,13 @@
+.tsi-docs-check-box {
+  font-size: 16px;
+  margin: 0.5em;
+  max-width: 320px;
+}
+
+.tsi-docs-check-box-label {
+  color: green;
+}
+
+.tsi-docs-check-box-icon {
+  color: red;
+}

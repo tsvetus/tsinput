@@ -15,7 +15,9 @@ export type LabelClass = {
   wait?: string
   /** Label header CSS class used for layout='top' or layout='border' */
   header?: string
-  /** Label text component CSS class */
+  /** Label text component CSS class - the same as 'text' property */
+  label?: string | TextClass
+  /** Label text component CSS class - the same as 'label' property  */
   text?: string | TextClass
   /** Label icon component CSS class */
   icon?: string | IconClass
@@ -26,6 +28,7 @@ export type LabelStyle = {
   invalid?: object
   wait?: object
   header?: object
+  label?: object | TextStyle
   text?: object | TextStyle
   iccon?: object | IconStyle
 }
@@ -38,6 +41,7 @@ export type LabelProps = {
   wait?: boolean
   invalid?: boolean
   layout?: string | string[]
+  label?: string | ReactNode
   text?: string | ReactNode
   icon?: string
   children?: string | ReactNode
