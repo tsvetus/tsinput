@@ -1,18 +1,18 @@
 [
   {
-    "name": "CheckBox",
+    "name": "ListBox",
     "description": "",
     "props": [
       {
         "name": "className",
         "description": "",
-        "type": "string | CheckBoxClass",
+        "type": "string | ListBoxClass",
         "required": false
       },
       {
         "name": "style",
         "description": "",
-        "type": "object | CheckBoxStyle",
+        "type": "object | ListBoxStyle",
         "required": false
       },
       {
@@ -37,51 +37,98 @@
         "required": false
       },
       {
+        "name": "disabled",
+        "description": "",
+        "required": false
+      },
+      {
         "name": "invalid",
         "description": "",
         "required": false
       },
       {
-        "name": "label",
+        "name": "value",
         "description": "",
-        "type": "string | ReactNode",
-        "required": false,
-        "defaultValue": "'CheckBox:'"
+        "type": "string | number",
+        "required": false
       },
       {
-        "name": "radio",
+        "name": "readOnly",
         "description": "",
         "required": false,
         "defaultValue": "false"
       },
       {
-        "name": "value",
+        "name": "placeholder",
         "description": "",
         "required": false
       },
       {
-        "name": "valueChecked",
-        "description": "",
-        "required": false,
-        "defaultValue": "true"
-      },
-      {
-        "name": "valueUnchecked",
-        "description": "",
-        "required": false,
-        "defaultValue": "false"
-      },
-      {
-        "name": "events",
+        "name": "valueField",
         "description": "",
         "type": "string | string[]",
         "required": false,
-        "defaultValue": "'text icon'"
+        "defaultValue": "'value key code id'"
+      },
+      {
+        "name": "nameField",
+        "description": "",
+        "type": "string | string[]",
+        "required": false,
+        "defaultValue": "'name label text caption'"
+      },
+      {
+        "name": "options",
+        "description": "",
+        "type": "ListItem[]",
+        "required": false
+      },
+      {
+        "name": "onClick",
+        "description": "",
+        "type": "(event: TsiMouseEvent<T>) => void",
+        "required": false
+      },
+      {
+        "name": "onKeyDown",
+        "description": "",
+        "type": "(event: TsiKeyboardEvent<T>) => void",
+        "required": false
+      },
+      {
+        "name": "onIconClick",
+        "description": "",
+        "type": "(event: TsiMouseEvent<T>) => void",
+        "required": false
+      },
+      {
+        "name": "onInputClick",
+        "description": "",
+        "type": "(event: TsiMouseEvent<T>) => void",
+        "required": false
+      },
+      {
+        "name": "onInputKeyDown",
+        "description": "",
+        "type": "(event: TsiKeyboardEvent<T>) => void",
+        "required": false
       },
       {
         "name": "onChange",
         "description": "",
-        "type": "(event: TsiMouseEvent<T>) => void",
+        "type": "(event: ListEvent) => void",
+        "required": false
+      },
+      {
+        "name": "onSelect",
+        "description": "",
+        "type": "(event: ListEvent) => void",
+        "required": false
+      },
+      {
+        "name": "onClose",
+        "description": "",
+        "type": "(event: ListEvent) => void",
         "required": false
       }
     ]

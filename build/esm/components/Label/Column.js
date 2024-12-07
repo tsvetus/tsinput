@@ -19,7 +19,7 @@ const CLASS = {
         border: `${BASE}-icon-border`
     }
 };
-const Column = forwardRef(({ className, style, layout = '', name, data, label, text, icon, wait, invalid, children, onClick, onTextClick, onIconClick }, ref) => {
+const Column = forwardRef(({ className, style, layout = '', name, data, label, text, icon, wait, disabled, invalid, children, onClick, onTextClick, onIconClick }, ref) => {
     const [isRightLabel, isBorder] = useMemo(() => [layout.includes('right'), layout.includes('border')], [layout]);
     const [classes, styles] = useMemo(() => createLayout([CLASS, className], [style], {
         'header-border': isBorder,
@@ -30,7 +30,7 @@ const Column = forwardRef(({ className, style, layout = '', name, data, label, t
     const params = useMemo(() => ({ name, data }), [data, name]);
     const handleClick = onClick
         ? (event) => {
-            if (!wait) {
+            if (!wait && !disabled) {
                 onClick({ ...event, ...params });
             }
         }
@@ -46,8 +46,8 @@ const Column = forwardRef(({ className, style, layout = '', name, data, label, t
         }
         : undefined;
     const labelText = text || label;
-    const textComponent = labelText ? (_jsx(Text, { className: textClasses, style: textStyles, name: name, data: data, value: labelText, wait: wait, invalid: invalid, onClick: handleTextClick })) : (_jsx("div", {}));
-    const iconComponent = icon ? (_jsx(Icon, { className: classes.icon, style: styles.icon, name: name, data: data, icon: icon, wait: wait, invalid: invalid, onClick: handleIconClick })) : (_jsx("div", {}));
+    const textComponent = labelText ? (_jsx(Text, { className: textClasses, style: textStyles, name: name, data: data, value: labelText, wait: wait, disabled: disabled, invalid: invalid, onClick: handleTextClick })) : (_jsx("div", {}));
+    const iconComponent = icon ? (_jsx(Icon, { className: classes.icon, style: styles.icon, name: name, data: data, icon: icon, wait: wait, disabled: disabled, invalid: invalid, onClick: handleIconClick })) : (_jsx("div", {}));
     const headerComponent = isRightLabel ? (_jsxs("div", { className: classes.header?._, style: styles.header?._, children: [iconComponent, textComponent] })) : (_jsxs("div", { className: classes.header?._, style: styles.header?._, children: [textComponent, iconComponent] }));
     return (_jsxs("div", { ref: ref, className: classes._, style: styles._, onClick: handleClick, children: [headerComponent, children] }));
 });

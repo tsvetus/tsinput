@@ -7,7 +7,7 @@ const CLASS = {
     _: BASE,
     icon: `${BASE}-icon`
 };
-const CheckBox = ({ className, style, layout, name, data, label = 'CheckBox:', radio = false, wait, invalid, value, valueChecked = true, valueUnchecked = false, events = 'text icon', onChange }) => {
+const CheckBox = ({ className, style, layout, name, data, label = 'CheckBox:', radio = false, wait, disabled, invalid, value, valueChecked = true, valueUnchecked = false, events = 'text icon', onChange }) => {
     const ref = useRef(null);
     const classes = useMemo(() => mergeClasses(CLASS, className), [className]);
     const styles = useMemo(() => mergeStyles(style), [style]);
@@ -28,7 +28,7 @@ const CheckBox = ({ className, style, layout, name, data, label = 'CheckBox:', r
             handleChange(event);
         }
     };
-    return (_jsx(Label, { ref: ref, className: classes, style: styles, layout: layout, name: name, data: data, label: label, icon: icon, wait: wait, invalid: invalid, onTextClick: handleTextClick, onIconClick: handleIconClick }));
+    return (_jsx(Label, { ref: ref, className: classes, style: styles, layout: layout, name: name, data: data, label: label, icon: icon, wait: wait, disabled: disabled, invalid: invalid, onTextClick: handleTextClick, onIconClick: handleIconClick }));
 };
 export default CheckBox;
 //# sourceMappingURL=CheckBox.js.map

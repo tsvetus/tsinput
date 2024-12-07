@@ -37,6 +37,11 @@
         "required": false
       },
       {
+        "name": "disabled",
+        "description": "",
+        "required": false
+      },
+      {
         "name": "invalid",
         "description": "",
         "required": false

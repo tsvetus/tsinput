@@ -48,6 +48,11 @@
         "required": false
       },
       {
+        "name": "disabled",
+        "description": "Component disabled state",
+        "required": false
+      },
+      {
         "name": "onClick",
         "description": "Compoinent click event",
         "type": "(event: TsiMouseEvent<T>) => void",

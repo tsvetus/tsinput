@@ -7,13 +7,15 @@ const BASE = 'tsi-text';
 const CLASS = {
     _: BASE,
     invalid: `${BASE}-invalid`,
-    wait: `${BASE}-wait`
+    wait: `${BASE}-wait`,
+    disabled: `${BASE}-disabled`
 };
-const Text = ({ className, style, name, data, wait, invalid, value, onClick, onKeyDown }) => {
+const Text = ({ className, style, name, data, wait, invalid, disabled, value, onClick, onKeyDown }) => {
     const [classes, styles] = (0, react_1.useMemo)(() => (0, util_1.createLayout)([CLASS, className], [style], {
-        wait: wait,
-        invalid: invalid
-    }), [className, style]);
+        wait,
+        invalid,
+        disabled
+    }), [className, style, wait, invalid, disabled]);
     const params = (0, react_1.useMemo)(() => ({ name, data }), [data, name]);
     const handleClick = onClick
         ? (event) => {

@@ -1,13 +1,9 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = require("react");
 const hooks_1 = require("../../hooks");
 const util_1 = require("../../util");
-const useLayout_1 = __importDefault(require("../../hooks/useLayout"));
 const BASE = 'tsi-list';
 const CLASS = {
     _: BASE,
@@ -21,14 +17,17 @@ const CLASS = {
     }
 };
 const List = (0, react_1.forwardRef)(({ className, style, name, data, options = [], optionIndex, onChange, onClose, onClick, onKeyDown }, extRef) => {
-    var _a, _b, _c, _d, _e, _f;
+    var _a, _b;
     const intRef = (0, react_1.useRef)(null);
-    const classes = (0, react_1.useMemo)(() => (0, util_1.mergeClasses)(CLASS, className), [className]);
-    const styles = (0, react_1.useMemo)(() => (0, util_1.mergeStyles)(style), [style]);
-    const mergeSelected = (0, react_1.useCallback)((key) => 'selected' === key, []);
-    const mergeFocused = (0, react_1.useCallback)((key) => 'focused' === key, []);
-    const [selectedClasses, selectedStyles] = (0, useLayout_1.default)((_a = classes === null || classes === void 0 ? void 0 : classes.items) === null || _a === void 0 ? void 0 : _a.item, (_b = styles === null || styles === void 0 ? void 0 : styles.items) === null || _b === void 0 ? void 0 : _b.item, mergeSelected);
-    const [focusedClasses, focusedStyles] = (0, useLayout_1.default)((_c = classes === null || classes === void 0 ? void 0 : classes.items) === null || _c === void 0 ? void 0 : _c.item, (_d = styles === null || styles === void 0 ? void 0 : styles.items) === null || _d === void 0 ? void 0 : _d.item, mergeFocused);
+    const [classes, styles] = (0, react_1.useMemo)(() => (0, util_1.createLayout)([CLASS, className], [style]), [className, style]);
+    const [selectedClasses, selectedStyles] = (0, react_1.useMemo)(() => {
+        var _a, _b, _c, _d, _e, _f, _g, _h;
+        return (0, util_1.createLayout)([(_b = (_a = classes === null || classes === void 0 ? void 0 : classes.items) === null || _a === void 0 ? void 0 : _a.item) === null || _b === void 0 ? void 0 : _b._, (_d = (_c = classes === null || classes === void 0 ? void 0 : classes.items) === null || _c === void 0 ? void 0 : _c.item) === null || _d === void 0 ? void 0 : _d.selected], [(_f = (_e = styles === null || styles === void 0 ? void 0 : styles.items) === null || _e === void 0 ? void 0 : _e.item) === null || _f === void 0 ? void 0 : _f._, (_h = (_g = styles === null || styles === void 0 ? void 0 : styles.items) === null || _g === void 0 ? void 0 : _g.item) === null || _h === void 0 ? void 0 : _h.selected]);
+    }, [classes, styles]);
+    const [focusedClasses, focusedStyles] = (0, react_1.useMemo)(() => {
+        var _a, _b, _c, _d, _e, _f, _g, _h;
+        return (0, util_1.createLayout)([(_b = (_a = classes === null || classes === void 0 ? void 0 : classes.items) === null || _a === void 0 ? void 0 : _a.item) === null || _b === void 0 ? void 0 : _b._, (_d = (_c = classes === null || classes === void 0 ? void 0 : classes.items) === null || _c === void 0 ? void 0 : _c.item) === null || _d === void 0 ? void 0 : _d.focused], [(_f = (_e = styles === null || styles === void 0 ? void 0 : styles.items) === null || _e === void 0 ? void 0 : _e.item) === null || _f === void 0 ? void 0 : _f._, (_h = (_g = styles === null || styles === void 0 ? void 0 : styles.items) === null || _g === void 0 ? void 0 : _g.item) === null || _h === void 0 ? void 0 : _h.focused]);
+    }, [classes, styles]);
     const params = (0, react_1.useMemo)(() => ({ name, data }), [data, name]);
     const itemsCount = (0, react_1.useMemo)(() => (options === null || options === void 0 ? void 0 : options.length) || 0, [options]);
     const [focusIndex, setFocusIndex] = (0, react_1.useState)(optionIndex !== null && optionIndex !== void 0 ? optionIndex : -1);
@@ -102,7 +101,7 @@ const List = (0, react_1.forwardRef)(({ className, style, name, data, options = 
             return ((0, jsx_runtime_1.jsx)("div", { className: itemClass === null || itemClass === void 0 ? void 0 : itemClass._, style: itemStyle === null || itemStyle === void 0 ? void 0 : itemStyle._, onClick: handleItemClick(i), children: v === null || v === void 0 ? void 0 : v.name }, i));
         })
         : null;
-    return ((0, jsx_runtime_1.jsx)("div", { ref: (0, util_1.initRefs)(intRef, extRef), className: classes._, style: styles._, onClick: handleListClick, onKeyDown: handleListKeyDown, children: (0, jsx_runtime_1.jsx)("div", { className: (_e = classes.items) === null || _e === void 0 ? void 0 : _e._, style: (_f = styles.items) === null || _f === void 0 ? void 0 : _f._, children: itemsComponent }) }));
+    return ((0, jsx_runtime_1.jsx)("div", { ref: (0, util_1.initRefs)(intRef, extRef), className: classes._, style: styles._, onClick: handleListClick, onKeyDown: handleListKeyDown, children: (0, jsx_runtime_1.jsx)("div", { className: (_a = classes.items) === null || _a === void 0 ? void 0 : _a._, style: (_b = styles.items) === null || _b === void 0 ? void 0 : _b._, children: itemsComponent }) }));
 });
 List.displayName = 'List';
 exports.default = List;

@@ -12,7 +12,7 @@ const CLASS = {
     _: BASE,
     icon: `${BASE}-icon`
 };
-const CheckBox = ({ className, style, layout, name, data, label = 'CheckBox:', radio = false, wait, invalid, value, valueChecked = true, valueUnchecked = false, events = 'text icon', onChange }) => {
+const CheckBox = ({ className, style, layout, name, data, label = 'CheckBox:', radio = false, wait, disabled, invalid, value, valueChecked = true, valueUnchecked = false, events = 'text icon', onChange }) => {
     const ref = (0, react_1.useRef)(null);
     const classes = (0, react_1.useMemo)(() => (0, util_1.mergeClasses)(CLASS, className), [className]);
     const styles = (0, react_1.useMemo)(() => (0, util_1.mergeStyles)(style), [style]);
@@ -33,7 +33,7 @@ const CheckBox = ({ className, style, layout, name, data, label = 'CheckBox:', r
             handleChange(event);
         }
     };
-    return ((0, jsx_runtime_1.jsx)(Label_1.default, { ref: ref, className: classes, style: styles, layout: layout, name: name, data: data, label: label, icon: icon, wait: wait, invalid: invalid, onTextClick: handleTextClick, onIconClick: handleIconClick }));
+    return ((0, jsx_runtime_1.jsx)(Label_1.default, { ref: ref, className: classes, style: styles, layout: layout, name: name, data: data, label: label, icon: icon, wait: wait, disabled: disabled, invalid: invalid, onTextClick: handleTextClick, onIconClick: handleIconClick }));
 };
 exports.default = CheckBox;
 //# sourceMappingURL=CheckBox.js.map

@@ -6,6 +6,7 @@ export interface EditClass {
     _?: string;
     invalid?: string;
     wait?: string;
+    disabled?: string;
     input?: string | InputClass;
     icon?: string | IconClass;
 }
@@ -13,6 +14,7 @@ export interface EditStyle {
     _?: object;
     invalid?: object;
     wait?: object;
+    disabled?: object;
     input?: object | InputStyle;
     icon?: object | IconStyle;
 }
@@ -23,6 +25,7 @@ export interface EditProps {
     name?: string;
     data?: unknown;
     wait?: boolean;
+    disabled?: boolean;
     invalid?: boolean;
     icon?: string;
     value?: string | number;

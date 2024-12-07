@@ -1,8 +1,7 @@
 import { jsx as _jsx } from "react/jsx-runtime";
-import { useMemo, useCallback, forwardRef } from 'react';
+import { useMemo, forwardRef } from 'react';
 import Textarea from '../../lib/Textarea';
-import { mergeClasses, mergeStyles } from '../../util';
-import useLayout from '../../hooks/useLayout';
+import { createLayout } from '../../util';
 const BASE = 'tsi-memo';
 const CLASS = {
     _: `${BASE}`,
@@ -10,21 +9,12 @@ const CLASS = {
     wait: `${BASE}-wait`
 };
 const Memo = forwardRef(({ className, style, name, data, value, placeholder, readOnly, wait, invalid, onChange, onClick, onKeyDown }, ref) => {
-    const layoutClasses = useMemo(() => mergeClasses(CLASS, className), [className]);
-    const layoutStyles = useMemo(() => mergeStyles(style), [style]);
-    const mergeLayout = useCallback((key) => {
-        switch (key) {
-            case 'wait':
-                return wait;
-            case 'invalid':
-                return invalid;
-            default:
-                return false;
-        }
-    }, [wait, invalid]);
-    const [classes, styles] = useLayout(layoutClasses, layoutStyles, mergeLayout);
-    const params = useMemo(() => ({ name, data }), [data, name]);
     const isReadOnly = useMemo(() => Boolean(readOnly || wait || !onChange), [onChange, readOnly, wait]);
+    const [classes, styles] = useMemo(() => createLayout([CLASS, className], [style], {
+        wait: wait,
+        invalid: invalid
+    }), [className, style]);
+    const params = useMemo(() => ({ name, data }), [data, name]);
     const handleChange = onChange
         ? (event) => {
             if (!isReadOnly) {

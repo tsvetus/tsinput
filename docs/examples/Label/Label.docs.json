@@ -36,6 +36,11 @@
         "required": false
       },
       {
+        "name": "disabled",
+        "description": "",
+        "required": false
+      },
+      {
         "name": "layout",
         "description": "",
         "type": "string | string[]",

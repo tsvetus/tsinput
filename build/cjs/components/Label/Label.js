@@ -10,9 +10,9 @@ const Column_1 = __importDefault(require("./Column"));
 /**
  * Label component. Provides a simple way to add labels to React components.
  */
-const Label = (0, react_1.forwardRef)(({ className, style, layout = '', name, data, label = 'Label:', text = label, icon, wait, invalid, children, onClick, onTextClick, onIconClick }, ref) => {
+const Label = (0, react_1.forwardRef)(({ className, style, layout = '', name, data, label = 'Label:', text = label, icon, wait, disabled, invalid, children, onClick, onTextClick, onIconClick }, ref) => {
     const isColumn = (0, react_1.useMemo)(() => layout.includes('top') || layout.includes('border'), [layout]);
-    return isColumn ? ((0, jsx_runtime_1.jsx)(Column_1.default, { ref: ref, className: className, style: style, layout: layout, name: name, data: data, label: label, text: text, icon: icon, wait: wait, invalid: invalid, onClick: onClick, onTextClick: onTextClick, onIconClick: onIconClick, children: children })) : ((0, jsx_runtime_1.jsx)(Inline_1.default, { ref: ref, className: className, style: style, layout: layout, name: name, data: data, label: label, text: text, icon: icon, wait: wait, invalid: invalid, onClick: onClick, onTextClick: onTextClick, onIconClick: onIconClick, children: children }));
+    return isColumn ? ((0, jsx_runtime_1.jsx)(Column_1.default, { ref: ref, className: className, style: style, layout: layout, name: name, data: data, label: label, text: text, icon: icon, wait: wait, disabled: disabled, invalid: invalid, onClick: onClick, onTextClick: onTextClick, onIconClick: onIconClick, children: children })) : ((0, jsx_runtime_1.jsx)(Inline_1.default, { ref: ref, className: className, style: style, layout: layout, name: name, data: data, label: label, text: text, icon: icon, wait: wait, disabled: disabled, invalid: invalid, onClick: onClick, onTextClick: onTextClick, onIconClick: onIconClick, children: children }));
 });
 Label.displayName = 'Label';
 exports.default = Label;

@@ -1,8 +1,7 @@
 import { jsx as _jsx } from "react/jsx-runtime";
-import { useMemo, forwardRef, useState, useRef, useCallback } from 'react';
+import { useMemo, forwardRef, useState, useRef } from 'react';
 import { useEvents } from '../../hooks';
-import { mergeClasses, mergeStyles, initRefs } from '../../util';
-import useLayout from '../../hooks/useLayout';
+import { createLayout, initRefs } from '../../util';
 const BASE = 'tsi-list';
 const CLASS = {
     _: BASE,
@@ -17,12 +16,9 @@ const CLASS = {
 };
 const List = forwardRef(({ className, style, name, data, options = [], optionIndex, onChange, onClose, onClick, onKeyDown }, extRef) => {
     const intRef = useRef(null);
-    const classes = useMemo(() => mergeClasses(CLASS, className), [className]);
-    const styles = useMemo(() => mergeStyles(style), [style]);
-    const mergeSelected = useCallback((key) => 'selected' === key, []);
-    const mergeFocused = useCallback((key) => 'focused' === key, []);
-    const [selectedClasses, selectedStyles] = useLayout(classes?.items?.item, styles?.items?.item, mergeSelected);
-    const [focusedClasses, focusedStyles] = useLayout(classes?.items?.item, styles?.items?.item, mergeFocused);
+    const [classes, styles] = useMemo(() => createLayout([CLASS, className], [style]), [className, style]);
+    const [selectedClasses, selectedStyles] = useMemo(() => createLayout([classes?.items?.item?._, classes?.items?.item?.selected], [styles?.items?.item?._, styles?.items?.item?.selected]), [classes, styles]);
+    const [focusedClasses, focusedStyles] = useMemo(() => createLayout([classes?.items?.item?._, classes?.items?.item?.focused], [styles?.items?.item?._, styles?.items?.item?.focused]), [classes, styles]);
     const params = useMemo(() => ({ name, data }), [data, name]);
     const itemsCount = useMemo(() => options?.length || 0, [options]);
     const [focusIndex, setFocusIndex] = useState(optionIndex ?? -1);

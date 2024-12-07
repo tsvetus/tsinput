@@ -13,6 +13,7 @@ const CLASS = {
     _: BASE,
     wait: `${BASE}-wait`,
     invalid: `${BASE}-invalid`,
+    disabled: `${BASE}-disabled`,
     input: {
         _: `${BASE}-input`,
         left: `${BASE}-input-left`,
@@ -24,18 +25,19 @@ const CLASS = {
         right: `${BASE}-icon-right`
     }
 };
-const Edit = (0, react_1.forwardRef)(({ className, style, layout = '', name, data, value, icon, wait, invalid, readOnly, placeholder, children, onClick, onKeyDown, onIconClick, onInputClick, onInputKeyDown, onChange }, ref) => {
+const Edit = (0, react_1.forwardRef)(({ className, style, layout = '', name, data, value, icon, wait, disabled, invalid, readOnly, placeholder, children, onClick, onKeyDown, onIconClick, onInputClick, onInputKeyDown, onChange }, ref) => {
     var _a, _b;
     const isRightInput = (0, react_1.useMemo)(() => layout.includes('right'), [layout]);
-    const isReadOnly = (0, react_1.useMemo)(() => Boolean(readOnly || wait), [readOnly, wait]);
+    const isReadOnly = (0, react_1.useMemo)(() => Boolean(readOnly || wait || disabled), [readOnly, wait, disabled]);
     const [classes, styles] = (0, react_1.useMemo)(() => (0, util_1.createLayout)([CLASS, className], [style], {
-        wait: wait,
-        invalid: invalid,
+        wait,
+        invalid,
+        disabled,
         'input-right': isRightInput,
         'icon-left': isRightInput,
         'input-left': !isRightInput,
         'icon-right': !isRightInput
-    }), [className, style]);
+    }), [className, style, wait, invalid, disabled]);
     const params = (0, react_1.useMemo)(() => ({ name, data }), [data, name]);
     const handleChange = onChange
         ? (event) => {
@@ -69,7 +71,7 @@ const Edit = (0, react_1.forwardRef)(({ className, style, layout = '', name, dat
             onIconClick(Object.assign(Object.assign({}, event), params));
         }
         : undefined;
-    const iconComponent = icon ? ((0, jsx_runtime_1.jsx)(Icon_1.default, { className: classes === null || classes === void 0 ? void 0 : classes.icon, style: styles === null || styles === void 0 ? void 0 : styles.icon, icon: icon, wait: wait, invalid: invalid, onClick: handleIconClick })) : undefined;
+    const iconComponent = icon ? ((0, jsx_runtime_1.jsx)(Icon_1.default, { className: classes === null || classes === void 0 ? void 0 : classes.icon, style: styles === null || styles === void 0 ? void 0 : styles.icon, icon: icon, wait: wait, disabled: disabled, invalid: invalid, onClick: handleIconClick })) : undefined;
     const inputComponent = ((0, jsx_runtime_1.jsx)(Input_1.default, { className: (_a = classes === null || classes === void 0 ? void 0 : classes.input) === null || _a === void 0 ? void 0 : _a._, style: (_b = styles === null || styles === void 0 ? void 0 : styles.input) === null || _b === void 0 ? void 0 : _b._, value: `${value !== null && value !== void 0 ? value : ''}`, placeholder: placeholder, readOnly: isReadOnly, name: name, data: data, onChange: handleChange, onClick: handleInputClick, onKeyDown: handleInputKeyDown }));
     return isRightInput ? ((0, jsx_runtime_1.jsxs)("div", { ref: ref, className: classes === null || classes === void 0 ? void 0 : classes._, style: styles === null || styles === void 0 ? void 0 : styles._, onClick: handleClick, onKeyDown: handleKeyDown, children: [iconComponent, inputComponent, children] })) : ((0, jsx_runtime_1.jsxs)("div", { ref: ref, className: classes === null || classes === void 0 ? void 0 : classes._, style: styles === null || styles === void 0 ? void 0 : styles._, onClick: handleClick, onKeyDown: handleKeyDown, children: [inputComponent, iconComponent, children] }));
 });

@@ -10,6 +10,8 @@ export type LabelClass = {
     invalid?: string;
     /** Wait state CSS class */
     wait?: string;
+    /** Disabled state CSS class */
+    disabled?: string;
     /** Label header CSS class used for layout='top' or layout='border' */
     header?: string;
     /** Label text component CSS class - the same as 'text' property */
@@ -23,6 +25,7 @@ export type LabelStyle = {
     _?: object;
     invalid?: object;
     wait?: object;
+    disabled?: object;
     header?: object;
     label?: object | TextStyle;
     text?: object | TextStyle;
@@ -35,6 +38,7 @@ export type LabelProps = {
     data?: unknown;
     wait?: boolean;
     invalid?: boolean;
+    disabled?: boolean;
     layout?: string | string[];
     label?: string | ReactNode;
     text?: string | ReactNode;

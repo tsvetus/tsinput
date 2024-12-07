@@ -10,6 +10,7 @@ export type CheckBoxProps = {
     name?: string;
     data?: unknown;
     wait?: boolean;
+    disabled?: boolean;
     invalid?: boolean;
     label?: string | ReactNode;
     radio?: boolean;

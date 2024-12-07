@@ -22,7 +22,7 @@ const CLASS = {
         right: `${BASE}-icon-right`
     }
 };
-const Inline = (0, react_1.forwardRef)(({ className, style, layout = '', name, data, label, text, icon, wait, invalid, children, onClick, onTextClick, onIconClick }, ref) => {
+const Inline = (0, react_1.forwardRef)(({ className, style, layout = '', name, data, label, text, icon, wait, disabled, invalid, children, onClick, onTextClick, onIconClick }, ref) => {
     const isRightLabel = (0, react_1.useMemo)(() => layout.includes('right'), [layout]);
     const [classes, styles] = (0, react_1.useMemo)(() => (0, util_1.createLayout)([CLASS, className], [style], {
         'text-right': isRightLabel,
@@ -34,7 +34,7 @@ const Inline = (0, react_1.forwardRef)(({ className, style, layout = '', name, d
     const params = (0, react_1.useMemo)(() => ({ name, data }), [data, name]);
     const handleClick = onClick
         ? (event) => {
-            if (!wait) {
+            if (!wait && !disabled) {
                 onClick(Object.assign(Object.assign({}, event), params));
             }
         }
@@ -50,8 +50,8 @@ const Inline = (0, react_1.forwardRef)(({ className, style, layout = '', name, d
         }
         : undefined;
     const labelText = text || label;
-    const textComponent = labelText ? ((0, jsx_runtime_1.jsx)(Text_1.default, { className: textClasses, style: textStyles, name: name, data: data, value: labelText, wait: wait, invalid: invalid, onClick: handleTextClick })) : null;
-    const iconComponent = icon ? ((0, jsx_runtime_1.jsx)(Icon_1.default, { className: classes.icon, style: styles.icon, name: name, data: data, icon: icon, wait: wait, invalid: invalid, onClick: handleIconClick })) : null;
+    const textComponent = labelText ? ((0, jsx_runtime_1.jsx)(Text_1.default, { className: textClasses, style: textStyles, name: name, data: data, value: labelText, wait: wait, disabled: disabled, invalid: invalid, onClick: handleTextClick })) : null;
+    const iconComponent = icon ? ((0, jsx_runtime_1.jsx)(Icon_1.default, { className: classes.icon, style: styles.icon, name: name, data: data, icon: icon, wait: wait, disabled: disabled, invalid: invalid, onClick: handleIconClick })) : null;
     return isRightLabel ? ((0, jsx_runtime_1.jsxs)("div", { ref: ref, className: classes._, style: styles._, onClick: handleClick, children: [iconComponent, children, textComponent] })) : ((0, jsx_runtime_1.jsxs)("div", { ref: ref, className: classes._, style: styles._, onClick: handleClick, children: [textComponent, children, iconComponent] }));
 });
 Inline.displayName = 'Inline';

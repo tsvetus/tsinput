@@ -9,7 +9,7 @@ const util_1 = require("../../util");
 const Overlay_1 = __importDefault(require("../../lib/Overlay"));
 const List_1 = __importDefault(require("../../lib/List"));
 const Edit_1 = __importDefault(require("../Edit"));
-const ListBox = ({ className, style, layout, name, data, value, wait, invalid, readOnly = true, placeholder, valueField = 'value key code id', nameField = 'name label text', options, onClick, onKeyDown, onIconClick, onInputClick, onInputKeyDown, onChange, onSelect }) => {
+const ListBox = ({ className, style, layout, name, data, value, wait, disabled, invalid, readOnly = false, placeholder, valueField = 'value key code id', nameField = 'name label text caption', options, onClick, onKeyDown, onIconClick, onInputClick, onInputKeyDown, onChange, onSelect }) => {
     const editRef = (0, react_1.useRef)(null);
     const classes = (0, react_1.useMemo)(() => (0, util_1.mergeClasses)(className), [className]);
     const styles = (0, react_1.useMemo)(() => (0, util_1.mergeStyles)(style), [style]);
@@ -19,8 +19,11 @@ const ListBox = ({ className, style, layout, name, data, value, wait, invalid, r
         const nf = (0, util_1.asArray)(nameField);
         return originalOptions
             .map((option, index) => {
-            if (null === option || undefined === option) {
-                return { value: option, name: `${option}`, index };
+            if (null === option) {
+                return { value: option, name: `null`, index };
+            }
+            else if (undefined === option) {
+                return { value: option, name: `undefined`, index };
             }
             else if ('string' === typeof option || 'number' === typeof option) {
                 return { value: option, name: `${option}`, index };
@@ -40,7 +43,11 @@ const ListBox = ({ className, style, layout, name, data, value, wait, invalid, r
         const name = index >= 0 ? (_a = listOptions[index]) === null || _a === void 0 ? void 0 : _a.name : null;
         return [index, 'string' === typeof name ? name : ''];
     }, [value, listOptions]);
+    const canShowOverlay = !readOnly && listOptions.length > 0 && !wait && !disabled;
     const [showOverlay, setShowOverlay] = (0, react_1.useState)(false);
+    if (!canShowOverlay && showOverlay) {
+        setShowOverlay(false);
+    }
     const handleKeyDown = (event) => {
         onKeyDown === null || onKeyDown === void 0 ? void 0 : onKeyDown(event);
         if (!showOverlay && 'Enter' === event.nativeEvent.key) {
@@ -78,7 +85,7 @@ const ListBox = ({ className, style, layout, name, data, value, wait, invalid, r
         onSelect === null || onSelect === void 0 ? void 0 : onSelect(params);
         setShowOverlay(false);
     };
-    return ((0, jsx_runtime_1.jsx)(Edit_1.default, { ref: editRef, className: classes.edit, style: styles.edit, layout: layout, name: name, data: data, icon: showOverlay ? 'angle-down' : 'angle-up', wait: wait, invalid: invalid, readOnly: readOnly, placeholder: placeholder, value: optionName, onClick: onClick, onKeyDown: handleKeyDown, onIconClick: handleIconClick, onInputClick: handleInputClick, onInputKeyDown: onInputKeyDown, children: (0, jsx_runtime_1.jsx)(Overlay_1.default, { className: classes.overlay, style: styles.overlay, show: showOverlay, onTarget: () => editRef.current, children: (0, jsx_runtime_1.jsx)(List_1.default, { className: classes.list, style: styles.list, optionIndex: optionIndex, options: listOptions, onClose: handleListClose, onChange: handleListChange }) }) }));
+    return ((0, jsx_runtime_1.jsx)(Edit_1.default, { ref: editRef, className: classes._, style: styles._, layout: layout, name: name, data: data, icon: showOverlay ? 'angle-up' : 'angle-down', wait: wait, invalid: invalid, disabled: disabled, readOnly: true, placeholder: placeholder, value: optionName, onClick: onClick, onKeyDown: handleKeyDown, onIconClick: handleIconClick, onInputClick: handleInputClick, onInputKeyDown: onInputKeyDown, children: (0, jsx_runtime_1.jsx)(Overlay_1.default, { className: classes.overlay, style: styles.overlay, show: showOverlay, onTarget: () => editRef.current, children: (0, jsx_runtime_1.jsx)(List_1.default, { className: classes.list, style: styles.list, optionIndex: optionIndex, options: listOptions, onClose: handleListClose, onChange: handleListChange }) }) }));
 };
 exports.default = ListBox;
 //# sourceMappingURL=ListBox.js.map

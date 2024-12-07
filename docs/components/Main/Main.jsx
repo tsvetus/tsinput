@@ -16,7 +16,7 @@ const PAGE_OPTIONS = [
   { key: 'Label', render: () => <Label /> },
   { key: 'Edit', render: () => <Edit /> },
   { key: 'CheckBox', render: () => <CheckBox /> },
-  { key: 'Readme', render: () => <ListBox /> }
+  { key: 'ListBox', render: () => <ListBox /> }
 ]
 
 import './Main.css'
@@ -24,7 +24,7 @@ import './Main.css'
 const Main = () => {
   const [state, setState] = useState({
     showSideBar: true,
-    page: 'ListBox'
+    page: 'Readme'
   })
 
   const updateState = event => {
