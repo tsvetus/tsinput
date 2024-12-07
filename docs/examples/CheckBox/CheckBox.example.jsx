@@ -21,14 +21,14 @@ const CheckBoxExample = () => {
       <CheckBox
         className="tsi-docs-check-box"
         name="checkBoxA"
-        label="CheckBox caption:"
+        label="Check box caption:"
         value={state['checkBoxA']}
         onChange={handleCheckBoxChange}
       />
       <CheckBox
         className="tsi-docs-check-box"
         name="checkBoxB"
-        label="CheckBox caption:"
+        label="Radio button caption:"
         value={state['checkBoxB']}
         radio={true}
         onChange={handleCheckBoxChange}
@@ -38,7 +38,7 @@ const CheckBoxExample = () => {
         className={{ _: 'tsi-docs-check-box', icon: 'tsi-docs-check-box-icon', label: 'tsi-docs-check-box-label' }}
         layout="right"
         name="checkBoxC"
-        label="checkBox caption"
+        label="check box caption"
         value={state['checkBoxC']}
         onChange={handleCheckBoxChange}
       />
@@ -47,9 +47,36 @@ const CheckBoxExample = () => {
         style={{ icon: { color: 'red' }, label: { color: 'green' } }}
         layout="right"
         name="checkBoxD"
-        label="checkBox caption"
+        label="radio button caption"
         value={state['checkBoxD']}
         radio={true}
+        onChange={handleCheckBoxChange}
+      />
+      <h4>CheckBox invalid state:</h4>
+      <CheckBox
+        className="tsi-docs-check-box"
+        name="checkBoxE"
+        label="Check box caption:"
+        value={state['checkBoxE']}
+        invalid={true}
+        onChange={handleCheckBoxChange}
+      />
+      <h4>CheckBox wait state:</h4>
+      <CheckBox
+        className="tsi-docs-check-box"
+        name="checkBoxF"
+        label="Check box caption:"
+        value={state['checkBoxF']}
+        wait={true}
+        onChange={handleCheckBoxChange}
+      />
+      <h4>CheckBox disabled state:</h4>
+      <CheckBox
+        className="tsi-docs-check-box"
+        name="checkBoxG"
+        label="Check box caption:"
+        value={state['checkBoxG']}
+        disabled={true}
         onChange={handleCheckBoxChange}
       />
       <Events events={state.events} onClear={handleEventsClear} />

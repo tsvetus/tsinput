@@ -20,6 +20,7 @@
   --tsi-color-selected: #303030;
   --tsi-color-hover: #303030;
   --tsi-color-focused: #303030;
+  --tsi-color-disabled: #a8b5dd;
   /* Backgrounds */
   --tsi-background-selected: #acb2c2;
   --tsi-background-hover: #dce9e7;
@@ -284,6 +285,10 @@ body {
   color: var(--tsi-color-invalid) !important;
 }
 
+.tsi-text-disabled {
+  color: var(--tsi-color-disabled) !important;
+}
+
 /* Icon component */
 
 .tsi-icon {
@@ -306,6 +311,10 @@ body {
 
 .tsi-icon-invalid {
   color: var(--tsi-color-invalid) !important;
+}
+
+.tsi-icon-disabled {
+  color: var(--tsi-color-disabled) !important;
 }
 
 /* Label component */
@@ -414,6 +423,10 @@ body {
 
 .tsi-edit-invalid {
   border-color: var(--tsi-color-invalid);
+}
+
+.tsi-edit-disabled {
+  border-color: var(--tsi-color-disabled);
 }
 
 .tsi-edit-input {

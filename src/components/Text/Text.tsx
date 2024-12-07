@@ -9,17 +9,19 @@ const BASE = 'tsi-text'
 const CLASS = {
   _: BASE,
   invalid: `${BASE}-invalid`,
-  wait: `${BASE}-wait`
+  wait: `${BASE}-wait`,
+  disabled: `${BASE}-disabled`
 }
 
-const Text = ({ className, style, name, data, wait, invalid, value, onClick, onKeyDown }: TextProps) => {
+const Text = ({ className, style, name, data, wait, invalid, disabled, value, onClick, onKeyDown }: TextProps) => {
   const [classes, styles] = useMemo(
     () =>
       createLayout([CLASS, className], [style], {
-        wait: wait,
-        invalid: invalid
+        wait,
+        invalid,
+        disabled
       }),
-    [className, style]
+    [className, style, wait, invalid, disabled]
   )
 
   const params = useMemo(() => ({ name, data }), [data, name])

@@ -7,6 +7,7 @@ export interface ListBoxClass {
   _?: string
   invalid?: string
   wait?: string
+  disabled?: string
   edit?: string | EditClass
   overlay?: string | OverlayClass
   list?: string | ListClass
@@ -16,6 +17,7 @@ export interface ListBoxStyle {
   _?: object
   invalid?: object
   wait?: object
+  disabled?: object
   edit?: string | EditStyle
   overlay?: string | OverlayStyle
   list?: string | ListStyle
@@ -28,6 +30,7 @@ export interface ListBoxProps {
   name?: string
   data?: unknown
   wait?: boolean
+  disabled?: boolean
   invalid?: boolean
   value?: string | number
   readOnly?: boolean

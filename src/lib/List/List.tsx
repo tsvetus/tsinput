@@ -1,12 +1,10 @@
-import React, { useMemo, forwardRef, useState, useRef, useCallback, Ref } from 'react'
+import React, { useMemo, forwardRef, useState, useRef, Ref } from 'react'
 
 import { useEvents } from '../../hooks'
 
-import { mergeClasses, mergeStyles, initRefs } from '../../util'
+import { createLayout, initRefs } from '../../util'
 
 import { ListProps, StepEventHandler, ChangeEventHandler, CloseEventHandler } from './types'
-
-import useLayout from '../../hooks/useLayout'
 
 const BASE = 'tsi-list'
 
@@ -29,17 +27,25 @@ const List = forwardRef(
   ) => {
     const intRef = useRef<HTMLDivElement>(null)
 
-    const classes = useMemo(() => mergeClasses(CLASS, className), [className])
+    const [classes, styles] = useMemo(() => createLayout([CLASS, className], [style]), [className, style])
 
-    const styles = useMemo(() => mergeStyles(style), [style])
+    const [selectedClasses, selectedStyles] = useMemo(
+      () =>
+        createLayout(
+          [classes?.items?.item?._, classes?.items?.item?.selected],
+          [styles?.items?.item?._, styles?.items?.item?.selected]
+        ),
+      [classes, styles]
+    )
 
-    const mergeSelected = useCallback((key: string) => 'selected' === key, [])
-
-    const mergeFocused = useCallback((key: string) => 'focused' === key, [])
-
-    const [selectedClasses, selectedStyles] = useLayout(classes?.items?.item, styles?.items?.item, mergeSelected)
-
-    const [focusedClasses, focusedStyles] = useLayout(classes?.items?.item, styles?.items?.item, mergeFocused)
+    const [focusedClasses, focusedStyles] = useMemo(
+      () =>
+        createLayout(
+          [classes?.items?.item?._, classes?.items?.item?.focused],
+          [styles?.items?.item?._, styles?.items?.item?.focused]
+        ),
+      [classes, styles]
+    )
 
     const params = useMemo(() => ({ name, data }), [data, name])
 

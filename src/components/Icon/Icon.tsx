@@ -10,7 +10,8 @@ const CLASS = {
   _: '',
   active: `${BASE}-active`,
   invalid: `${BASE}-invalid`,
-  wait: `${BASE}-wait`
+  wait: `${BASE}-wait`,
+  disabled: `${BASE}-disabled`
 }
 
 /**
@@ -27,26 +28,28 @@ const Icon = ({
   baseClass = BASE,
   wait,
   invalid,
+  disabled,
   onClick,
   onKeyDown
 }: IconProps) => {
-  const active = Boolean(onClick)
+  const active = Boolean(onClick && !wait && !disabled)
 
   const [classes, styles] = useMemo(
     () =>
       createLayout([CLASS, baseClass || BASE, icon ? `${BASE}-${icon}` : null, className], [style], {
-        active: active,
-        wait: wait,
-        invalid: invalid
+        active,
+        wait,
+        invalid,
+        disabled
       }),
-    [className, style, active, wait, invalid, icon]
+    [className, style, icon, active, wait, invalid, disabled]
   )
 
   const params = useMemo(() => ({ name, data, value: icon, icon }), [icon, data, name])
 
   const handleClick = onClick
     ? (event: MouseEvent<HTMLElement>) => {
-        if (!wait) {
+        if (!wait && !disabled) {
           onClick({ ...event, ...params })
         }
       }
@@ -54,7 +57,7 @@ const Icon = ({
 
   const handleKeyDown = onKeyDown
     ? (event: KeyboardEvent<HTMLElement>) => {
-        if (!wait) {
+        if (!wait && !disabled) {
           onKeyDown({ ...event, ...params })
         }
       }

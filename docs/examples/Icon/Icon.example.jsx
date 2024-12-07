@@ -44,6 +44,15 @@ const IconExample = () => {
         data={{ value: 'some value' }}
         onClick={event => setEvents(events.concat({ name: event.name, data: event.data, icon: event.icon }))}
       />
+      <div>Icon in disabled state:</div>
+      <Icon
+        className="tsi-docs-icon"
+        icon="selected"
+        name="wait"
+        disabled={true}
+        data={{ value: 'some value' }}
+        onClick={event => setEvents(events.concat({ name: event.name, data: event.data, icon: event.icon }))}
+      />
       <Events events={events} onClear={() => setEvents([])} />
     </>
   )

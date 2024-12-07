@@ -13,6 +13,7 @@ const CLASS = {
   _: BASE,
   wait: `${BASE}-wait`,
   invalid: `${BASE}-invalid`,
+  disabled: `${BASE}-disabled`,
   input: {
     _: `${BASE}-input`,
     left: `${BASE}-input-left`,
@@ -36,6 +37,7 @@ const Edit = forwardRef(
       value,
       icon,
       wait,
+      disabled,
       invalid,
       readOnly,
       placeholder,
@@ -50,19 +52,20 @@ const Edit = forwardRef(
     ref?: Ref<HTMLInputElement>
   ) => {
     const isRightInput = useMemo(() => layout.includes('right'), [layout])
-    const isReadOnly = useMemo(() => Boolean(readOnly || wait), [readOnly, wait])
+    const isReadOnly = useMemo(() => Boolean(readOnly || wait || disabled), [readOnly, wait, disabled])
 
     const [classes, styles] = useMemo(
       () =>
         createLayout([CLASS, className], [style], {
-          wait: wait,
-          invalid: invalid,
+          wait,
+          invalid,
+          disabled,
           'input-right': isRightInput,
           'icon-left': isRightInput,
           'input-left': !isRightInput,
           'icon-right': !isRightInput
         }),
-      [className, style]
+      [className, style, wait, invalid, disabled]
     )
 
     const params = useMemo(() => ({ name, data }), [data, name])
@@ -111,6 +114,7 @@ const Edit = forwardRef(
         style={styles?.icon}
         icon={icon}
         wait={wait}
+        disabled={disabled}
         invalid={invalid}
         onClick={handleIconClick}
       />

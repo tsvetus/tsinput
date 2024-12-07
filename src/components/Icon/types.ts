@@ -10,6 +10,8 @@ export type IconClass = {
   invalid?: string
   /** Wait state CSS class  */
   wait?: string
+  /** Disabled state CSS class  */
+  disabled?: string
 }
 
 /** Icon component CSS style description */
@@ -22,6 +24,8 @@ export type IconStyle = {
   invalid?: object
   /** Wait state CSS style  */
   wait?: object
+  /** Disabled state CSS style  */
+  disabled?: object
 }
 
 /** Icon component properties */
@@ -42,6 +46,8 @@ export type IconProps = {
   wait?: boolean
   /** Component invalid state */
   invalid?: boolean
+  /** Component disabled state */
+  disabled?: boolean
   /** Compoinent click event */
   onClick?: TsiMouseEventHandler<HTMLElement>
   /** Compoinent key down event */

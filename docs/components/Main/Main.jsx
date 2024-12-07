@@ -8,13 +8,15 @@ import Icon from '../../examples/Icon'
 import Label from '../../examples/Label'
 import Edit from '../../examples/Edit'
 import CheckBox from '../../examples/CheckBox'
+import ListBox from '../../examples/ListBox'
 
 const PAGE_OPTIONS = [
   { key: 'Readme', render: () => <Readme /> },
   { key: 'Icon', render: () => <Icon /> },
   { key: 'Label', render: () => <Label /> },
   { key: 'Edit', render: () => <Edit /> },
-  { key: 'CheckBox', render: () => <CheckBox /> }
+  { key: 'CheckBox', render: () => <CheckBox /> },
+  { key: 'Readme', render: () => <ListBox /> }
 ]
 
 import './Main.css'
@@ -22,7 +24,7 @@ import './Main.css'
 const Main = () => {
   const [state, setState] = useState({
     showSideBar: true,
-    page: 'Readme'
+    page: 'ListBox'
   })
 
   const updateState = event => {

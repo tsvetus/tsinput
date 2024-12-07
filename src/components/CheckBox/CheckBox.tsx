@@ -22,6 +22,7 @@ const CheckBox = ({
   label = 'CheckBox:',
   radio = false,
   wait,
+  disabled,
   invalid,
   value,
   valueChecked = true,
@@ -67,6 +68,7 @@ const CheckBox = ({
       label={label}
       icon={icon}
       wait={wait}
+      disabled={disabled}
       invalid={invalid}
       onTextClick={handleTextClick}
       onIconClick={handleIconClick}

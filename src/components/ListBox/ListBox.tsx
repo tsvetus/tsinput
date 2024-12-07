@@ -17,11 +17,12 @@ const ListBox = ({
   data,
   value,
   wait,
+  disabled,
   invalid,
-  readOnly = true,
+  readOnly = false,
   placeholder,
   valueField = 'value key code id',
-  nameField = 'name label text',
+  nameField = 'name label text caption',
   options,
   onClick,
   onKeyDown,
@@ -44,8 +45,10 @@ const ListBox = ({
     const nf = asArray(nameField)
     return originalOptions
       .map((option, index) => {
-        if (null === option || undefined === option) {
-          return { value: option, name: `${option}`, index }
+        if (null === option) {
+          return { value: option, name: `null`, index }
+        } else if (undefined === option) {
+          return { value: option, name: `undefined`, index }
         } else if ('string' === typeof option || 'number' === typeof option) {
           return { value: option, name: `${option}`, index }
         } else if ('object' === typeof option) {
@@ -62,7 +65,13 @@ const ListBox = ({
     return [index, 'string' === typeof name ? name : '']
   }, [value, listOptions])
 
+  const canShowOverlay = !readOnly && listOptions.length > 0 && !wait && !disabled
+
   const [showOverlay, setShowOverlay] = useState(false)
+
+  if (!canShowOverlay && showOverlay) {
+    setShowOverlay(false)
+  }
 
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     onKeyDown?.(event)
@@ -117,15 +126,16 @@ const ListBox = ({
   return (
     <Edit
       ref={editRef}
-      className={classes.edit}
-      style={styles.edit}
+      className={classes._}
+      style={styles._}
       layout={layout}
       name={name}
       data={data}
-      icon={showOverlay ? 'angle-down' : 'angle-up'}
+      icon={showOverlay ? 'angle-up' : 'angle-down'}
       wait={wait}
       invalid={invalid}
-      readOnly={readOnly}
+      disabled={disabled}
+      readOnly={true}
       placeholder={placeholder}
       value={optionName}
       onClick={onClick}

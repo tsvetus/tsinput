@@ -27,12 +27,15 @@ const IconExample = () => {
         <div className="tsi-docs-label-content">Using &quot;style&quot; property is also available</div>
       </Label>
 
-      <h4>Label invalid/wait states example:</h4>
+      <h4>Label invalid/wait/disabled states example:</h4>
       <Label className="tsi-docs-label" label="Label caption:" invalid={true}>
         <div className="tsi-docs-label-content">Label in ivalid state</div>
       </Label>
       <Label className="tsi-docs-label" label="Label caption:" wait={true}>
         <div className="tsi-docs-label-content">Label in wait state</div>
+      </Label>
+      <Label className="tsi-docs-label" label="Label caption:" disabled={true}>
+        <div className="tsi-docs-label-content">Label in disabled state</div>
       </Label>
 
       <h4>Label with icon example:</h4>

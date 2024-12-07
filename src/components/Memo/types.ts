@@ -17,8 +17,8 @@ export interface MemoProps {
   style?: object | MemoStyle
   name?: string
   data?: unknown
-  wait?: unknown
-  invalid?: unknown
+  wait?: boolean
+  invalid?: boolean
   value?: string
   readOnly?: boolean
   placeholder?: string

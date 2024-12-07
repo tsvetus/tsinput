@@ -85,6 +85,16 @@ const EditExample = () => {
         onChange={handleEditChange}
         onIconClick={handleEditClear}
       />
+      <h4>Edit &quot;disabled&quot; state:</h4>
+      <Edit
+        className="tsi-docs-edit"
+        name="editG"
+        value={state['editG']}
+        icon="close"
+        disabled={true}
+        onChange={handleEditChange}
+        onIconClick={handleEditClear}
+      />
       <Events events={state.events} onClear={handleEventsClear} />
     </>
   )

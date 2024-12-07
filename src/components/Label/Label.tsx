@@ -20,6 +20,7 @@ const Label = forwardRef<HTMLDivElement, LabelProps>(
       text = label,
       icon,
       wait,
+      disabled,
       invalid,
       children,
       onClick,
@@ -41,6 +42,7 @@ const Label = forwardRef<HTMLDivElement, LabelProps>(
         text={text}
         icon={icon}
         wait={wait}
+        disabled={disabled}
         invalid={invalid}
         onClick={onClick}
         onTextClick={onTextClick}
@@ -60,6 +62,7 @@ const Label = forwardRef<HTMLDivElement, LabelProps>(
         text={text}
         icon={icon}
         wait={wait}
+        disabled={disabled}
         invalid={invalid}
         onClick={onClick}
         onTextClick={onTextClick}

@@ -37,6 +37,7 @@ const Column = forwardRef<HTMLDivElement, LabelProps>(
       text,
       icon,
       wait,
+      disabled,
       invalid,
       children,
       onClick,
@@ -66,7 +67,7 @@ const Column = forwardRef<HTMLDivElement, LabelProps>(
 
     const handleClick = onClick
       ? (event: MouseEvent<HTMLDivElement>) => {
-          if (!wait) {
+          if (!wait && !disabled) {
             onClick({ ...event, ...params })
           }
         }
@@ -94,6 +95,7 @@ const Column = forwardRef<HTMLDivElement, LabelProps>(
         data={data}
         value={labelText}
         wait={wait}
+        disabled={disabled}
         invalid={invalid}
         onClick={handleTextClick}
       />
@@ -109,6 +111,7 @@ const Column = forwardRef<HTMLDivElement, LabelProps>(
         data={data}
         icon={icon}
         wait={wait}
+        disabled={disabled}
         invalid={invalid}
         onClick={handleIconClick}
       />
