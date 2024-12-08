@@ -20,7 +20,7 @@ const ListBox = ({ className, style, layout, name, data, value, wait, disabled, 
                 return value === option;
             }
         });
-    }, [originalOptions]);
+    }, [originalOptions, valueField]);
     const listOptions = useMemo(() => {
         const vf = asArray(valueField);
         const nf = asArray(nameField);

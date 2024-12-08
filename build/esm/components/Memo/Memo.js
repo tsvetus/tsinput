@@ -8,12 +8,13 @@ const CLASS = {
     invalid: `${BASE}-invalid`,
     wait: `${BASE}-wait`
 };
-const Memo = forwardRef(({ className, style, name, data, value, placeholder, readOnly, wait, invalid, onChange, onClick, onKeyDown }, ref) => {
+const Memo = forwardRef(({ className, style, name, data, value, placeholder, readOnly, wait, invalid, disabled, onChange, onClick, onKeyDown }, ref) => {
     const isReadOnly = useMemo(() => Boolean(readOnly || wait || !onChange), [onChange, readOnly, wait]);
     const [classes, styles] = useMemo(() => createLayout([CLASS, className], [style], {
-        wait: wait,
-        invalid: invalid
-    }), [className, style]);
+        wait,
+        invalid,
+        disabled
+    }), [className, style, wait, invalid, disabled]);
     const params = useMemo(() => ({ name, data }), [data, name]);
     const handleChange = onChange
         ? (event) => {

@@ -52,7 +52,7 @@ const ListBox = ({
         }
       })
     },
-    [originalOptions]
+    [originalOptions, valueField]
   )
 
   const listOptions = useMemo(() => {

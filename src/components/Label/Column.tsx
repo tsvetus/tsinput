@@ -55,7 +55,7 @@ const Column = forwardRef<HTMLDivElement, LabelProps>(
           'text-border': isBorder,
           'icon-border': isBorder
         }),
-      [className, style]
+      [className, isBorder, style]
     )
 
     const [textClasses, textStyles] = useMemo(

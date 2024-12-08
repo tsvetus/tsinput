@@ -3,11 +3,13 @@ export interface MemoClass {
     _?: string | TsiClass;
     invalid?: string | TsiClass;
     wait?: string;
+    disabled?: string;
 }
 export interface MemoStyle {
     _?: object;
     invalid?: object;
     wait?: object;
+    disabled?: object;
 }
 export interface MemoProps {
     className?: string | MemoClass;
@@ -15,6 +17,7 @@ export interface MemoProps {
     name?: string;
     data?: unknown;
     wait?: boolean;
+    disabled?: boolean;
     invalid?: boolean;
     value?: string;
     readOnly?: boolean;

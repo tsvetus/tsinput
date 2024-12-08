@@ -372,6 +372,7 @@ body {
 }
 
 .tsi-label-text-border {
+  transform: translateY(0.08em);
   padding: 0.1em 0.5em 0.1em 0.5em;
   background: var(--tsi-label-text-border-background);
   border-radius: var(--tsi-label-text-border-radius);
@@ -398,6 +399,7 @@ body {
 }
 
 .tsi-label-icon-border {
+  transform: translateY(-0.1em);
   padding: 0.1em 0.5em 0.1em 0.5em;
   background: var(--tsi-label-icon-border-background);
   border-radius: var(--tsi-label-icon-border-radius);
@@ -634,6 +636,10 @@ body {
 
 .tsi-memo-invalid {
   border-color: var(--tsi-color-invalid);
+}
+
+.tsi-memo-disabled {
+  border-color: var(--tsi-color-disabled);
 }
 
 /* LabelMemo */

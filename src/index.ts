@@ -1,5 +1,6 @@
 import Icon from './components/Icon'
 import Edit from './components/Edit'
+import Memo from './components/Memo'
 import Label from './components/Label'
 import LabelIcon from './components/LabelIcon'
 import LabelEdit from './components/LabelEdit'
@@ -21,6 +22,7 @@ import { stringify } from './util'
 export {
   Icon,
   Edit,
+  Memo,
   Label,
   LabelIcon,
   LabelEdit,

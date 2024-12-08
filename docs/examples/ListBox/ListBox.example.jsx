@@ -33,6 +33,7 @@ const ListBoxExample = () => {
         name="listBoxA"
         label="ListBox caption:"
         value={state['listBoxA']}
+        placeholder="Select item"
         options={OBJECT_OPTIONS}
         onChange={handleListBoxChange}
       />

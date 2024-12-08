@@ -29,7 +29,7 @@ const Inline = (0, react_1.forwardRef)(({ className, style, layout = '', name, d
         'icon-left': isRightLabel,
         'text-left': !isRightLabel,
         'icon-right': !isRightLabel
-    }), [className, style]);
+    }), [className, isRightLabel, style]);
     const [textClasses, textStyles] = (0, react_1.useMemo)(() => (0, util_1.createLayout)([classes.text, classes.label], [styles.text, styles.label]), [classes, styles]);
     const params = (0, react_1.useMemo)(() => ({ name, data }), [data, name]);
     const handleClick = onClick

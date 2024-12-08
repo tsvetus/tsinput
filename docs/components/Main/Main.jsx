@@ -7,6 +7,7 @@ import Readme from '../Readme'
 import Icon from '../../examples/Icon'
 import Label from '../../examples/Label'
 import Edit from '../../examples/Edit'
+import Memo from '../../examples/Memo'
 import CheckBox from '../../examples/CheckBox'
 import ListBox from '../../examples/ListBox'
 
@@ -15,6 +16,7 @@ const PAGE_OPTIONS = [
   { key: 'Icon', render: () => <Icon /> },
   { key: 'Label', render: () => <Label /> },
   { key: 'Edit', render: () => <Edit /> },
+  { key: 'Memo', render: () => <Memo /> },
   { key: 'CheckBox', render: () => <CheckBox /> },
   { key: 'ListBox', render: () => <ListBox /> }
 ]

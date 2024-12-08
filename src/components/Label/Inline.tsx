@@ -54,7 +54,7 @@ const Inline = forwardRef<HTMLDivElement, LabelProps>(
           'text-left': !isRightLabel,
           'icon-right': !isRightLabel
         }),
-      [className, style]
+      [className, isRightLabel, style]
     )
 
     const [textClasses, textStyles] = useMemo(

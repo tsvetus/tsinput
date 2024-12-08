@@ -25,7 +25,7 @@ const ListBox = ({ className, style, layout, name, data, value, wait, disabled, 
                 return value === option;
             }
         });
-    }, [originalOptions]);
+    }, [originalOptions, valueField]);
     const listOptions = (0, react_1.useMemo)(() => {
         const vf = (0, util_1.asArray)(valueField);
         const nf = (0, util_1.asArray)(nameField);

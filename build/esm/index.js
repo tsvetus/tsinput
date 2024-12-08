@@ -1,5 +1,6 @@
 import Icon from './components/Icon';
 import Edit from './components/Edit';
+import Memo from './components/Memo';
 import Label from './components/Label';
 import LabelIcon from './components/LabelIcon';
 import LabelEdit from './components/LabelEdit';
@@ -16,5 +17,5 @@ import MenuItem from './components/MenuItem';
 import Content from './components/Content';
 import Menu from './components/Menu';
 import { stringify } from './util';
-export { Icon, Edit, Label, LabelIcon, LabelEdit, LabelMemo, ListBox, SideBar, TopBar, TabControl, CheckBox, Group, LabelGroup, Page, MenuItem, Content, Menu, stringify };
+export { Icon, Edit, Memo, Label, LabelIcon, LabelEdit, LabelMemo, ListBox, SideBar, TopBar, TabControl, CheckBox, Group, LabelGroup, Page, MenuItem, Content, Menu, stringify };
 //# sourceMappingURL=index.js.map

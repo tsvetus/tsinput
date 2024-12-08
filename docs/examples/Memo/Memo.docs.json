@@ -1,0 +1,78 @@
+[
+  {
+    "name": "Memo",
+    "description": "",
+    "props": [
+      {
+        "name": "className",
+        "description": "",
+        "type": "string | MemoClass",
+        "required": false
+      },
+      {
+        "name": "style",
+        "description": "",
+        "type": "object | MemoStyle",
+        "required": false
+      },
+      {
+        "name": "name",
+        "description": "",
+        "required": false
+      },
+      {
+        "name": "data",
+        "description": "",
+        "required": false
+      },
+      {
+        "name": "wait",
+        "description": "",
+        "required": false
+      },
+      {
+        "name": "disabled",
+        "description": "",
+        "required": false
+      },
+      {
+        "name": "invalid",
+        "description": "",
+        "required": false
+      },
+      {
+        "name": "value",
+        "description": "",
+        "required": false
+      },
+      {
+        "name": "readOnly",
+        "description": "",
+        "required": false
+      },
+      {
+        "name": "placeholder",
+        "description": "",
+        "required": false
+      },
+      {
+        "name": "onChange",
+        "description": "",
+        "type": "(event: TsiInputEvent<T>) => void",
+        "required": false
+      },
+      {
+        "name": "onClick",
+        "description": "",
+        "type": "(event: TsiMouseEvent<T>) => void",
+        "required": false
+      },
+      {
+        "name": "onKeyDown",
+        "description": "",
+        "type": "(event: TsiKeyboardEvent<T>) => void",
+        "required": false
+      }
+    ]
+  }
+]

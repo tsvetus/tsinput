@@ -24,7 +24,7 @@ const Inline = forwardRef(({ className, style, layout = '', name, data, label, t
         'icon-left': isRightLabel,
         'text-left': !isRightLabel,
         'icon-right': !isRightLabel
-    }), [className, style]);
+    }), [className, isRightLabel, style]);
     const [textClasses, textStyles] = useMemo(() => createLayout([classes.text, classes.label], [styles.text, styles.label]), [classes, styles]);
     const params = useMemo(() => ({ name, data }), [data, name]);
     const handleClick = onClick

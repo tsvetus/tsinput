@@ -26,6 +26,7 @@ const Memo = forwardRef(
       readOnly,
       wait,
       invalid,
+      disabled,
       onChange,
       onClick,
       onKeyDown
@@ -37,10 +38,11 @@ const Memo = forwardRef(
     const [classes, styles] = useMemo(
       () =>
         createLayout([CLASS, className], [style], {
-          wait: wait,
-          invalid: invalid
+          wait,
+          invalid,
+          disabled
         }),
-      [className, style]
+      [className, style, wait, invalid, disabled]
     )
     const params = useMemo(() => ({ name, data }), [data, name])
 

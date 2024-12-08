@@ -22,7 +22,13 @@ const EditExample = () => {
   return (
     <>
       <h4>Edit example:</h4>
-      <Edit className="tsi-docs-edit" name="editA" value={state['editA']} onChange={handleEditChange} />
+      <Edit
+        className="tsi-docs-edit"
+        name="editA"
+        placeholder="Enter text here"
+        value={state['editA']}
+        onChange={handleEditChange}
+      />
       <h4>Edit with icon example:</h4>
       <Edit
         className="tsi-docs-edit"

@@ -42,7 +42,7 @@ const Icon = ({
         invalid,
         disabled
       }),
-    [className, style, icon, active, wait, invalid, disabled]
+    [baseClass, icon, className, style, active, wait, invalid, disabled]
   )
 
   const params = useMemo(() => ({ name, data, value: icon, icon }), [icon, data, name])

@@ -25,7 +25,7 @@ const Column = forwardRef(({ className, style, layout = '', name, data, label, t
         'header-border': isBorder,
         'text-border': isBorder,
         'icon-border': isBorder
-    }), [className, style]);
+    }), [className, isBorder, style]);
     const [textClasses, textStyles] = useMemo(() => createLayout([classes.text, classes.label], [styles.text, styles.label]), [classes, styles]);
     const params = useMemo(() => ({ name, data }), [data, name]);
     const handleClick = onClick
