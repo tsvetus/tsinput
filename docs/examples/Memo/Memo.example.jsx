@@ -21,7 +21,7 @@ const MemoExample = () => {
       <Memo
         className="tsi-docs-memo"
         name="memoA"
-        placeholder="Please enter eny text"
+        placeholder="Please enter any text"
         value={state['memoA']}
         onChange={handleEditChange}
       />

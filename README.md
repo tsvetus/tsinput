@@ -70,18 +70,18 @@ const App = () => {
   return (
     <>
       <h4>Label stylization example:</h4>
-      <Label className="tsi-docs-label" text="Label caption:">
+      <Label className="tsi-docs-label" label="Label caption:">
         <div className="tsi-docs-label-content">Class name will be applied to the root element</div>
       </Label>
       <Label
-        className={{ _: 'tsi-docs-label tsi-docs-label-green', text: 'tsi-docs-label-blue' }}
+        className={{ _: 'tsi-docs-label tsi-docs-label-green', label: 'tsi-docs-label-blue' }}
         text="Label caption:"
       >
         <div className="tsi-docs-label-content">
           To use class for text, use text &quot;key&quot; in the style label text and &quot;_&quot; for the root element
         </div>
       </Label>
-      <Label className="tsi-docs-label" style={{ color: 'red', text: { color: 'green' } }} text="Label caption:">
+      <Label className="tsi-docs-label" style={{ color: 'red', label: { color: 'green' } }} label="Label caption:">
         <div className="tsi-docs-label-content">Using &quot;style&quot; property is also available</div>
       </Label>
     </>
