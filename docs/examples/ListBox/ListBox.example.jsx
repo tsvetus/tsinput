@@ -6,7 +6,7 @@ import Events from '../../components/Events'
 
 import './ListBox.example.css'
 
-const OPTIONS = [
+const OBJECT_OPTIONS = [
   { value: 0, name: 'Item 1' },
   { value: 1, name: 'Item 2' },
   { value: 2, name: 'Item 3' },
@@ -14,11 +14,13 @@ const OPTIONS = [
   { value: 4, name: 'Item 5' }
 ]
 
+const STRING_OPTIONS = ['Item string 1', 'Item string 2', 'Item string 3', 'Item string 4', 'Item string 5']
+
 const ListBoxExample = () => {
   const [state, setState] = useState({ events: [] })
   const handleListBoxChange = event => {
-    const { name, data, value } = event
-    setState({ ...state, events: state.events.concat({ name, data, value }), [name]: value })
+    const { name, data, value, option } = event
+    setState({ ...state, events: state.events.concat({ name, data, value, option }), [name]: value })
   }
   const handleEventsClear = () => {
     setState({ ...state, events: [] })
@@ -31,7 +33,15 @@ const ListBoxExample = () => {
         name="listBoxA"
         label="ListBox caption:"
         value={state['listBoxA']}
-        options={OPTIONS}
+        options={OBJECT_OPTIONS}
+        onChange={handleListBoxChange}
+      />
+      <ListBox
+        className="tsi-docs-list-box"
+        name="listBoxS"
+        label="ListBox caption:"
+        value={state['listBoxS']}
+        options={STRING_OPTIONS}
         onChange={handleListBoxChange}
       />
       <h4>ListkBox invalid state:</h4>
@@ -40,7 +50,7 @@ const ListBoxExample = () => {
         name="listBoxB"
         label="ListBox caption:"
         value={state['listBoxB']}
-        options={OPTIONS}
+        options={OBJECT_OPTIONS}
         invalid={true}
         onChange={handleListBoxChange}
       />
@@ -50,7 +60,7 @@ const ListBoxExample = () => {
         name="listBoxC"
         label="ListBox caption:"
         value={state['listBoxC']}
-        options={OPTIONS}
+        options={OBJECT_OPTIONS}
         wait={true}
         onChange={handleListBoxChange}
       />
@@ -60,7 +70,7 @@ const ListBoxExample = () => {
         name="listBoxD"
         label="ListBox caption:"
         value={state['listBoxD']}
-        options={OPTIONS}
+        options={OBJECT_OPTIONS}
         disabled={true}
         onChange={handleListBoxChange}
       />

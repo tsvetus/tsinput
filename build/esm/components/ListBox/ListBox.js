@@ -1,5 +1,5 @@
 import { jsx as _jsx } from "react/jsx-runtime";
-import { useRef, useState, useMemo } from 'react';
+import { useRef, useState, useMemo, useCallback } from 'react';
 import { mergeClasses, mergeStyles, asArray } from '../../util';
 import Overlay from '../../lib/Overlay';
 import List from '../../lib/List';
@@ -9,6 +9,18 @@ const ListBox = ({ className, style, layout, name, data, value, wait, disabled, 
     const classes = useMemo(() => mergeClasses(className), [className]);
     const styles = useMemo(() => mergeStyles(style), [style]);
     const originalOptions = useMemo(() => options || [], [options]);
+    const getOriginalOption = useCallback((value) => {
+        const fields = asArray(valueField);
+        return originalOptions.find(option => {
+            if (option && 'object' === typeof option) {
+                const field = fields.find(f => option[f]);
+                return field ? value === option[field] : false;
+            }
+            else {
+                return value === option;
+            }
+        });
+    }, [originalOptions]);
     const listOptions = useMemo(() => {
         const vf = asArray(valueField);
         const nf = asArray(nameField);
@@ -63,23 +75,27 @@ const ListBox = ({ className, style, layout, name, data, value, wait, disabled, 
         setShowOverlay(!showOverlay);
     };
     const handleListClose = (event) => {
+        const newValue = listOptions[optionIndex]?.value;
+        const newOption = getOriginalOption(newValue);
         onChange?.({
             ...event,
             name,
             data,
-            value: listOptions[optionIndex]?.value,
-            option: originalOptions[optionIndex]
+            value: newValue,
+            option: newOption
         });
         setShowOverlay(false);
     };
     const handleListChange = (event) => {
         const newIndex = event.optionIndex ?? -1;
+        const newValue = listOptions[newIndex]?.value;
+        const newOption = getOriginalOption(newValue);
         const params = {
             ...event,
             name,
             data,
-            value: listOptions[newIndex]?.value,
-            option: originalOptions[newIndex]
+            value: newValue,
+            option: newOption
         };
         if (newIndex >= 0 && newIndex !== optionIndex) {
             onChange?.(params);

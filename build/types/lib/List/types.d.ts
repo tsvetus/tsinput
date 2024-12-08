@@ -1,8 +1,9 @@
 import { ReactNode } from 'react';
 import { TsiMouseEventHandler, TsiEvent, TsiKeyboardEventHandler } from '../../util/types';
 export type ListItemRenderer = (item?: ListItem, index?: number, items?: ListItem[]) => ReactNode | string;
+export type ListOptionValue = string | number | ReactNode | null;
 export type ListOption = {
-    value?: string | number | ReactNode | null;
+    value?: ListOptionValue;
     name?: string | number | ReactNode | null;
     index?: number | null;
     render?: ListItemRenderer | null;
@@ -13,7 +14,7 @@ export type ListItem = string | ListOption | null | undefined;
 export interface ListEvent extends TsiEvent {
     optionIndex?: number;
     option?: string | ListItem | null;
-    value?: string | number | ReactNode | null;
+    value?: ListOptionValue;
 }
 export type ListEventHandler = (event: ListEvent) => void;
 export interface ItemClass {

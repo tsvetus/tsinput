@@ -1,9 +1,9 @@
-import React, { useRef, useState, useMemo, MouseEvent, KeyboardEvent } from 'react'
+import React, { useRef, useState, useMemo, useCallback, MouseEvent, KeyboardEvent } from 'react'
 
 import { mergeClasses, mergeStyles, asArray } from '../../util'
 
 import Overlay from '../../lib/Overlay'
-import List, { ListEvent, ListOption } from '../../lib/List'
+import List, { ListEvent, ListOption, ListOptionValue } from '../../lib/List'
 
 import Edit from '../Edit'
 
@@ -39,6 +39,21 @@ const ListBox = ({
   const styles = useMemo(() => mergeStyles(style), [style])
 
   const originalOptions = useMemo(() => options || [], [options])
+
+  const getOriginalOption = useCallback(
+    (value: ListOptionValue) => {
+      const fields = asArray(valueField)
+      return originalOptions.find(option => {
+        if (option && 'object' === typeof option) {
+          const field = fields.find(f => option[f])
+          return field ? value === option[field] : false
+        } else {
+          return value === option
+        }
+      })
+    },
+    [originalOptions]
+  )
 
   const listOptions = useMemo(() => {
     const vf = asArray(valueField)
@@ -97,24 +112,28 @@ const ListBox = ({
   }
 
   const handleListClose = (event: ListEvent) => {
+    const newValue = listOptions[optionIndex]?.value
+    const newOption = getOriginalOption(newValue)
     onChange?.({
       ...event,
       name,
       data,
-      value: listOptions[optionIndex]?.value,
-      option: originalOptions[optionIndex]
+      value: newValue,
+      option: newOption
     })
     setShowOverlay(false)
   }
 
   const handleListChange = (event: ListEvent) => {
     const newIndex = event.optionIndex ?? -1
+    const newValue = listOptions[newIndex]?.value
+    const newOption = getOriginalOption(newValue)
     const params = {
       ...event,
       name,
       data,
-      value: listOptions[newIndex]?.value,
-      option: originalOptions[newIndex]
+      value: newValue,
+      option: newOption
     }
     if (newIndex >= 0 && newIndex !== optionIndex) {
       onChange?.(params)

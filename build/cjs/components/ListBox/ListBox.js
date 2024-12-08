@@ -14,6 +14,18 @@ const ListBox = ({ className, style, layout, name, data, value, wait, disabled, 
     const classes = (0, react_1.useMemo)(() => (0, util_1.mergeClasses)(className), [className]);
     const styles = (0, react_1.useMemo)(() => (0, util_1.mergeStyles)(style), [style]);
     const originalOptions = (0, react_1.useMemo)(() => options || [], [options]);
+    const getOriginalOption = (0, react_1.useCallback)((value) => {
+        const fields = (0, util_1.asArray)(valueField);
+        return originalOptions.find(option => {
+            if (option && 'object' === typeof option) {
+                const field = fields.find(f => option[f]);
+                return field ? value === option[field] : false;
+            }
+            else {
+                return value === option;
+            }
+        });
+    }, [originalOptions]);
     const listOptions = (0, react_1.useMemo)(() => {
         const vf = (0, util_1.asArray)(valueField);
         const nf = (0, util_1.asArray)(nameField);
@@ -70,15 +82,19 @@ const ListBox = ({ className, style, layout, name, data, value, wait, disabled, 
     };
     const handleListClose = (event) => {
         var _a;
+        const newValue = (_a = listOptions[optionIndex]) === null || _a === void 0 ? void 0 : _a.value;
+        const newOption = getOriginalOption(newValue);
         onChange === null || onChange === void 0 ? void 0 : onChange(Object.assign(Object.assign({}, event), { name,
-            data, value: (_a = listOptions[optionIndex]) === null || _a === void 0 ? void 0 : _a.value, option: originalOptions[optionIndex] }));
+            data, value: newValue, option: newOption }));
         setShowOverlay(false);
     };
     const handleListChange = (event) => {
         var _a, _b;
         const newIndex = (_a = event.optionIndex) !== null && _a !== void 0 ? _a : -1;
+        const newValue = (_b = listOptions[newIndex]) === null || _b === void 0 ? void 0 : _b.value;
+        const newOption = getOriginalOption(newValue);
         const params = Object.assign(Object.assign({}, event), { name,
-            data, value: (_b = listOptions[newIndex]) === null || _b === void 0 ? void 0 : _b.value, option: originalOptions[newIndex] });
+            data, value: newValue, option: newOption });
         if (newIndex >= 0 && newIndex !== optionIndex) {
             onChange === null || onChange === void 0 ? void 0 : onChange(params);
         }
