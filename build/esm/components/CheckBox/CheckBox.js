@@ -14,7 +14,7 @@ const CheckBox = ({ className, style, layout, name, data, label = 'CheckBox:', r
     const iconSet = useMemo(() => (radio ? ['unselected', 'selected'] : ['unchecked', 'checked']), [radio]);
     const icon = useMemo(() => (value == valueChecked ? iconSet[1] : iconSet[0]), [iconSet, value, valueChecked]);
     const handleChange = (event) => {
-        if (onChange) {
+        if (onChange && !wait && !disabled) {
             onChange({ ...event, value: value == valueChecked ? valueUnchecked : valueChecked });
         }
     };

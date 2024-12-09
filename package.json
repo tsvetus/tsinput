@@ -1,6 +1,6 @@
 {
   "name": "tsinputlib",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "React UI components written in TypeScript",
   "main": "./build/cjs/index.js",
   "type": "module",

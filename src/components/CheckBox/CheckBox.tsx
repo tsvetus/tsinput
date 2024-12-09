@@ -40,7 +40,7 @@ const CheckBox = ({
   const icon = useMemo(() => (value == valueChecked ? iconSet[1] : iconSet[0]), [iconSet, value, valueChecked])
 
   const handleChange = (event: MouseEvent<HTMLElement>) => {
-    if (onChange) {
+    if (onChange && !wait && !disabled) {
       onChange({ ...event, value: value == valueChecked ? valueUnchecked : valueChecked })
     }
   }
