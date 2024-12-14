@@ -77,7 +77,7 @@
       {
         "name": "format",
         "description": "",
-        "type": "{\r\n  required?: boolean\r\n  emptyValue?: TsiValue\r\n  regexp?: RegExp\r\n}",
+        "type": "{\r\n  required?: boolean\r\n  emptyValue?: TsiValue\r\n  invalidValue?: TsiValue\r\n  regexp?: RegExp\r\n}",
         "required": false
       },
       {

@@ -1,5 +1,5 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
-import { useMemo, forwardRef } from 'react';
+import { useMemo, useState, forwardRef } from 'react';
 import { createLayout, getFormatter } from '../../util';
 import Input from '../../lib/Input';
 import Icon from '../Icon';
@@ -28,6 +28,10 @@ const Edit = forwardRef(({ className, style, layout = '', name, data, value, ico
         const state = formatter.processValue(value);
         return [state.text, state.invalid || invalid];
     }, [formatter, value, invalid]);
+    const [internalText, setInternalText] = useState(text);
+    if (!formatter.state.offline && text !== internalText) {
+        setInternalText(text);
+    }
     const [classes, styles] = useMemo(() => createLayout([CLASS, className], [style], {
         wait,
         invalid: internalInvalid,
@@ -42,7 +46,12 @@ const Edit = forwardRef(({ className, style, layout = '', name, data, value, ico
         ? (event) => {
             if (!isReadOnly) {
                 const state = formatter.processText(event.value);
-                onChange({ ...event, text: state.text, value: state.value, invalid: state.invalid, ...params });
+                if (state.changed) {
+                    onChange({ ...event, text: state.text, value: state.value, invalid: state.invalid, ...params });
+                }
+                if (state.offline) {
+                    setInternalText(state.text);
+                }
             }
         }
         : undefined;
@@ -72,7 +81,7 @@ const Edit = forwardRef(({ className, style, layout = '', name, data, value, ico
         }
         : undefined;
     const iconComponent = icon ? (_jsx(Icon, { className: classes?.icon, style: styles?.icon, icon: icon, wait: wait, disabled: disabled, invalid: internalInvalid, onClick: handleIconClick })) : undefined;
-    const inputComponent = (_jsx(Input, { className: classes?.input?._, style: styles?.input?._, value: text, placeholder: placeholder, readOnly: isReadOnly, name: name, data: data, onChange: handleChange, onClick: handleInputClick, onKeyDown: handleInputKeyDown }));
+    const inputComponent = (_jsx(Input, { className: classes?.input?._, style: styles?.input?._, value: internalText, placeholder: placeholder, readOnly: isReadOnly, name: name, data: data, onChange: handleChange, onClick: handleInputClick, onKeyDown: handleInputKeyDown }));
     return isRightInput ? (_jsxs("div", { ref: ref, className: classes?._, style: styles?._, onClick: handleClick, onKeyDown: handleKeyDown, children: [iconComponent, inputComponent, children] })) : (_jsxs("div", { ref: ref, className: classes?._, style: styles?._, onClick: handleClick, onKeyDown: handleKeyDown, children: [inputComponent, iconComponent, children] }));
 });
 Edit.displayName = 'Edit';

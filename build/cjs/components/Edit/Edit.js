@@ -34,6 +34,10 @@ const Edit = (0, react_1.forwardRef)(({ className, style, layout = '', name, dat
         const state = formatter.processValue(value);
         return [state.text, state.invalid || invalid];
     }, [formatter, value, invalid]);
+    const [internalText, setInternalText] = (0, react_1.useState)(text);
+    if (!formatter.state.offline && text !== internalText) {
+        setInternalText(text);
+    }
     const [classes, styles] = (0, react_1.useMemo)(() => (0, util_1.createLayout)([CLASS, className], [style], {
         wait,
         invalid: internalInvalid,
@@ -48,7 +52,12 @@ const Edit = (0, react_1.forwardRef)(({ className, style, layout = '', name, dat
         ? (event) => {
             if (!isReadOnly) {
                 const state = formatter.processText(event.value);
-                onChange(Object.assign(Object.assign(Object.assign({}, event), { text: state.text, value: state.value, invalid: state.invalid }), params));
+                if (state.changed) {
+                    onChange(Object.assign(Object.assign(Object.assign({}, event), { text: state.text, value: state.value, invalid: state.invalid }), params));
+                }
+                if (state.offline) {
+                    setInternalText(state.text);
+                }
             }
         }
         : undefined;
@@ -78,7 +87,7 @@ const Edit = (0, react_1.forwardRef)(({ className, style, layout = '', name, dat
         }
         : undefined;
     const iconComponent = icon ? ((0, jsx_runtime_1.jsx)(Icon_1.default, { className: classes === null || classes === void 0 ? void 0 : classes.icon, style: styles === null || styles === void 0 ? void 0 : styles.icon, icon: icon, wait: wait, disabled: disabled, invalid: internalInvalid, onClick: handleIconClick })) : undefined;
-    const inputComponent = ((0, jsx_runtime_1.jsx)(Input_1.default, { className: (_a = classes === null || classes === void 0 ? void 0 : classes.input) === null || _a === void 0 ? void 0 : _a._, style: (_b = styles === null || styles === void 0 ? void 0 : styles.input) === null || _b === void 0 ? void 0 : _b._, value: text, placeholder: placeholder, readOnly: isReadOnly, name: name, data: data, onChange: handleChange, onClick: handleInputClick, onKeyDown: handleInputKeyDown }));
+    const inputComponent = ((0, jsx_runtime_1.jsx)(Input_1.default, { className: (_a = classes === null || classes === void 0 ? void 0 : classes.input) === null || _a === void 0 ? void 0 : _a._, style: (_b = styles === null || styles === void 0 ? void 0 : styles.input) === null || _b === void 0 ? void 0 : _b._, value: internalText, placeholder: placeholder, readOnly: isReadOnly, name: name, data: data, onChange: handleChange, onClick: handleInputClick, onKeyDown: handleInputKeyDown }));
     return isRightInput ? ((0, jsx_runtime_1.jsxs)("div", { ref: ref, className: classes === null || classes === void 0 ? void 0 : classes._, style: styles === null || styles === void 0 ? void 0 : styles._, onClick: handleClick, onKeyDown: handleKeyDown, children: [iconComponent, inputComponent, children] })) : ((0, jsx_runtime_1.jsxs)("div", { ref: ref, className: classes === null || classes === void 0 ? void 0 : classes._, style: styles === null || styles === void 0 ? void 0 : styles._, onClick: handleClick, onKeyDown: handleKeyDown, children: [inputComponent, iconComponent, children] }));
 });
 Edit.displayName = 'Edit';

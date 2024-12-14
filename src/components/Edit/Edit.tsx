@@ -1,4 +1,4 @@
-import React, { useMemo, forwardRef, Ref, MouseEvent, KeyboardEvent } from 'react'
+import React, { useMemo, useState, forwardRef, Ref, MouseEvent, KeyboardEvent } from 'react'
 
 import { createLayout, getFormatter } from '../../util'
 
@@ -63,6 +63,12 @@ const Edit = forwardRef(
       return [state.text, state.invalid || invalid]
     }, [formatter, value, invalid])
 
+    const [internalText, setInternalText] = useState(text)
+
+    if (!formatter.state.offline && text !== internalText) {
+      setInternalText(text)
+    }
+
     const [classes, styles] = useMemo(
       () =>
         createLayout([CLASS, className], [style], {
@@ -83,7 +89,12 @@ const Edit = forwardRef(
       ? (event: TsiChangeEvent<HTMLInputElement>) => {
           if (!isReadOnly) {
             const state = formatter.processText(event.value)
-            onChange({ ...event, text: state.text, value: state.value, invalid: state.invalid, ...params })
+            if (state.changed) {
+              onChange({ ...event, text: state.text, value: state.value, invalid: state.invalid, ...params })
+            }
+            if (state.offline) {
+              setInternalText(state.text)
+            }
           }
         }
       : undefined
@@ -134,7 +145,7 @@ const Edit = forwardRef(
       <Input
         className={classes?.input?._}
         style={styles?.input?._}
-        value={text}
+        value={internalText}
         placeholder={placeholder}
         readOnly={isReadOnly}
         name={name}

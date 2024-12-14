@@ -41,12 +41,15 @@ export type TsiClassSource = string | object | undefined | null;
 export type TsiFormat = {
     required?: boolean;
     emptyValue?: TsiValue;
+    invalidValue?: TsiValue;
     regexp?: RegExp;
 };
 export type TsiFormatterState = {
     text: string;
     value: TsiValue;
     invalid: boolean;
+    changed?: boolean;
+    offline?: boolean;
 };
 export type TsiFormatter = {
     processText: (text?: string) => TsiFormatterState;

@@ -11,6 +11,8 @@ import Memo from '../../examples/Memo'
 import CheckBox from '../../examples/CheckBox'
 import ListBox from '../../examples/ListBox'
 
+const MAIN_PAGE = 'Readme'
+
 const PAGE_OPTIONS = [
   { key: 'Readme', render: () => <Readme /> },
   { key: 'Icon', render: () => <Icon /> },
@@ -26,7 +28,7 @@ import './Main.css'
 const Main = () => {
   const [state, setState] = useState({
     showSideBar: true,
-    page: 'Readme'
+    page: MAIN_PAGE
   })
 
   const updateState = event => {
