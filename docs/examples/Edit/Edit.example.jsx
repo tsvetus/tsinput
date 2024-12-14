@@ -9,8 +9,8 @@ import './Edit.example.css'
 const EditExample = () => {
   const [state, setState] = useState({ events: [] })
   const handleEditChange = event => {
-    const { name, data, value } = event
-    setState({ ...state, events: state.events.concat({ name, data, value }), [name]: value })
+    const { name, data, text, value, invalid } = event
+    setState({ ...state, events: state.events.concat({ name, data, text, value, invalid }), [name]: value })
   }
   const handleEditClear = event => {
     const { name, data, value } = event
@@ -98,6 +98,16 @@ const EditExample = () => {
         value={state['editG']}
         icon="close"
         disabled={true}
+        onChange={handleEditChange}
+        onIconClick={handleEditClear}
+      />
+      <h4>Edit formatted value:</h4>
+      <Edit
+        className="tsi-docs-edit"
+        name="editH"
+        value={state['editH']}
+        placeholder="Enter email here"
+        format={{ emptyValue: null, required: true, regexp: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ }}
         onChange={handleEditChange}
         onIconClick={handleEditClear}
       />

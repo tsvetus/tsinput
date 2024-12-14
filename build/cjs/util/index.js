@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createLayout = exports.appendString = exports.stringify = exports.selectItems = exports.initRefs = exports.asArray = exports.findElement = exports.selectProps = exports.mergeStyles = exports.mergeClasses = void 0;
+exports.getFormatter = exports.createLayout = exports.appendString = exports.stringify = exports.selectItems = exports.initRefs = exports.asArray = exports.findElement = exports.selectProps = exports.mergeStyles = exports.mergeClasses = void 0;
 const classes_1 = require("./classes");
 Object.defineProperty(exports, "mergeClasses", { enumerable: true, get: function () { return classes_1.mergeClasses; } });
 const styles_1 = require("./styles");
@@ -17,4 +17,6 @@ const strings_1 = require("./strings");
 Object.defineProperty(exports, "appendString", { enumerable: true, get: function () { return strings_1.appendString; } });
 const layout_1 = require("./layout");
 Object.defineProperty(exports, "createLayout", { enumerable: true, get: function () { return layout_1.createLayout; } });
+const format_1 = require("./format");
+Object.defineProperty(exports, "getFormatter", { enumerable: true, get: function () { return format_1.getFormatter; } });
 //# sourceMappingURL=index.js.map

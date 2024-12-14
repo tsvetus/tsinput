@@ -1,29 +1,8 @@
 import React, { useMemo, forwardRef, LegacyRef, ChangeEvent, KeyboardEvent, MouseEvent } from 'react'
 
-import { TsiMouseEventHandler, TsiKeyboardEventHandler, TsiInputEventHandler } from '../../util/types'
-
 import { mergeClasses, mergeStyles } from '../../util'
 
-export interface InputClass {
-  _?: string
-}
-
-export interface InputStyle {
-  _?: object
-}
-
-export interface InputProps {
-  className?: string | InputClass
-  style?: object | InputStyle
-  name?: string
-  data?: unknown
-  value?: string
-  readOnly?: boolean
-  placeholder?: string
-  onChange?: TsiInputEventHandler<HTMLInputElement>
-  onClick?: TsiMouseEventHandler<HTMLInputElement>
-  onKeyDown?: TsiKeyboardEventHandler<HTMLInputElement>
-}
+import { InputProps } from './types'
 
 const BASE = 'tsi-input'
 

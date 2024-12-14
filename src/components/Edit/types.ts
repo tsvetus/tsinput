@@ -3,7 +3,13 @@ import { ReactNode } from 'react'
 import { InputClass, InputStyle } from '../../lib/Input'
 import { IconClass, IconStyle } from '../Icon'
 
-import { TsiMouseEventHandler, TsiKeyboardEventHandler, TsiInputEventHandler } from '../../util/types'
+import {
+  TsiValue,
+  TsiMouseEventHandler,
+  TsiKeyboardEventHandler,
+  TsiInputEventHandler,
+  TsiFormat
+} from '../../util/types'
 
 export interface EditClass {
   _?: string
@@ -33,10 +39,11 @@ export interface EditProps {
   disabled?: boolean
   invalid?: boolean
   icon?: string
-  value?: string | number
+  value?: TsiValue
   readOnly?: boolean
   placeholder?: string
   children?: string | ReactNode
+  format?: TsiFormat
   onClick?: TsiMouseEventHandler<HTMLDivElement>
   onKeyDown?: TsiKeyboardEventHandler<HTMLDivElement>
   onIconClick?: TsiMouseEventHandler<HTMLElement>

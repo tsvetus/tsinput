@@ -1,4 +1,4 @@
-import { TsiMouseEventHandler, TsiKeyboardEventHandler, TsiInputEventHandler } from '../../util/types';
+import { TsiMouseEventHandler, TsiKeyboardEventHandler, TsiChangeEventHandler } from '../../util/types';
 export interface InputClass {
     _?: string;
 }
@@ -13,7 +13,7 @@ export interface InputProps {
     value?: string;
     readOnly?: boolean;
     placeholder?: string;
-    onChange?: TsiInputEventHandler<HTMLInputElement>;
+    onChange?: TsiChangeEventHandler<HTMLInputElement>;
     onClick?: TsiMouseEventHandler<HTMLInputElement>;
     onKeyDown?: TsiKeyboardEventHandler<HTMLInputElement>;
 }

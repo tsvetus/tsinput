@@ -55,7 +55,7 @@
       {
         "name": "value",
         "description": "",
-        "type": "string | number",
+        "type": "string | number | undefined | null",
         "required": false
       },
       {
@@ -72,6 +72,12 @@
         "name": "children",
         "description": "",
         "type": "string | ReactNode",
+        "required": false
+      },
+      {
+        "name": "format",
+        "description": "",
+        "type": "{\r\n  required?: boolean\r\n  emptyValue?: TsiValue\r\n  regexp?: RegExp\r\n}",
         "required": false
       },
       {

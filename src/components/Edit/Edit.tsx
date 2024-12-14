@@ -1,11 +1,12 @@
-import React, { useMemo, forwardRef, Ref, MouseEvent, KeyboardEvent, ChangeEvent } from 'react'
+import React, { useMemo, forwardRef, Ref, MouseEvent, KeyboardEvent } from 'react'
 
-import { createLayout } from '../../util'
+import { createLayout, getFormatter } from '../../util'
 
 import Input from '../../lib/Input'
 import Icon from '../Icon'
 
 import { EditProps } from './types'
+import { TsiChangeEvent } from '../../util/types'
 
 const BASE = 'tsi-edit'
 
@@ -42,6 +43,7 @@ const Edit = forwardRef(
       readOnly,
       placeholder,
       children,
+      format,
       onClick,
       onKeyDown,
       onIconClick,
@@ -51,29 +53,37 @@ const Edit = forwardRef(
     }: EditProps,
     ref?: Ref<HTMLInputElement>
   ) => {
+    const formatter = useMemo(() => getFormatter(format), [])
+
     const isRightInput = useMemo(() => layout.includes('right'), [layout])
     const isReadOnly = useMemo(() => Boolean(readOnly || wait || disabled), [readOnly, wait, disabled])
+
+    const [text, internalInvalid] = useMemo(() => {
+      const state = formatter.processValue(value)
+      return [state.text, state.invalid || invalid]
+    }, [formatter, value, invalid])
 
     const [classes, styles] = useMemo(
       () =>
         createLayout([CLASS, className], [style], {
           wait,
-          invalid,
+          invalid: internalInvalid,
           disabled,
           'input-right': isRightInput,
           'icon-left': isRightInput,
           'input-left': !isRightInput,
           'icon-right': !isRightInput
         }),
-      [className, style, wait, invalid, disabled, isRightInput]
+      [className, style, wait, internalInvalid, disabled, isRightInput]
     )
 
     const params = useMemo(() => ({ name, data }), [data, name])
 
     const handleChange = onChange
-      ? (event: ChangeEvent<HTMLInputElement>) => {
+      ? (event: TsiChangeEvent<HTMLInputElement>) => {
           if (!isReadOnly) {
-            onChange({ ...event, ...params })
+            const state = formatter.processText(event.value)
+            onChange({ ...event, text: state.text, value: state.value, invalid: state.invalid, ...params })
           }
         }
       : undefined
@@ -115,7 +125,7 @@ const Edit = forwardRef(
         icon={icon}
         wait={wait}
         disabled={disabled}
-        invalid={invalid}
+        invalid={internalInvalid}
         onClick={handleIconClick}
       />
     ) : undefined
@@ -124,7 +134,7 @@ const Edit = forwardRef(
       <Input
         className={classes?.input?._}
         style={styles?.input?._}
-        value={`${value ?? ''}`}
+        value={text}
         placeholder={placeholder}
         readOnly={isReadOnly}
         name={name}

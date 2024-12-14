@@ -4,6 +4,7 @@ import { selectProps, asArray, selectItems, stringify } from './objects'
 import { findElement, initRefs } from './elements'
 import { appendString } from './strings'
 import { createLayout } from './layout'
+import { getFormatter } from './format'
 
 export {
   mergeClasses,
@@ -15,5 +16,6 @@ export {
   selectItems,
   stringify,
   appendString,
-  createLayout
+  createLayout,
+  getFormatter
 }
