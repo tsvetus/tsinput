@@ -27,7 +27,7 @@ const ListBoxExample = () => {
   }
   return (
     <>
-      <h4>ListkBox example:</h4>
+      <h4>ListBox example:</h4>
       <ListBox
         className="tsi-docs-list-box"
         name="listBoxA"
@@ -45,7 +45,7 @@ const ListBoxExample = () => {
         options={STRING_OPTIONS}
         onChange={handleListBoxChange}
       />
-      <h4>ListkBox invalid state:</h4>
+      <h4>ListBox invalid state:</h4>
       <ListBox
         className="tsi-docs-list-box"
         name="listBoxB"
@@ -55,7 +55,7 @@ const ListBoxExample = () => {
         invalid={true}
         onChange={handleListBoxChange}
       />
-      <h4>ListkBox wait state:</h4>
+      <h4>ListBox wait state:</h4>
       <ListBox
         className="tsi-docs-list-box"
         name="listBoxC"
@@ -65,7 +65,7 @@ const ListBoxExample = () => {
         wait={true}
         onChange={handleListBoxChange}
       />
-      <h4>ListkBox disabled satte:</h4>
+      <h4>ListBox disabled satte:</h4>
       <ListBox
         className="tsi-docs-list-box"
         name="listBoxD"
