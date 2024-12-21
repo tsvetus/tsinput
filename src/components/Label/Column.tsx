@@ -51,9 +51,9 @@ const Column = forwardRef<HTMLDivElement, LabelProps>(
     const [classes, styles] = useMemo(
       () =>
         createLayout([CLASS, className], [style], {
-          'header-border': isBorder,
-          'text-border': isBorder,
-          'icon-border': isBorder
+          header: { border: isBorder },
+          text: { border: isBorder },
+          icon: { border: isBorder }
         }),
       [className, isBorder, style]
     )

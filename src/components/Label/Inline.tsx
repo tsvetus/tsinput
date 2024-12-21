@@ -49,10 +49,14 @@ const Inline = forwardRef<HTMLDivElement, LabelProps>(
     const [classes, styles] = useMemo(
       () =>
         createLayout([CLASS, className], [style], {
-          'text-right': isRightLabel,
-          'icon-left': isRightLabel,
-          'text-left': !isRightLabel,
-          'icon-right': !isRightLabel
+          text: {
+            left: !isRightLabel,
+            right: isRightLabel
+          },
+          icon: {
+            left: isRightLabel,
+            right: !isRightLabel
+          }
         }),
       [className, isRightLabel, style]
     )

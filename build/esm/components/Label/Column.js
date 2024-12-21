@@ -22,9 +22,9 @@ const CLASS = {
 const Column = forwardRef(({ className, style, layout = '', name, data, label, text, icon, wait, disabled, invalid, children, onClick, onTextClick, onIconClick }, ref) => {
     const [isRightLabel, isBorder] = useMemo(() => [layout.includes('right'), layout.includes('border')], [layout]);
     const [classes, styles] = useMemo(() => createLayout([CLASS, className], [style], {
-        'header-border': isBorder,
-        'text-border': isBorder,
-        'icon-border': isBorder
+        header: { border: isBorder },
+        text: { border: isBorder },
+        icon: { border: isBorder }
     }), [className, isBorder, style]);
     const [textClasses, textStyles] = useMemo(() => createLayout([classes.text, classes.label], [styles.text, styles.label]), [classes, styles]);
     const params = useMemo(() => ({ name, data }), [data, name]);

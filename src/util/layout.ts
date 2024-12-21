@@ -1,23 +1,19 @@
-import { TsiClass, TsiStyle, TsiObject, TsiClassSource, TsiStyleSource } from './types'
+import { TsiClass, TsiStyle, TsiClassSource, TsiStyleSource, TsiSchema } from './types'
 
 import { appendString } from './strings'
 
 import { mergeClasses } from './classes'
 import { mergeStyles } from './styles'
 
-const collapseClass = (source: TsiClass | undefined, schema: TsiObject, preffix: string = ''): TsiClass => {
+const collapseClass = (source: TsiClass, schema: TsiSchema): TsiClass => {
   const result = { _: source?._ } as TsiClass
   for (const key in source) {
     if ('_' !== key) {
-      const child = source[key]
-      if (child) {
-        const node = preffix ? `${preffix}-${key}` : key
-        if (node in schema) {
-          if (schema[node]) {
-            result._ = appendString(result._, child._)
-          }
-        } else {
-          result[key] = collapseClass(child, schema, node)
+      if (source[key] && schema[key]) {
+        if ('object' === typeof schema?.[key]) {
+          result[key] = collapseClass(source[key], schema[key])
+        } else if (schema[key]) {
+          result._ = appendString(result._, source[key]._)
         }
       }
     }
@@ -25,19 +21,15 @@ const collapseClass = (source: TsiClass | undefined, schema: TsiObject, preffix:
   return result
 }
 
-const collapseStyle = (source: TsiStyle | undefined, schema: TsiObject, preffix: string = ''): TsiStyle => {
+const collapseStyle = (source: TsiStyle, schema: TsiSchema): TsiStyle => {
   const result = { _: source?._ } as TsiStyle
   for (const key in source) {
     if ('_' !== key) {
-      const child = source[key]
-      if (child) {
-        const node = preffix ? `${preffix}-${key}` : key
-        if (node in schema) {
-          if (schema[node]) {
-            result._ = { ...result._, ...child._ }
-          }
-        } else {
-          result[key] = collapseStyle(child, schema, node)
+      if (source[key] && schema[key]) {
+        if ('object' === typeof schema?.[key]) {
+          result[key] = collapseStyle(source[key], schema[key])
+        } else if (schema[key]) {
+          result._ = { ...result._, ...source[key]._ }
         }
       }
     }
@@ -50,7 +42,7 @@ type TsiLayoutCallback = (classes: TsiClass | undefined, styles: TsiStyle | unde
 const createLayout = (
   classes: TsiClassSource[],
   styles: TsiStyleSource[],
-  schema?: TsiObject,
+  schema?: TsiSchema,
   callback?: TsiLayoutCallback
 ): [TsiClass, TsiStyle] => {
   const mergedClasses = mergeClasses(...classes)

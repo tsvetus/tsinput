@@ -75,10 +75,14 @@ const Edit = forwardRef(
           wait,
           invalid: internalInvalid,
           disabled,
-          'input-right': isRightInput,
-          'icon-left': isRightInput,
-          'input-left': !isRightInput,
-          'icon-right': !isRightInput
+          input: {
+            right: isRightInput,
+            left: !isRightInput
+          },
+          icon: {
+            right: !isRightInput,
+            left: isRightInput
+          }
         }),
       [className, style, wait, internalInvalid, disabled, isRightInput]
     )

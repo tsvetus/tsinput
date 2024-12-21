@@ -20,10 +20,14 @@ const CLASS = {
 const Inline = forwardRef(({ className, style, layout = '', name, data, label, text, icon, wait, disabled, invalid, children, onClick, onTextClick, onIconClick }, ref) => {
     const isRightLabel = useMemo(() => layout.includes('right'), [layout]);
     const [classes, styles] = useMemo(() => createLayout([CLASS, className], [style], {
-        'text-right': isRightLabel,
-        'icon-left': isRightLabel,
-        'text-left': !isRightLabel,
-        'icon-right': !isRightLabel
+        text: {
+            left: !isRightLabel,
+            right: isRightLabel
+        },
+        icon: {
+            left: isRightLabel,
+            right: !isRightLabel
+        }
     }), [className, isRightLabel, style]);
     const [textClasses, textStyles] = useMemo(() => createLayout([classes.text, classes.label], [styles.text, styles.label]), [classes, styles]);
     const params = useMemo(() => ({ name, data }), [data, name]);

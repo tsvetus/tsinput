@@ -55,7 +55,7 @@
       {
         "name": "value",
         "description": "",
-        "type": "string | number | undefined | null",
+        "type": "string | number | boolean | undefined | null",
         "required": false
       },
       {

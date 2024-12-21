@@ -42,10 +42,14 @@ const Edit = (0, react_1.forwardRef)(({ className, style, layout = '', name, dat
         wait,
         invalid: internalInvalid,
         disabled,
-        'input-right': isRightInput,
-        'icon-left': isRightInput,
-        'input-left': !isRightInput,
-        'icon-right': !isRightInput
+        input: {
+            right: isRightInput,
+            left: !isRightInput
+        },
+        icon: {
+            right: !isRightInput,
+            left: isRightInput
+        }
     }), [className, style, wait, internalInvalid, disabled, isRightInput]);
     const params = (0, react_1.useMemo)(() => ({ name, data }), [data, name]);
     const handleChange = onChange

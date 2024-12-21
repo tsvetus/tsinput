@@ -25,10 +25,14 @@ const CLASS = {
 const Inline = (0, react_1.forwardRef)(({ className, style, layout = '', name, data, label, text, icon, wait, disabled, invalid, children, onClick, onTextClick, onIconClick }, ref) => {
     const isRightLabel = (0, react_1.useMemo)(() => layout.includes('right'), [layout]);
     const [classes, styles] = (0, react_1.useMemo)(() => (0, util_1.createLayout)([CLASS, className], [style], {
-        'text-right': isRightLabel,
-        'icon-left': isRightLabel,
-        'text-left': !isRightLabel,
-        'icon-right': !isRightLabel
+        text: {
+            left: !isRightLabel,
+            right: isRightLabel
+        },
+        icon: {
+            left: isRightLabel,
+            right: !isRightLabel
+        }
     }), [className, isRightLabel, style]);
     const [textClasses, textStyles] = (0, react_1.useMemo)(() => (0, util_1.createLayout)([classes.text, classes.label], [styles.text, styles.label]), [classes, styles]);
     const params = (0, react_1.useMemo)(() => ({ name, data }), [data, name]);

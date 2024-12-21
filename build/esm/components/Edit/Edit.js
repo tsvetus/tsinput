@@ -36,10 +36,14 @@ const Edit = forwardRef(({ className, style, layout = '', name, data, value, ico
         wait,
         invalid: internalInvalid,
         disabled,
-        'input-right': isRightInput,
-        'icon-left': isRightInput,
-        'input-left': !isRightInput,
-        'icon-right': !isRightInput
+        input: {
+            right: isRightInput,
+            left: !isRightInput
+        },
+        icon: {
+            right: !isRightInput,
+            left: isRightInput
+        }
     }), [className, style, wait, internalInvalid, disabled, isRightInput]);
     const params = useMemo(() => ({ name, data }), [data, name]);
     const handleChange = onChange

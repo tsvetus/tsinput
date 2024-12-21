@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.stringify = exports.Menu = exports.Content = exports.MenuItem = exports.Page = exports.LabelGroup = exports.Group = exports.CheckBox = exports.TabControl = exports.TopBar = exports.SideBar = exports.ListBox = exports.LabelMemo = exports.LabelEdit = exports.LabelIcon = exports.Label = exports.Memo = exports.Edit = exports.Icon = void 0;
+exports.Menu = exports.Content = exports.MenuItem = exports.Page = exports.LabelGroup = exports.Group = exports.CheckBox = exports.TabControl = exports.TopBar = exports.SideBar = exports.ListBox = exports.LabelMemo = exports.LabelEdit = exports.LabelIcon = exports.Label = exports.Memo = exports.Edit = exports.Icon = void 0;
 const Icon_1 = __importDefault(require("./components/Icon"));
 exports.Icon = Icon_1.default;
 const Edit_1 = __importDefault(require("./components/Edit"));
@@ -40,6 +40,4 @@ const Content_1 = __importDefault(require("./components/Content"));
 exports.Content = Content_1.default;
 const Menu_1 = __importDefault(require("./components/Menu"));
 exports.Menu = Menu_1.default;
-const util_1 = require("./util");
-Object.defineProperty(exports, "stringify", { enumerable: true, get: function () { return util_1.stringify; } });
 //# sourceMappingURL=index.js.map

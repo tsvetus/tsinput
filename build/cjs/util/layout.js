@@ -4,40 +4,32 @@ exports.createLayout = void 0;
 const strings_1 = require("./strings");
 const classes_1 = require("./classes");
 const styles_1 = require("./styles");
-const collapseClass = (source, schema, preffix = '') => {
+const collapseClass = (source, schema) => {
     const result = { _: source === null || source === void 0 ? void 0 : source._ };
     for (const key in source) {
         if ('_' !== key) {
-            const child = source[key];
-            if (child) {
-                const node = preffix ? `${preffix}-${key}` : key;
-                if (node in schema) {
-                    if (schema[node]) {
-                        result._ = (0, strings_1.appendString)(result._, child._);
-                    }
+            if (source[key] && schema[key]) {
+                if ('object' === typeof (schema === null || schema === void 0 ? void 0 : schema[key])) {
+                    result[key] = collapseClass(source[key], schema[key]);
                 }
-                else {
-                    result[key] = collapseClass(child, schema, node);
+                else if (schema[key]) {
+                    result._ = (0, strings_1.appendString)(result._, source[key]._);
                 }
             }
         }
     }
     return result;
 };
-const collapseStyle = (source, schema, preffix = '') => {
+const collapseStyle = (source, schema) => {
     const result = { _: source === null || source === void 0 ? void 0 : source._ };
     for (const key in source) {
         if ('_' !== key) {
-            const child = source[key];
-            if (child) {
-                const node = preffix ? `${preffix}-${key}` : key;
-                if (node in schema) {
-                    if (schema[node]) {
-                        result._ = Object.assign(Object.assign({}, result._), child._);
-                    }
+            if (source[key] && schema[key]) {
+                if ('object' === typeof (schema === null || schema === void 0 ? void 0 : schema[key])) {
+                    result[key] = collapseStyle(source[key], schema[key]);
                 }
-                else {
-                    result[key] = collapseStyle(child, schema, node);
+                else if (schema[key]) {
+                    result._ = Object.assign(Object.assign({}, result._), source[key]._);
                 }
             }
         }

@@ -28,9 +28,9 @@ const Column = (0, react_1.forwardRef)(({ className, style, layout = '', name, d
     var _a, _b, _c, _d;
     const [isRightLabel, isBorder] = (0, react_1.useMemo)(() => [layout.includes('right'), layout.includes('border')], [layout]);
     const [classes, styles] = (0, react_1.useMemo)(() => (0, util_1.createLayout)([CLASS, className], [style], {
-        'header-border': isBorder,
-        'text-border': isBorder,
-        'icon-border': isBorder
+        header: { border: isBorder },
+        text: { border: isBorder },
+        icon: { border: isBorder }
     }), [className, isBorder, style]);
     const [textClasses, textStyles] = (0, react_1.useMemo)(() => (0, util_1.createLayout)([classes.text, classes.label], [styles.text, styles.label]), [classes, styles]);
     const params = (0, react_1.useMemo)(() => ({ name, data }), [data, name]);

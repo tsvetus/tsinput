@@ -1,7 +1,7 @@
 import { ReactNode, MouseEvent, KeyboardEvent, ChangeEvent, CSSProperties } from 'react';
-export type TsiValue = string | number | undefined | null;
-export type TsiObject = {
-    [key: string]: object | TsiObject[] | string | number | boolean | undefined;
+export type TsiValue = string | number | boolean | undefined | null;
+export type TsiSchema = {
+    [key: string]: TsiSchema | boolean | undefined;
 };
 export interface TsiEvent {
     name?: string | ReactNode;

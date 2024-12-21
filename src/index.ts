@@ -17,8 +17,6 @@ import MenuItem from './components/MenuItem'
 import Content from './components/Content'
 import Menu from './components/Menu'
 
-import { stringify } from './util'
-
 export {
   Icon,
   Edit,
@@ -37,6 +35,5 @@ export {
   Page,
   MenuItem,
   Content,
-  Menu,
-  stringify
+  Menu
 }

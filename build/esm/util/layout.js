@@ -1,40 +1,32 @@
 import { appendString } from './strings';
 import { mergeClasses } from './classes';
 import { mergeStyles } from './styles';
-const collapseClass = (source, schema, preffix = '') => {
+const collapseClass = (source, schema) => {
     const result = { _: source?._ };
     for (const key in source) {
         if ('_' !== key) {
-            const child = source[key];
-            if (child) {
-                const node = preffix ? `${preffix}-${key}` : key;
-                if (node in schema) {
-                    if (schema[node]) {
-                        result._ = appendString(result._, child._);
-                    }
+            if (source[key] && schema[key]) {
+                if ('object' === typeof schema?.[key]) {
+                    result[key] = collapseClass(source[key], schema[key]);
                 }
-                else {
-                    result[key] = collapseClass(child, schema, node);
+                else if (schema[key]) {
+                    result._ = appendString(result._, source[key]._);
                 }
             }
         }
     }
     return result;
 };
-const collapseStyle = (source, schema, preffix = '') => {
+const collapseStyle = (source, schema) => {
     const result = { _: source?._ };
     for (const key in source) {
         if ('_' !== key) {
-            const child = source[key];
-            if (child) {
-                const node = preffix ? `${preffix}-${key}` : key;
-                if (node in schema) {
-                    if (schema[node]) {
-                        result._ = { ...result._, ...child._ };
-                    }
+            if (source[key] && schema[key]) {
+                if ('object' === typeof schema?.[key]) {
+                    result[key] = collapseStyle(source[key], schema[key]);
                 }
-                else {
-                    result[key] = collapseStyle(child, schema, node);
+                else if (schema[key]) {
+                    result._ = { ...result._, ...source[key]._ };
                 }
             }
         }
